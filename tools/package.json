@@ -11,16 +11,16 @@
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.12.5",
-    "@grpc/proto-loader": "^0.7.13",
+    "@grpc/proto-loader": "^0.8.1",
     "semver": "^7.6.3",
     "tar": "^7.4.3"
   },
   "devDependencies": {
-    "@types/node": "^22.10.2",
+    "@types/node": "^26.2.0",
     "@types/semver": "^7.5.8",
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.2"
+    "typescript": "^7.0.2"
   }
 }
