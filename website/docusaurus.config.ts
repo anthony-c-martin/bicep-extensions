@@ -50,7 +50,10 @@ const config: Config = {
 
   themeConfig: {
     colorMode: {
+      // Follow the operating system's light/dark preference, with no manual
+      // toggle in the navbar.
       respectPrefersColorScheme: true,
+      disableSwitch: true,
     },
     navbar: {
       title: 'Bicep Extensions',

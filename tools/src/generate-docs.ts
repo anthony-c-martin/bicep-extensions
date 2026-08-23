@@ -291,15 +291,8 @@ async function generateSamplePages(
     // Samples assume the extension is already registered, so point at the
     // installation instructions before the reader copies any code.
     parts.push(
-      [
-        ':::tip',
-        '',
-        `Before running this, register the ${escapeCell(data.config.displayName)} extension in`,
-        `your \`bicepconfig.json\` — see [Installation](../index.md#installation).`,
-        '',
-        ':::',
-        '',
-      ].join('\n'),
+      `_Requires the ${escapeCell(data.config.displayName)} extension to be registered in ` +
+        `\`bicepconfig.json\` — see [Installation](../index.md#installation)._\n`,
     );
 
     parts.push('```bicep');
@@ -560,6 +553,14 @@ async function main(): Promise<void> {
 
   const summaries: Array<{ config: ExtensionConfigEntry; generated: GeneratedExtension; count: number }> = [];
 
+  // The sidebar lists extensions alphabetically by display name, regardless of
+  // the order they happen to appear in extensions.json.
+  const sidebarPosition = new Map(
+    [...catalogue]
+      .sort((a, b) => a.displayName.localeCompare(b.displayName))
+      .map((extension, index) => [extension.id, index + 1] as const),
+  );
+
   for (const config of catalogue) {
     const generatedPath = path.join(generatedDir, `${config.id}.json`);
     let generated: GeneratedExtension;
@@ -582,7 +583,15 @@ async function main(): Promise<void> {
     // Gives the sidebar a friendly label instead of the folder name.
     await writeFile(
       path.join(outputDir, config.id, '_category_.json'),
-      `${JSON.stringify({ label: config.displayName, collapsed: true }, null, 2)}\n`,
+      `${JSON.stringify(
+        {
+          label: config.displayName,
+          position: sidebarPosition.get(config.id),
+          collapsed: true,
+        },
+        null,
+        2,
+      )}\n`,
     );
 
     const resources: Array<{ slug: string; title: string }> = [];

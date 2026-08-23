@@ -78,6 +78,54 @@
       ]
     },
     {
+      "id": "keyvault",
+      "displayName": "Azure Key Vault",
+      "description": "Manage data plane objects in Azure Key Vault, such as secrets, keys and certificates.",
+      "repository": "https://github.com/anthony-c-martin/bicep-ext-keyvault",
+      "artifact": "ghcr.io/anthony-c-martin/bicep-ext-keyvault",
+      "publisher": "anthony-c-martin",
+      "category": "Azure",
+      "tags": [
+        "azure",
+        "keyvault",
+        "secrets",
+        "certificates"
+      ],
+      "license": "MIT",
+      "samples": [
+        {
+          "title": "Secrets, keys and certificates",
+          "description": "Creates a secret, a key, certificate contacts and a self-signed certificate.",
+          "url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/basic/main.bicep"
+        },
+        {
+          "title": "Application secrets",
+          "description": "Stores a set of application configuration values as secrets.",
+          "url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/app-secrets/main.bicep"
+        },
+        {
+          "title": "Certificate lifecycle",
+          "description": "Self-signed and CA-issued certificates, a certificate issuer, and importing an existing certificate.",
+          "url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/certificates/main.bicep"
+        },
+        {
+          "title": "Encryption and signing keys",
+          "description": "Creates keys intended for encryption and for signing.",
+          "url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/encryption-keys/main.bicep"
+        },
+        {
+          "title": "Managed HSM",
+          "description": "Keys in a Managed HSM with a rotation policy and role assignments.",
+          "url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/managed-hsm/main.bicep"
+        },
+        {
+          "title": "Replicating across vaults",
+          "description": "Copies a secret from a primary vault into replica vaults.",
+          "url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/multi-vault/main.bicep"
+        }
+      ]
+    },
+    {
       "id": "storage",
       "displayName": "Azure Storage",
       "description": "Manage data plane resources in Azure Storage accounts, such as blob containers, blobs, queues and tables.",

@@ -86,3 +86,12 @@
 .table-of-contents {
   font-size: 0.8rem;
 }
+
+/*
+ * Sample pages open with a one-line italic pointer to the installation steps.
+ * It should read as an aside, not compete with the sample itself.
+ */
+.markdown > p > em {
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.9rem;
+}

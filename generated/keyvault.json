@@ -1,0 +1,1549 @@
+{
+  "id": "keyvault",
+  "version": "0.0.1",
+  "artifact": "ghcr.io/anthony-c-martin/bicep-ext-keyvault",
+  "digest": "sha256:7e8937fdbe04d02329bf555ea00f1c3383ed4d1f31c00195bac3e1e7b7dfc6c1",
+  "extractedAt": "2026-08-23T02:59:23.878Z",
+  "settings": {
+    "name": "keyvault",
+    "version": "0.0.1",
+    "isSingleton": true,
+    "isPreview": false,
+    "isDeprecated": false,
+    "configurationType": {
+      "$ref": "types.json#/48"
+    }
+  },
+  "resources": {
+    "Certificate": {
+      "$ref": "types.json#/22"
+    },
+    "CertificateContacts": {
+      "$ref": "types.json#/26"
+    },
+    "CertificateIssuer": {
+      "$ref": "types.json#/30"
+    },
+    "Key": {
+      "$ref": "types.json#/35"
+    },
+    "ManagedHsmKey": {
+      "$ref": "types.json#/37"
+    },
+    "ManagedHsmKeyRotationPolicy": {
+      "$ref": "types.json#/39"
+    },
+    "ManagedHsmRoleDefinition": {
+      "$ref": "types.json#/43"
+    },
+    "ManagedHsmRoleAssignment": {
+      "$ref": "types.json#/45"
+    },
+    "Secret": {
+      "$ref": "types.json#/47"
+    }
+  },
+  "resourceFunctions": {},
+  "typeFiles": {
+    "types.json": [
+      {
+        "$type": "StringType",
+        "sensitive": true
+      },
+      {
+        "$type": "ObjectType",
+        "name": "CertificateImport",
+        "properties": {
+          "contents": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The base64-encoded contents of the certificate to import. May be a PFX or a PEM bundle."
+          },
+          "password": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The password protecting the certificate contents, if any."
+          }
+        }
+      },
+      {
+        "$type": "NullType"
+      },
+      {
+        "$type": "BooleanType"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/2"
+          },
+          {
+            "$ref": "#/3"
+          }
+        ]
+      },
+      {
+        "$type": "StringType"
+      },
+      {
+        "$type": "IntegerType"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/2"
+          },
+          {
+            "$ref": "#/6"
+          }
+        ]
+      },
+      {
+        "$type": "ObjectType",
+        "name": "CertificateKeyProperties",
+        "properties": {
+          "exportable": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Whether the key is exportable."
+          },
+          "keyType": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The type of key. One of 'RSA', 'RSA-HSM', 'EC', 'EC-HSM' or 'oct'."
+          },
+          "keySize": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "The size of the key. Required for RSA keys, e.g. 2048, 3072 or 4096."
+          },
+          "reuseKey": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Whether to reuse the key when the certificate is renewed."
+          },
+          "curve": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The curve type for elliptic curve keys. One of 'P-256', 'P-256K', 'P-384' or 'P-521'."
+          }
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "CertificateSecretProperties",
+        "properties": {
+          "contentType": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The content type of the secret backing the certificate. Either 'application/x-pkcs12' or 'application/x-pem-file'."
+          }
+        }
+      },
+      {
+        "$type": "ArrayType",
+        "itemType": {
+          "$ref": "#/5"
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "SubjectAlternativeNames",
+        "properties": {
+          "emails": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Email addresses in the certificate."
+          },
+          "dnsNames": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "DNS names in the certificate."
+          },
+          "upns": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "User principal names in the certificate."
+          }
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "X509Properties",
+        "properties": {
+          "subject": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The subject name of the certificate, e.g. 'CN=contoso.com'."
+          },
+          "ekus": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Enhanced key usage extensions, as OIDs, e.g. '1.3.6.1.5.5.7.3.1'."
+          },
+          "subjectAlternativeNames": {
+            "type": {
+              "$ref": "#/11"
+            },
+            "flags": 0,
+            "description": "Subject alternative names."
+          },
+          "keyUsage": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Key usage extensions, e.g. 'digitalSignature'."
+          },
+          "validityInMonths": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Validity period in months."
+          }
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "LifetimeActionTrigger",
+        "properties": {
+          "lifetimePercentage": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Percentage of the certificate lifetime at which to trigger the action. Must be between 1 and 99, and cannot be combined with 'daysBeforeExpiry'."
+          },
+          "daysBeforeExpiry": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Days before expiry at which to trigger the action. Cannot be combined with 'lifetimePercentage'."
+          }
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "LifetimeActionAction",
+        "properties": {
+          "actionType": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 1,
+            "description": "The type of action to perform. Either 'AutoRenew' or 'EmailContacts'."
+          }
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "LifetimeAction",
+        "properties": {
+          "trigger": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 1,
+            "description": "The trigger for the lifetime action."
+          },
+          "action": {
+            "type": {
+              "$ref": "#/14"
+            },
+            "flags": 1,
+            "description": "The action to perform."
+          }
+        }
+      },
+      {
+        "$type": "ArrayType",
+        "itemType": {
+          "$ref": "#/15"
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "CertificateIssuerParameters",
+        "properties": {
+          "name": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 1,
+            "description": "The name of the issuer. Use 'Self' for a self-signed certificate, 'Unknown' for a certificate signed by an external CA, or the name of a 'CertificateIssuer' resource."
+          },
+          "certificateType": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The type of certificate to request from the issuer."
+          },
+          "certificateTransparency": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Whether certificate transparency is enabled."
+          }
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "CertificateAttributes",
+        "properties": {
+          "enabled": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Whether the certificate is enabled."
+          }
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Dictionary<string, String>",
+        "properties": {},
+        "additionalProperties": {
+          "$ref": "#/5"
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "CertificateAttributeOutputs",
+        "properties": {
+          "enabled": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "Whether the certificate is enabled."
+          },
+          "created": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The UTC date/time at which the certificate was created, in ISO 8601 format."
+          },
+          "updated": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The UTC date/time at which the certificate was last updated, in ISO 8601 format."
+          },
+          "expires": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The UTC date/time at which the certificate expires, in ISO 8601 format."
+          },
+          "notBefore": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The UTC date/time before which the certificate cannot be used, in ISO 8601 format."
+          },
+          "recoveryLevel": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The deletion recovery level currently in effect for the certificate."
+          }
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Certificate",
+        "properties": {
+          "import": {
+            "type": {
+              "$ref": "#/1"
+            },
+            "flags": 0,
+            "description": "An existing certificate to import. Mutually exclusive with the policy properties ('key', 'secret', 'x509Properties', 'issuer', 'lifetimeActions')."
+          },
+          "key": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Key properties for the certificate."
+          },
+          "secret": {
+            "type": {
+              "$ref": "#/9"
+            },
+            "flags": 0,
+            "description": "Secret properties for the certificate."
+          },
+          "x509Properties": {
+            "type": {
+              "$ref": "#/12"
+            },
+            "flags": 0,
+            "description": "X.509 certificate properties."
+          },
+          "lifetimeActions": {
+            "type": {
+              "$ref": "#/16"
+            },
+            "flags": 0,
+            "description": "Lifetime actions for the certificate."
+          },
+          "issuer": {
+            "type": {
+              "$ref": "#/17"
+            },
+            "flags": 0,
+            "description": "Certificate issuer information."
+          },
+          "attributes": {
+            "type": {
+              "$ref": "#/18"
+            },
+            "flags": 0,
+            "description": "Certificate attributes."
+          },
+          "tags": {
+            "type": {
+              "$ref": "#/19"
+            },
+            "flags": 0,
+            "description": "Tags to apply to the certificate."
+          },
+          "version": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The version of the certificate."
+          },
+          "id": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The versioned URI of the certificate."
+          },
+          "versionlessId": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The URI of the certificate, without a version. Use this to always resolve the latest version."
+          },
+          "secretId": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The versioned URI of the KeyVault secret backing the certificate."
+          },
+          "versionlessSecretId": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The URI of the KeyVault secret backing the certificate, without a version."
+          },
+          "keyId": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The versioned URI of the KeyVault key backing the certificate."
+          },
+          "certificateData": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The raw DER-encoded certificate, as a lower-case hexadecimal string."
+          },
+          "certificateDataBase64": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The raw DER-encoded certificate, as a base64-encoded string."
+          },
+          "thumbprint": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The X.509 SHA-1 thumbprint of the certificate, as an upper-case hexadecimal string."
+          },
+          "certificateAttributes": {
+            "type": {
+              "$ref": "#/20"
+            },
+            "flags": 2,
+            "description": "Read-only attributes of the certificate as reported by KeyVault."
+          },
+          "vaultUri": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 16,
+            "description": "The URI of the Key Vault holding the certificate. Defaults to the 'vaultUri' supplied in the extension configuration."
+          },
+          "name": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 17,
+            "description": "The name of the certificate in KeyVault."
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Certificate",
+        "body": {
+          "$ref": "#/21"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "CertificateContact",
+        "properties": {
+          "email": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 1,
+            "description": "The email address of the contact."
+          },
+          "name": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The name of the contact."
+          },
+          "phone": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The phone number of the contact."
+          }
+        }
+      },
+      {
+        "$type": "ArrayType",
+        "itemType": {
+          "$ref": "#/23"
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "CertificateContacts",
+        "properties": {
+          "contacts": {
+            "type": {
+              "$ref": "#/24"
+            },
+            "flags": 1,
+            "description": "The contacts notified by certificate lifetime actions. This replaces the full set of contacts configured on the vault."
+          },
+          "vaultUri": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 16,
+            "description": "The URI of the Key Vault holding the contacts. Defaults to the 'vaultUri' supplied in the extension configuration."
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "CertificateContacts",
+        "body": {
+          "$ref": "#/25"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "CertificateIssuerAdmin",
+        "properties": {
+          "emailAddress": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 1,
+            "description": "The email address of the administrator."
+          },
+          "firstName": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The first name of the administrator."
+          },
+          "lastName": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The last name of the administrator."
+          },
+          "phone": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The phone number of the administrator."
+          }
+        }
+      },
+      {
+        "$type": "ArrayType",
+        "itemType": {
+          "$ref": "#/27"
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "CertificateIssuer",
+        "properties": {
+          "providerName": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 1,
+            "description": "The name of the certificate authority provider. One of 'DigiCert', 'GlobalSign', 'OneCertV2-PrivateCA', 'OneCertV2-PublicCA' or 'SslAdminV2'."
+          },
+          "orgId": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The organization ID registered with the certificate authority."
+          },
+          "accountId": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The account ID registered with the certificate authority."
+          },
+          "password": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 4,
+            "description": "The password for the account registered with the certificate authority. This must be supplied on every deployment: the issuer is written as a whole, and KeyVault never returns the stored password."
+          },
+          "enabled": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Whether the issuer is enabled."
+          },
+          "admins": {
+            "type": {
+              "$ref": "#/28"
+            },
+            "flags": 0,
+            "description": "The administrators registered with the certificate authority."
+          },
+          "id": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The URI of the certificate issuer."
+          },
+          "createdOn": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The UTC date/time at which the issuer was created, in ISO 8601 format."
+          },
+          "updatedOn": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The UTC date/time at which the issuer was last updated, in ISO 8601 format."
+          },
+          "vaultUri": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 16,
+            "description": "The URI of the Key Vault holding the issuer. Defaults to the 'vaultUri' supplied in the extension configuration."
+          },
+          "name": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 17,
+            "description": "The name of the certificate issuer in KeyVault."
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "CertificateIssuer",
+        "body": {
+          "$ref": "#/29"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "KeyReleasePolicy",
+        "properties": {
+          "json": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 1,
+            "description": "The release policy, as a JSON string."
+          },
+          "immutable": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Whether the release policy is immutable. An immutable policy cannot be changed once set."
+          }
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "KeyRotationPolicyAutomatic",
+        "properties": {
+          "timeAfterCreation": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "Rotate the key this long after it was created, as an ISO 8601 duration, e.g. 'P90D'. Cannot be combined with 'timeBeforeExpiry'."
+          },
+          "timeBeforeExpiry": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "Rotate the key this long before it expires, as an ISO 8601 duration, e.g. 'P30D'. Cannot be combined with 'timeAfterCreation'."
+          }
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "KeyRotationPolicy",
+        "properties": {
+          "expireAfter": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "How long a newly rotated key remains valid, as an ISO 8601 duration, e.g. 'P90D'. Must be at least 'P28D'."
+          },
+          "notifyBeforeExpiry": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "How long before expiry to raise a notification event, as an ISO 8601 duration, e.g. 'P29D'."
+          },
+          "automatic": {
+            "type": {
+              "$ref": "#/32"
+            },
+            "flags": 0,
+            "description": "Configures automatic rotation. When omitted, the key is not rotated automatically."
+          }
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Key",
+        "properties": {
+          "keyType": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 1,
+            "description": "The type of key to create. One of 'RSA', 'RSA-HSM', 'EC', 'EC-HSM', 'oct' or 'oct-HSM'."
+          },
+          "keyOps": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "The permitted JSON web key operations, e.g. 'sign', 'verify', 'encrypt', 'decrypt', 'wrapKey', 'unwrapKey'."
+          },
+          "keySize": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "The size of the key in bits. Required for 'RSA', 'RSA-HSM', 'oct' and 'oct-HSM' keys, e.g. 2048, 3072 or 4096."
+          },
+          "curve": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The elliptic curve name. Required for 'EC' and 'EC-HSM' keys. One of 'P-256', 'P-256K', 'P-384' or 'P-521'."
+          },
+          "enabled": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Whether the key is enabled."
+          },
+          "exportable": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Whether the private key can be exported. Requires a release policy."
+          },
+          "notBefore": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The UTC date/time before which the key cannot be used, in ISO 8601 format, e.g. '2025-01-01T00:00:00Z'."
+          },
+          "expiresOn": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The UTC date/time at which the key expires, in ISO 8601 format, e.g. '2026-01-01T00:00:00Z'."
+          },
+          "releasePolicy": {
+            "type": {
+              "$ref": "#/31"
+            },
+            "flags": 0,
+            "description": "The policy rules under which the key can be exported."
+          },
+          "rotationPolicy": {
+            "type": {
+              "$ref": "#/33"
+            },
+            "flags": 0,
+            "description": "The key rotation policy."
+          },
+          "tags": {
+            "type": {
+              "$ref": "#/19"
+            },
+            "flags": 0,
+            "description": "Tags to apply to the key."
+          },
+          "version": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The version of the key."
+          },
+          "id": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The versioned URI of the key."
+          },
+          "versionlessId": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The URI of the key, without a version. Use this to always resolve the latest version."
+          },
+          "n": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The RSA modulus, as a base64url-encoded string."
+          },
+          "e": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The RSA public exponent, as a base64url-encoded string."
+          },
+          "x": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The elliptic curve X component, as a base64url-encoded string."
+          },
+          "y": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The elliptic curve Y component, as a base64url-encoded string."
+          },
+          "publicKeyPem": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The PEM-encoded public key. Only populated for RSA and EC keys."
+          },
+          "publicKeyOpenSsh": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The OpenSSH-encoded public key. Only populated for RSA and EC keys."
+          },
+          "createdOn": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The UTC date/time at which the key was created, in ISO 8601 format."
+          },
+          "updatedOn": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The UTC date/time at which the key was last updated, in ISO 8601 format."
+          },
+          "recoveryLevel": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The deletion recovery level currently in effect for the key."
+          },
+          "vaultUri": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 16,
+            "description": "The URI of the Key Vault holding the key. Defaults to the 'vaultUri' supplied in the extension configuration."
+          },
+          "name": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 17,
+            "description": "The name of the key in KeyVault."
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Key",
+        "body": {
+          "$ref": "#/34"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "ManagedHsmKey",
+        "properties": {
+          "keyType": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 1,
+            "description": "The type of key to create. One of 'RSA-HSM', 'EC-HSM' or 'oct-HSM'."
+          },
+          "keyOps": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "The permitted JSON web key operations, e.g. 'sign', 'verify', 'wrapKey', 'unwrapKey'."
+          },
+          "keySize": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "The size of the key in bits. Required for 'RSA-HSM' and 'oct-HSM' keys."
+          },
+          "curve": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The elliptic curve name. Required for 'EC-HSM' keys. One of 'P-256', 'P-256K', 'P-384' or 'P-521'."
+          },
+          "enabled": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Whether the key is enabled."
+          },
+          "notBefore": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The UTC date/time before which the key cannot be used, in ISO 8601 format."
+          },
+          "expiresOn": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The UTC date/time at which the key expires, in ISO 8601 format."
+          },
+          "tags": {
+            "type": {
+              "$ref": "#/19"
+            },
+            "flags": 0,
+            "description": "Tags to apply to the key."
+          },
+          "version": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The version of the key."
+          },
+          "versionedId": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The versioned URI of the key."
+          },
+          "id": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The URI of the key, without a version."
+          },
+          "createdOn": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The UTC date/time at which the key was created, in ISO 8601 format."
+          },
+          "updatedOn": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The UTC date/time at which the key was last updated, in ISO 8601 format."
+          },
+          "recoveryLevel": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The deletion recovery level currently in effect for the key."
+          },
+          "managedHsmUri": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 16,
+            "description": "The URI of the Managed HSM holding the key. Defaults to the 'managedHsmUri' supplied in the extension configuration."
+          },
+          "name": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 17,
+            "description": "The name of the key in the Managed HSM."
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "ManagedHsmKey",
+        "body": {
+          "$ref": "#/36"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "ManagedHsmKeyRotationPolicy",
+        "properties": {
+          "expireAfter": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 1,
+            "description": "How long a newly rotated key remains valid, as an ISO 8601 duration. Must be at least 'P28D'."
+          },
+          "timeAfterCreation": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "Rotate the key this long after it was created, as an ISO 8601 duration. Exactly one of 'timeAfterCreation' or 'timeBeforeExpiry' must be supplied."
+          },
+          "timeBeforeExpiry": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "Rotate the key this long before it expires, as an ISO 8601 duration. Exactly one of 'timeAfterCreation' or 'timeBeforeExpiry' must be supplied."
+          },
+          "notifyBeforeExpiry": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "How long before expiry to raise a notification event, as an ISO 8601 duration."
+          },
+          "id": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The URI of the key the rotation policy applies to."
+          },
+          "managedHsmUri": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 16,
+            "description": "The URI of the Managed HSM holding the key. Defaults to the 'managedHsmUri' supplied in the extension configuration."
+          },
+          "keyName": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 17,
+            "description": "The name of the Managed HSM key the rotation policy applies to."
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "ManagedHsmKeyRotationPolicy",
+        "body": {
+          "$ref": "#/38"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "ManagedHsmPermission",
+        "properties": {
+          "actions": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Control plane actions allowed by the role."
+          },
+          "notActions": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Control plane actions denied by the role."
+          },
+          "dataActions": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Data plane actions allowed by the role, e.g. 'Microsoft.KeyVault/managedHsm/keys/read/action'."
+          },
+          "notDataActions": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Data plane actions denied by the role."
+          }
+        }
+      },
+      {
+        "$type": "ArrayType",
+        "itemType": {
+          "$ref": "#/40"
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "ManagedHsmRoleDefinition",
+        "properties": {
+          "roleName": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The display name of the role."
+          },
+          "description": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "A description of the role."
+          },
+          "permissions": {
+            "type": {
+              "$ref": "#/41"
+            },
+            "flags": 0,
+            "description": "The permissions granted by the role."
+          },
+          "assignableScopes": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "The scopes the role can be assigned at. Defaults to the role definition's own scope."
+          },
+          "id": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The fully qualified ID of the role definition."
+          },
+          "roleType": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The type of the role. Either 'AKVBuiltInRole' or 'CustomRole'."
+          },
+          "managedHsmUri": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 16,
+            "description": "The URI of the Managed HSM. Defaults to the 'managedHsmUri' supplied in the extension configuration."
+          },
+          "scope": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 17,
+            "description": "The scope the role definition applies to, e.g. '/' or '/keys'."
+          },
+          "name": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 17,
+            "description": "The name of the role definition. Must be a GUID."
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "ManagedHsmRoleDefinition",
+        "body": {
+          "$ref": "#/42"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "ManagedHsmRoleAssignment",
+        "properties": {
+          "roleDefinitionId": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 1,
+            "description": "The ID of the role definition to assign."
+          },
+          "principalId": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 1,
+            "description": "The object ID of the user, group or service principal to assign the role to."
+          },
+          "id": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The fully qualified ID of the role assignment."
+          },
+          "managedHsmUri": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 16,
+            "description": "The URI of the Managed HSM. Defaults to the 'managedHsmUri' supplied in the extension configuration."
+          },
+          "scope": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 17,
+            "description": "The scope the role assignment applies to, e.g. '/' or '/keys'."
+          },
+          "name": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 17,
+            "description": "The name of the role assignment. Must be a GUID."
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "ManagedHsmRoleAssignment",
+        "body": {
+          "$ref": "#/44"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Secret",
+        "properties": {
+          "value": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 5,
+            "description": "The value of the secret in KeyVault. Changing this creates a new version of the secret."
+          },
+          "contentType": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The content type of the secret, e.g. 'text/plain'."
+          },
+          "enabled": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Whether the secret is enabled."
+          },
+          "notBefore": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The UTC date/time before which the secret cannot be used, in ISO 8601 format, e.g. '2025-01-01T00:00:00Z'."
+          },
+          "expiresOn": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The UTC date/time at which the secret expires, in ISO 8601 format, e.g. '2026-01-01T00:00:00Z'."
+          },
+          "tags": {
+            "type": {
+              "$ref": "#/19"
+            },
+            "flags": 0,
+            "description": "Tags to apply to the secret."
+          },
+          "version": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The version of the secret."
+          },
+          "id": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The versioned URI of the secret."
+          },
+          "versionlessId": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The URI of the secret, without a version. Use this to always resolve the latest version."
+          },
+          "createdOn": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The UTC date/time at which the secret was created, in ISO 8601 format."
+          },
+          "updatedOn": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The UTC date/time at which the secret was last updated, in ISO 8601 format."
+          },
+          "recoveryLevel": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 2,
+            "description": "The deletion recovery level currently in effect for the secret."
+          },
+          "vaultUri": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 16,
+            "description": "The URI of the Key Vault holding the secret. Defaults to the 'vaultUri' supplied in the extension configuration."
+          },
+          "name": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 17,
+            "description": "The name of the secret in KeyVault."
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Secret",
+        "body": {
+          "$ref": "#/46"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Configuration",
+        "properties": {
+          "vaultUri": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The URI of the Key Vault, e.g. 'https://myvault.vault.azure.net/'. Individual resources may override this with their own 'vaultUri' property."
+          },
+          "managedHsmUri": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The URI of the Managed HSM, e.g. 'https://myhsm.managedhsm.azure.net/'. Individual resources may override this with their own 'managedHsmUri' property."
+          },
+          "purgeOnDelete": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Permanently purge objects after deleting them, instead of leaving them in a soft-deleted state. Defaults to false."
+          },
+          "recoverSoftDeleted": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Recover objects that are in a soft-deleted state instead of failing to create them. Defaults to false."
+          }
+        }
+      }
+    ]
+  },
+  "samples": [
+    {
+      "title": "Secrets, keys and certificates",
+      "description": "Creates a secret, a key, certificate contacts and a self-signed certificate.",
+      "url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/basic/main.bicep",
+      "content": "targetScope = 'local'\n\nparam vaultUri string\n\n@secure()\nparam secretVal string\n\nextension keyvault with {\n  vaultUri: vaultUri\n}\n\nresource secret 'Secret' = {\n  name: 'mysecret'\n  value: secretVal\n  contentType: 'text/plain'\n  tags: {\n    environment: 'demo'\n  }\n}\n\nresource key 'Key' = {\n  name: 'mykey'\n  keyType: 'RSA'\n  keySize: 2048\n  keyOps: ['sign', 'verify', 'wrapKey', 'unwrapKey']\n  rotationPolicy: {\n    expireAfter: 'P90D'\n    notifyBeforeExpiry: 'P29D'\n    automatic: {\n      timeBeforeExpiry: 'P30D'\n    }\n  }\n}\n\nresource contacts 'CertificateContacts' = {\n  contacts: [\n    {\n      email: 'admin@contoso.com'\n      name: 'Certificate Admin'\n    }\n  ]\n}\n\nresource cert 'Certificate' = {\n  name: 'mycert'\n  issuer: {\n    name: 'Self'\n  }\n  key: {\n    exportable: true\n    keySize: 2048\n    keyType: 'RSA'\n    reuseKey: true\n  }\n  secret: {\n    contentType: 'application/x-pkcs12'\n  }\n  lifetimeActions: [\n    {\n      action: {\n        actionType: 'AutoRenew'\n      }\n      trigger: {\n        daysBeforeExpiry: 30\n      }\n    }\n  ]\n  x509Properties: {\n    ekus: ['1.3.6.1.5.5.7.3.1']\n    keyUsage: [\n      'cRLSign'\n      'dataEncipherment'\n      'digitalSignature'\n      'keyAgreement'\n      'keyCertSign'\n      'keyEncipherment'\n    ]\n    subjectAlternativeNames: {\n      dnsNames: ['internal.contoso.com', 'domain.hello.world']\n    }\n    subject: 'CN=hello-world'\n    validityInMonths: 12\n  }\n}\n\n@description('Use the version-less id to always resolve the current version of the secret.')\noutput secretUri string = secret.versionlessId\n\n@description('The public half of the generated key, ready to drop into an authorized_keys file.')\noutput keyPublicKeyOpenSsh string = key.publicKeyOpenSsh\n\noutput certificateThumbprint string = cert.thumbprint\noutput certificateExpires string = cert.certificateAttributes.expires"
+    },
+    {
+      "title": "Application secrets",
+      "description": "Stores a set of application configuration values as secrets.",
+      "url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/app-secrets/main.bicep",
+      "content": "/*\n  Seeds an application's configuration secrets into a Key Vault.\n\n  Demonstrates:\n    - declaring many secrets from a single list, using a loop\n    - separating non-sensitive metadata from the secret values themselves\n    - setting an expiry so that stale secrets are visible to rotation tooling\n    - purging on delete, which is what you usually want for a throwaway dev vault\n*/\n\ntargetScope = 'local'\n\n@description('The URI of the Key Vault to seed, e.g. https://myvault.vault.azure.net/.')\nparam vaultUri string\n\n@description('The application these secrets belong to. Applied as a tag.')\nparam application string\n\n@description('Deployment environment. Applied as a tag, and controls whether secrets are purged on delete.')\n@allowed(['dev', 'test', 'prod'])\nparam environment string\n\n@description('Non-sensitive metadata describing each secret.')\nparam secretDefinitions secretDefinition[]\n\n@description('The secret values, keyed by secret name. Keep these in a key vault reference or a CI secret store rather than in source control.')\n@secure()\nparam secretValues object\n\n@description('Metadata for a single application secret.')\ntype secretDefinition = {\n  @description('The name of the secret in Key Vault.')\n  name: string\n\n  @description('The MIME type of the value, e.g. text/plain or application/json.')\n  contentType: string\n\n  @description('''\n  The UTC expiry, in ISO 8601 format.\n  Prefer a fixed date over utcNow(): a value that changes on every run makes the secret look\n  like it has drifted, so every deployment would rewrite its metadata.\n  ''')\n  expiresOn: string\n}\n\nextension keyvault with {\n  vaultUri: vaultUri\n\n  // Dev vaults are recreated constantly, and soft-deleted secrets block a name from being\n  // reused. Purging on delete keeps redeployment frictionless. Never do this in production:\n  // it discards your only recovery path.\n  purgeOnDelete: environment == 'dev'\n\n  // If a secret was previously deleted but not purged, recover it rather than failing.\n  recoverSoftDeleted: true\n}\n\nresource applicationSecrets 'Secret' = [\n  for definition in secretDefinitions: {\n    name: definition.name\n    // The value does come from a @secure() parameter, but the linter cannot track that through\n    // an index expression, so it has to be told this is intentional.\n    #disable-next-line use-secure-value-for-secure-inputs\n    value: secretValues[definition.name]\n    contentType: definition.contentType\n    expiresOn: definition.expiresOn\n    tags: {\n      application: application\n      environment: environment\n      managedBy: 'bicep'\n    }\n  }\n]\n\n@description('Version-less URIs for the seeded secrets. Bind applications to these so they always read the current version.')\noutput secretUris array = [\n  for (definition, index) in secretDefinitions: {\n    name: definition.name\n    uri: applicationSecrets[index].versionlessId\n  }\n]"
+    },
+    {
+      "title": "Certificate lifecycle",
+      "description": "Self-signed and CA-issued certificates, a certificate issuer, and importing an existing certificate.",
+      "url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/certificates/main.bicep",
+      "content": "/*\n  The three ways to get a certificate into Key Vault.\n\n  Demonstrates:\n    - a self-signed certificate, for local and test environments\n    - a certificate issued by a public CA, renewed automatically\n    - importing a certificate you already hold as a PFX\n\n  The import is optional: leave pfxBase64 empty and that resource is skipped, so the sample runs\n  as-is.\n*/\n\ntargetScope = 'local'\n\n@description('The URI of the Key Vault to create the certificates in.')\nparam vaultUri string\n\n@description('The DNS name to issue certificates for.')\nparam dnsName string\n\n@description('Addresses notified when a certificate is about to expire or fails to renew.')\nparam contactEmails string[]\n\n@description('Set to false unless you have a certificate authority account configured. The CA-issued certificate is skipped when false.')\nparam useCertificateAuthority bool = false\n\n@description('The certificate authority to request certificates from.')\n@allowed(['DigiCert', 'GlobalSign', 'OneCertV2-PrivateCA', 'OneCertV2-PublicCA', 'SslAdminV2'])\nparam certificateAuthority string = 'DigiCert'\n\n@description('The organization ID registered with the certificate authority.')\nparam certificateAuthorityOrgId string = ''\n\n@description('The account ID registered with the certificate authority.')\nparam certificateAuthorityAccountId string = ''\n\n@description('The password for the certificate authority account. Must be supplied on every deployment: Key Vault never returns it.')\n@secure()\nparam certificateAuthorityPassword string = ''\n\n@description('A base64-encoded PFX to import. Leave empty to skip the import example.')\n@secure()\nparam pfxBase64 string = ''\n\n@description('The password protecting the PFX, if it has one.')\n@secure()\nparam pfxPassword string = ''\n\nextension keyvault with {\n  vaultUri: vaultUri\n}\n\n@description('The name the certificate authority account is registered under.')\nvar issuerName = 'production-ca'\n\n@description('''\nCertificate contacts are notified by any EmailContacts lifetime action, and by Key Vault when an\nautomatic renewal fails. Key Vault keeps a single list per vault, so this resource replaces\nwhatever is already configured.\n''')\nresource contacts 'CertificateContacts' = {\n  contacts: [\n    for email in contactEmails: {\n      email: email\n    }\n  ]\n}\n\n@description('''\nA self-signed certificate. Fine for development and internal testing; browsers and clients will\nnot trust it without explicitly importing it.\n''')\nresource selfSigned 'Certificate' = {\n  name: 'dev-${replace(dnsName, '.', '-')}'\n\n  issuer: {\n    name: 'Self'\n  }\n\n  key: {\n    keyType: 'RSA'\n    keySize: 2048\n    exportable: true\n    reuseKey: false\n  }\n\n  secret: {\n    // PKCS#12 yields a PFX; use application/x-pem-file if you need PEM.\n    contentType: 'application/x-pkcs12'\n  }\n\n  x509Properties: {\n    subject: 'CN=${dnsName}'\n    validityInMonths: 12\n    keyUsage: ['digitalSignature', 'keyEncipherment']\n    ekus: ['1.3.6.1.5.5.7.3.1'] // Server authentication.\n    subjectAlternativeNames: {\n      dnsNames: [dnsName]\n    }\n  }\n\n  tags: {\n    environment: 'dev'\n  }\n}\n\n@description('Registers the certificate authority account that issues the production certificate.')\nresource issuer 'CertificateIssuer' = if (useCertificateAuthority) {\n  name: issuerName\n  providerName: certificateAuthority\n  orgId: certificateAuthorityOrgId\n  accountId: certificateAuthorityAccountId\n  password: certificateAuthorityPassword\n\n  admins: [\n    for email in contactEmails: {\n      emailAddress: email\n    }\n  ]\n}\n\n@description('''\nA certificate issued by the registered authority, renewed automatically 30 days before it\nexpires. Key Vault drives the renewal, so nothing has to run on a schedule.\n''')\nresource caIssued 'Certificate' = if (useCertificateAuthority) {\n  name: 'prod-${replace(dnsName, '.', '-')}'\n\n  // Both resources share the same condition, so the issuer is always present when this is\n  // deployed. The dependency is declared explicitly because referencing a conditional resource's\n  // properties would otherwise look like it might be null.\n  dependsOn: [issuer]\n\n  issuer: {\n    name: issuerName\n  }\n\n  key: {\n    keyType: 'RSA'\n    keySize: 2048\n    exportable: false\n    reuseKey: false\n  }\n\n  secret: {\n    contentType: 'application/x-pkcs12'\n  }\n\n  x509Properties: {\n    subject: 'CN=${dnsName}'\n    validityInMonths: 12\n    keyUsage: ['digitalSignature', 'keyEncipherment']\n    ekus: ['1.3.6.1.5.5.7.3.1']\n    subjectAlternativeNames: {\n      dnsNames: [dnsName]\n    }\n  }\n\n  lifetimeActions: [\n    {\n      action: {\n        actionType: 'AutoRenew'\n      }\n      trigger: {\n        // Either daysBeforeExpiry or lifetimePercentage, never both.\n        daysBeforeExpiry: 30\n      }\n    }\n    {\n      action: {\n        actionType: 'EmailContacts'\n      }\n      trigger: {\n        lifetimePercentage: 80\n      }\n    }\n  ]\n\n  tags: {\n    environment: 'prod'\n  }\n}\n\n@description('''\nImports a certificate issued elsewhere. An imported certificate carries its own key and validity,\nso it cannot also specify policy properties - supply import on its own.\n''')\nresource imported 'Certificate' = if (!empty(pfxBase64)) {\n  name: 'imported-${replace(dnsName, '.', '-')}'\n\n  import: {\n    contents: pfxBase64\n    password: pfxPassword\n  }\n\n  tags: {\n    source: 'imported'\n  }\n}\n\n@description('The SHA-1 thumbprint of the self-signed certificate.')\noutput selfSignedThumbprint string = selfSigned.thumbprint\n\n@description('When the self-signed certificate expires.')\noutput selfSignedExpires string = selfSigned.certificateAttributes.expires\n\n@description('''\nThe Key Vault secret holding the self-signed certificate's private key and chain.\nApp Service and Application Gateway bind to a URI like this rather than to the certificate itself.\n''')\noutput selfSignedSecretUri string = selfSigned.versionlessSecretId"
+    },
+    {
+      "title": "Encryption and signing keys",
+      "description": "Creates keys intended for encryption and for signing.",
+      "url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/encryption-keys/main.bicep",
+      "content": "/*\n  Creates the cryptographic keys an application needs: a customer-managed key for encrypting\n  data at rest, and a signing key for issuing tokens.\n\n  Demonstrates:\n    - RSA and elliptic curve keys, and scoping each to only the operations it needs\n    - an automatic rotation policy\n    - consuming the generated public key, which never leaves Key Vault in private form\n*/\n\ntargetScope = 'local'\n\n@description('The URI of the Key Vault to create the keys in, e.g. https://myvault.vault.azure.net/.')\nparam vaultUri string\n\n@description('Applied as a tag to every key.')\nparam application string\n\nextension keyvault with {\n  vaultUri: vaultUri\n}\n\n@description('''\nA customer-managed key (CMK) for encrypting data at rest.\nOnly wrap/unwrap are granted: services encrypt their own data encryption key with this key, and\nnever use it to encrypt data directly.\n''')\nresource encryptionKey 'Key' = {\n  name: 'cmk-data-at-rest'\n  keyType: 'RSA'\n  keySize: 3072\n  keyOps: ['wrapKey', 'unwrapKey']\n\n  // Rotate automatically well before expiry, and raise an event in time for someone to react if\n  // rotation fails.\n  rotationPolicy: {\n    expireAfter: 'P1Y'\n    notifyBeforeExpiry: 'P30D'\n    automatic: {\n      timeBeforeExpiry: 'P60D'\n    }\n  }\n\n  tags: {\n    application: application\n    purpose: 'encryption'\n  }\n}\n\n@description('''\nAn elliptic curve key for signing tokens. EC keys are smaller and faster than RSA at an\nequivalent strength, which suits high-volume signing.\n''')\nresource signingKey 'Key' = {\n  name: 'jwt-signing-key'\n  keyType: 'EC'\n  curve: 'P-256'\n  keyOps: ['sign', 'verify']\n\n  tags: {\n    application: application\n    purpose: 'signing'\n  }\n}\n\n@description('''\nBind Azure services that support customer-managed keys to this version-less URI.\nThey will then pick up new versions automatically as the rotation policy rotates the key; a\nversioned URI would pin them to the key that exists today.\n''')\noutput encryptionKeyUri string = encryptionKey.versionlessId\n\n@description('The current version of the encryption key, for services that require a pinned version.')\noutput encryptionKeyVersionedUri string = encryptionKey.id\n\n@description('The signing key\\'s public half, for verifiers that validate tokens offline.')\noutput signingPublicKeyPem string = signingKey.publicKeyPem\n\n@description('The same public key in OpenSSH format.')\noutput signingPublicKeyOpenSsh string = signingKey.publicKeyOpenSsh"
+    },
+    {
+      "title": "Managed HSM",
+      "description": "Keys in a Managed HSM with a rotation policy and role assignments.",
+      "url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/managed-hsm/main.bicep",
+      "content": "/*\n  Provisions a signing key in a Managed HSM and grants an application permission to use it.\n\n  Demonstrates:\n    - creating an HSM-backed key\n    - a rotation policy, which for Managed HSM is a separate resource rather than a key property\n    - the Managed HSM's own local RBAC system, which is distinct from Azure RBAC\n\n  A Managed HSM is a dedicated, single-tenant appliance and is billed accordingly. Use the\n  'encryption-keys' sample instead if a standard vault meets your requirements.\n*/\n\ntargetScope = 'local'\n\n@description('The URI of the Managed HSM, e.g. https://myhsm.managedhsm.azure.net/.')\nparam managedHsmUri string\n\n@description('The object ID of the identity that will use the key, e.g. an application\\'s managed identity.')\nparam principalId string\n\n@description('Applied as a tag to the key.')\nparam application string\n\nextension keyvault with {\n  managedHsmUri: managedHsmUri\n}\n\n@description('An HSM-backed signing key. The private key is generated inside the HSM and can never be exported.')\nresource signingKey 'ManagedHsmKey' = {\n  name: 'payment-signing-key'\n  keyType: 'RSA-HSM'\n  keySize: 3072\n  keyOps: ['sign', 'verify']\n\n  tags: {\n    application: application\n    purpose: 'signing'\n  }\n}\n\n@description('''\nRotates the key automatically. Unlike a standard vault key, where rotation is a property of the\nkey, Managed HSM models the rotation policy as its own resource.\n''')\nresource rotationPolicy 'ManagedHsmKeyRotationPolicy' = {\n  keyName: signingKey.name\n\n  // Must be at least P28D.\n  expireAfter: 'P1Y'\n  notifyBeforeExpiry: 'P30D'\n\n  // Exactly one of timeBeforeExpiry or timeAfterCreation.\n  timeBeforeExpiry: 'P60D'\n}\n\n@description('''\nA custom role granting only the ability to sign with a key, and to read its public half.\nManaged HSM has its own RBAC system: these roles are defined and assigned on the HSM itself, and\nare invisible to Azure RBAC.\n''')\nresource signerRole 'ManagedHsmRoleDefinition' = {\n  // Role definitions and assignments are identified by a GUID. Deriving it deterministically\n  // keeps the deployment idempotent.\n  name: guid(managedHsmUri, 'payment-signer')\n  scope: '/keys'\n  roleName: 'Payment key signer'\n  description: 'Signs payment payloads. Cannot export, delete or re-wrap keys.'\n\n  permissions: [\n    {\n      dataActions: [\n        'Microsoft.KeyVault/managedHsm/keys/sign/action'\n        'Microsoft.KeyVault/managedHsm/keys/read/action'\n      ]\n    }\n  ]\n}\n\n@description('Grants the application the signing role. Role assignments are immutable: to point one at a different principal, delete it first.')\nresource signerAssignment 'ManagedHsmRoleAssignment' = {\n  name: guid(managedHsmUri, 'payment-signer', principalId)\n  scope: '/keys'\n  roleDefinitionId: signerRole.id\n  principalId: principalId\n}\n\n@description('The version-less key URI. Note that for Managed HSM keys this is \"id\"; the versioned form is \"versionedId\".')\noutput signingKeyUri string = signingKey.id\n\n@description('The current version of the signing key.')\noutput signingKeyVersionedUri string = signingKey.versionedId"
+    },
+    {
+      "title": "Replicating across vaults",
+      "description": "Copies a secret from a primary vault into replica vaults.",
+      "url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/multi-vault/main.bicep",
+      "content": "/*\n  Replicates a secret across several Key Vaults from a single deployment.\n\n  Demonstrates:\n    - overriding the extension's vaultUri on individual resources\n    - fanning the same value out to a list of regional vaults\n\n  This is the pattern to reach for when an application runs in several regions and each region\n  reads from its own vault, or when you promote configuration from a staging vault to production.\n*/\n\ntargetScope = 'local'\n\n@description('The vault that acts as the source of truth. Used as the extension default.')\nparam primaryVaultUri string\n\n@description('Additional vaults to replicate the shared secret into, e.g. one per region.')\nparam replicaVaultUris string[]\n\n@description('The name of the secret to replicate.')\nparam secretName string\n\n@description('The value to replicate.')\n@secure()\nparam secretValue string\n\nextension keyvault with {\n  // Resources that do not specify their own vaultUri land here.\n  vaultUri: primaryVaultUri\n}\n\n@description('The authoritative copy, written to the vault configured on the extension.')\nresource primary 'Secret' = {\n  name: secretName\n  value: secretValue\n  contentType: 'text/plain'\n  tags: {\n    role: 'primary'\n  }\n}\n\n@description('''\nA copy in each replica vault. Setting vaultUri on the resource overrides the extension\nconfiguration, so one deployment can span any number of vaults.\n''')\nresource replicas 'Secret' = [\n  for replicaVaultUri in replicaVaultUris: {\n    vaultUri: replicaVaultUri\n    name: secretName\n    value: secretValue\n    contentType: 'text/plain'\n    tags: {\n      role: 'replica'\n      replicatedFrom: primaryVaultUri\n    }\n  }\n]\n\n@description('The version-less URI of the authoritative copy.')\noutput primaryUri string = primary.versionlessId\n\n@description('The version-less URI of each replica.')\noutput replicaUris array = [for (uri, index) in replicaVaultUris: replicas[index].versionlessId]"
+    }
+  ]
+}
