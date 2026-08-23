@@ -1,0 +1,1399 @@
+{
+  "id": "storage",
+  "version": "0.0.1",
+  "artifact": "ghcr.io/anthony-c-martin/bicep-ext-storage",
+  "digest": "sha256:774c3f8df2b18947140f2439851b78506abd013f062c63e76d46ed2647e644df",
+  "extractedAt": "2026-08-23T01:35:19.568Z",
+  "settings": {
+    "name": "storage",
+    "version": "0.0.1",
+    "isSingleton": true,
+    "isPreview": false,
+    "isDeprecated": false,
+    "configurationType": {
+      "$ref": "types.json#/77"
+    }
+  },
+  "resources": {
+    "BlobContainer": {
+      "$ref": "types.json#/11"
+    },
+    "Blob": {
+      "$ref": "types.json#/26"
+    },
+    "DataLakeFileSystem": {
+      "$ref": "types.json#/39"
+    },
+    "DataLakeDirectory": {
+      "$ref": "types.json#/41"
+    },
+    "FileShare": {
+      "$ref": "types.json#/53"
+    },
+    "FileShareDirectory": {
+      "$ref": "types.json#/55"
+    },
+    "FileShareFile": {
+      "$ref": "types.json#/57"
+    },
+    "Queue": {
+      "$ref": "types.json#/59"
+    },
+    "Table": {
+      "$ref": "types.json#/63"
+    },
+    "TableEntity": {
+      "$ref": "types.json#/75"
+    }
+  },
+  "resourceFunctions": {},
+  "typeFiles": {
+    "types.json": [
+      {
+        "$type": "NullType"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "None"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Blob"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Container"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/1"
+          },
+          {
+            "$ref": "#/2"
+          },
+          {
+            "$ref": "#/3"
+          }
+        ]
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/0"
+          },
+          {
+            "$ref": "#/4"
+          }
+        ]
+      },
+      {
+        "$type": "StringType"
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Dictionary<string, String>",
+        "properties": {},
+        "additionalProperties": {
+          "$ref": "#/6"
+        }
+      },
+      {
+        "$type": "BooleanType"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/0"
+          },
+          {
+            "$ref": "#/8"
+          }
+        ]
+      },
+      {
+        "$type": "ObjectType",
+        "name": "BlobContainer",
+        "properties": {
+          "publicAccess": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "The level of anonymous read access to the container. Defaults to 'None'."
+          },
+          "metadata": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Name/value pairs to associate with the container"
+          },
+          "defaultEncryptionScope": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The encryption scope applied by default to blobs in the container. Can only be set when the container is created."
+          },
+          "preventEncryptionScopeOverride": {
+            "type": {
+              "$ref": "#/9"
+            },
+            "flags": 0,
+            "description": "Whether blobs in the container are prevented from overriding the default encryption scope. Can only be set when the container is created."
+          },
+          "url": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "The container URL"
+          },
+          "eTag": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "The container ETag"
+          },
+          "lastModified": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "When the container was last modified"
+          },
+          "hasImmutabilityPolicy": {
+            "type": {
+              "$ref": "#/9"
+            },
+            "flags": 2,
+            "description": "Whether the container has an immutability policy"
+          },
+          "hasLegalHold": {
+            "type": {
+              "$ref": "#/9"
+            },
+            "flags": 2,
+            "description": "Whether the container has a legal hold"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 17,
+            "description": "The container name"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "BlobContainer",
+        "body": {
+          "$ref": "#/10"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Block"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Page"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Append"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/12"
+          },
+          {
+            "$ref": "#/13"
+          },
+          {
+            "$ref": "#/14"
+          }
+        ]
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/0"
+          },
+          {
+            "$ref": "#/15"
+          }
+        ]
+      },
+      {
+        "$type": "IntegerType"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/0"
+          },
+          {
+            "$ref": "#/17"
+          }
+        ]
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Hot"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Cool"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Cold"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Archive"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/19"
+          },
+          {
+            "$ref": "#/20"
+          },
+          {
+            "$ref": "#/21"
+          },
+          {
+            "$ref": "#/22"
+          }
+        ]
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/0"
+          },
+          {
+            "$ref": "#/23"
+          }
+        ]
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Blob",
+        "properties": {
+          "type": {
+            "type": {
+              "$ref": "#/16"
+            },
+            "flags": 0,
+            "description": "The blob type. Defaults to 'Block'."
+          },
+          "content": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The blob content, as a UTF-8 string. Mutually exclusive with 'contentBase64' and 'sourceUri'."
+          },
+          "contentBase64": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The blob content, base64-encoded. Use with Bicep's loadFileAsBase64() to upload a local file. Mutually exclusive with 'content' and 'sourceUri'."
+          },
+          "sourceUri": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "A URL to copy the blob content from. The source must be publicly readable or include a SAS token. Mutually exclusive with 'content' and 'contentBase64'."
+          },
+          "sizeInMb": {
+            "type": {
+              "$ref": "#/18"
+            },
+            "flags": 0,
+            "description": "The size of a page blob in MiB. Required for 'Page' blobs, and ignored otherwise."
+          },
+          "contentType": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The blob content type"
+          },
+          "contentEncoding": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The blob content encoding"
+          },
+          "contentLanguage": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The blob content language"
+          },
+          "contentDisposition": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The blob content disposition"
+          },
+          "cacheControl": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The blob cache control header"
+          },
+          "accessTier": {
+            "type": {
+              "$ref": "#/24"
+            },
+            "flags": 0,
+            "description": "The blob access tier"
+          },
+          "encryptionScope": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The encryption scope to encrypt the blob with"
+          },
+          "metadata": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Name/value pairs to associate with the blob"
+          },
+          "tags": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Blob index tags, used to categorize and find blobs"
+          },
+          "url": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "The blob URL"
+          },
+          "eTag": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "The blob ETag"
+          },
+          "lastModified": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "When the blob was last modified"
+          },
+          "versionId": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "The blob version ID, when versioning is enabled on the account"
+          },
+          "containerName": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 17,
+            "description": "The containing blob container name"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 17,
+            "description": "The blob name, which may include '/' separators"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Blob",
+        "body": {
+          "$ref": "#/25"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Access"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Default"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/27"
+          },
+          {
+            "$ref": "#/28"
+          }
+        ]
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/0"
+          },
+          {
+            "$ref": "#/29"
+          }
+        ]
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "User"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Group"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Mask"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Other"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/31"
+          },
+          {
+            "$ref": "#/32"
+          },
+          {
+            "$ref": "#/33"
+          },
+          {
+            "$ref": "#/34"
+          }
+        ]
+      },
+      {
+        "$type": "ObjectType",
+        "name": "DataLakeAccessControlEntry",
+        "properties": {
+          "scope": {
+            "type": {
+              "$ref": "#/30"
+            },
+            "flags": 0,
+            "description": "Whether the entry applies to the item itself ('Access') or is inherited by new child items ('Default'). Defaults to 'Access'."
+          },
+          "type": {
+            "type": {
+              "$ref": "#/35"
+            },
+            "flags": 1,
+            "description": "The type of principal the entry applies to"
+          },
+          "id": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The Microsoft Entra object ID of the user or group. Omit to target the owning user or group, and leave unset for 'Mask' and 'Other' entries."
+          },
+          "permissions": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 1,
+            "description": "The permissions granted, as a 3-character rwx string such as 'r-x'"
+          }
+        }
+      },
+      {
+        "$type": "ArrayType",
+        "itemType": {
+          "$ref": "#/36"
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "DataLakeFileSystem",
+        "properties": {
+          "metadata": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Name/value pairs to associate with the file system"
+          },
+          "accessControl": {
+            "type": {
+              "$ref": "#/37"
+            },
+            "flags": 0,
+            "description": "Access control entries applied to the file system root. Requires a hierarchical namespace-enabled account."
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The Microsoft Entra object ID of the owning user of the file system root"
+          },
+          "group": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The Microsoft Entra object ID of the owning group of the file system root"
+          },
+          "defaultEncryptionScope": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The encryption scope applied by default to paths in the file system. Can only be set when the file system is created."
+          },
+          "url": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "The file system URL"
+          },
+          "eTag": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "The file system ETag"
+          },
+          "lastModified": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "When the file system was last modified"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 17,
+            "description": "The file system name"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "DataLakeFileSystem",
+        "body": {
+          "$ref": "#/38"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "DataLakeDirectory",
+        "properties": {
+          "metadata": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Name/value pairs to associate with the directory"
+          },
+          "accessControl": {
+            "type": {
+              "$ref": "#/37"
+            },
+            "flags": 0,
+            "description": "Access control entries applied to the directory. Requires a hierarchical namespace-enabled account."
+          },
+          "permissions": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "POSIX permissions for the directory, as an octal string such as '0750'. Mutually exclusive with 'accessControl'."
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The Microsoft Entra object ID of the owning user of the directory"
+          },
+          "group": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The Microsoft Entra object ID of the owning group of the directory"
+          },
+          "url": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "The directory URL"
+          },
+          "eTag": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "The directory ETag"
+          },
+          "lastModified": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "When the directory was last modified"
+          },
+          "fileSystemName": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 17,
+            "description": "The containing file system name"
+          },
+          "path": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 17,
+            "description": "The directory path within the file system"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "DataLakeDirectory",
+        "body": {
+          "$ref": "#/40"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "TransactionOptimized"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Hot"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Cool"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Premium"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/42"
+          },
+          {
+            "$ref": "#/43"
+          },
+          {
+            "$ref": "#/44"
+          },
+          {
+            "$ref": "#/45"
+          }
+        ]
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/0"
+          },
+          {
+            "$ref": "#/46"
+          }
+        ]
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Smb"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Nfs"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/48"
+          },
+          {
+            "$ref": "#/49"
+          }
+        ]
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/0"
+          },
+          {
+            "$ref": "#/50"
+          }
+        ]
+      },
+      {
+        "$type": "ObjectType",
+        "name": "FileShare",
+        "properties": {
+          "quota": {
+            "type": {
+              "$ref": "#/18"
+            },
+            "flags": 0,
+            "description": "The maximum size of the share, in GiB"
+          },
+          "accessTier": {
+            "type": {
+              "$ref": "#/47"
+            },
+            "flags": 0,
+            "description": "The access tier of the share"
+          },
+          "enabledProtocol": {
+            "type": {
+              "$ref": "#/51"
+            },
+            "flags": 0,
+            "description": "The protocol to enable on the share. Defaults to 'Smb', and can only be set when the share is created."
+          },
+          "metadata": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Name/value pairs to associate with the share"
+          },
+          "url": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "The share URL"
+          },
+          "eTag": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "The share ETag"
+          },
+          "lastModified": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "When the share was last modified"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 17,
+            "description": "The file share name"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "FileShare",
+        "body": {
+          "$ref": "#/52"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "FileShareDirectory",
+        "properties": {
+          "metadata": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Name/value pairs to associate with the directory"
+          },
+          "url": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "The directory URL"
+          },
+          "eTag": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "The directory ETag"
+          },
+          "lastModified": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "When the directory was last modified"
+          },
+          "shareName": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 17,
+            "description": "The containing file share name"
+          },
+          "path": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 17,
+            "description": "The directory path within the share. Parent directories must already exist."
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "FileShareDirectory",
+        "body": {
+          "$ref": "#/54"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "FileShareFile",
+        "properties": {
+          "content": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The file content, as a UTF-8 string. Mutually exclusive with 'contentBase64'."
+          },
+          "contentBase64": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The file content, base64-encoded. Use with Bicep's loadFileAsBase64() to upload a local file. Mutually exclusive with 'content'."
+          },
+          "contentType": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The file content type"
+          },
+          "contentEncoding": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The file content encoding"
+          },
+          "contentLanguage": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The file content language"
+          },
+          "contentDisposition": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The file content disposition"
+          },
+          "cacheControl": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The file cache control header"
+          },
+          "metadata": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Name/value pairs to associate with the file"
+          },
+          "url": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "The file URL"
+          },
+          "eTag": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "The file ETag"
+          },
+          "lastModified": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "When the file was last modified"
+          },
+          "shareName": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 17,
+            "description": "The containing file share name"
+          },
+          "path": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 17,
+            "description": "The file path within the share. Parent directories must already exist."
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "FileShareFile",
+        "body": {
+          "$ref": "#/56"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Queue",
+        "properties": {
+          "metadata": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Name/value pairs to associate with the queue"
+          },
+          "url": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "The queue URL"
+          },
+          "approximateMessagesCount": {
+            "type": {
+              "$ref": "#/18"
+            },
+            "flags": 2,
+            "description": "The approximate number of messages in the queue"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 17,
+            "description": "The queue name"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Queue",
+        "body": {
+          "$ref": "#/58"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "TableAccessPolicy",
+        "properties": {
+          "id": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 1,
+            "description": "The signed identifier of the policy"
+          },
+          "permissions": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 1,
+            "description": "The permissions granted by the policy, as a combination of 'r' (query), 'a' (add), 'u' (update) and 'd' (delete)"
+          },
+          "start": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "When the policy becomes valid, as an ISO 8601 timestamp"
+          },
+          "expiry": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "When the policy expires, as an ISO 8601 timestamp"
+          }
+        }
+      },
+      {
+        "$type": "ArrayType",
+        "itemType": {
+          "$ref": "#/60"
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Table",
+        "properties": {
+          "accessPolicies": {
+            "type": {
+              "$ref": "#/61"
+            },
+            "flags": 0,
+            "description": "Stored access policies for the table. Managing these requires 'accountKey' authentication, because the table ACL API does not accept Microsoft Entra tokens."
+          },
+          "url": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "The table URL"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 17,
+            "description": "The table name"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Table",
+        "body": {
+          "$ref": "#/62"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "String"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Boolean"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Int32"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Int64"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Double"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "DateTime"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Guid"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Binary"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/64"
+          },
+          {
+            "$ref": "#/65"
+          },
+          {
+            "$ref": "#/66"
+          },
+          {
+            "$ref": "#/67"
+          },
+          {
+            "$ref": "#/68"
+          },
+          {
+            "$ref": "#/69"
+          },
+          {
+            "$ref": "#/70"
+          },
+          {
+            "$ref": "#/71"
+          }
+        ]
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Dictionary<string, TableEntityValueType>",
+        "properties": {},
+        "additionalProperties": {
+          "$ref": "#/72"
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "TableEntity",
+        "properties": {
+          "entity": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 1,
+            "description": "The entity properties. Values are written as 'Edm.String' unless overridden in 'entityTypes'."
+          },
+          "entityTypes": {
+            "type": {
+              "$ref": "#/73"
+            },
+            "flags": 0,
+            "description": "Overrides the EDM type used for individual entity properties. Values in 'entity' are parsed according to the type named here."
+          },
+          "eTag": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "The entity ETag"
+          },
+          "timestamp": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 2,
+            "description": "When the entity was last modified"
+          },
+          "tableName": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 17,
+            "description": "The containing table name"
+          },
+          "partitionKey": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 17,
+            "description": "The entity partition key"
+          },
+          "rowKey": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 17,
+            "description": "The entity row key"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "TableEntity",
+        "body": {
+          "$ref": "#/74"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "StringType",
+        "sensitive": true
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Configuration",
+        "properties": {
+          "accountName": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 1,
+            "description": "The storage account name"
+          },
+          "endpointSuffix": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The storage endpoint suffix. Defaults to 'core.windows.net'."
+          },
+          "blobEndpoint": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The blob service endpoint. Defaults to 'https://<accountName>.blob.<endpointSuffix>'. Set this to target an emulator or a custom domain."
+          },
+          "fileEndpoint": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The file service endpoint. Defaults to 'https://<accountName>.file.<endpointSuffix>'."
+          },
+          "queueEndpoint": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The queue service endpoint. Defaults to 'https://<accountName>.queue.<endpointSuffix>'."
+          },
+          "tableEndpoint": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The table service endpoint. Defaults to 'https://<accountName>.table.<endpointSuffix>'."
+          },
+          "dfsEndpoint": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The Data Lake Storage Gen2 (DFS) endpoint. Defaults to 'https://<accountName>.dfs.<endpointSuffix>'."
+          },
+          "accountKey": {
+            "type": {
+              "$ref": "#/76"
+            },
+            "flags": 0,
+            "description": "A storage account shared key. Required for operations that do not support Microsoft Entra authentication, such as table stored access policies."
+          },
+          "sasToken": {
+            "type": {
+              "$ref": "#/76"
+            },
+            "flags": 0,
+            "description": "A shared access signature token, with or without a leading '?'."
+          },
+          "accessToken": {
+            "type": {
+              "$ref": "#/76"
+            },
+            "flags": 0,
+            "description": "A Microsoft Entra access token for 'https://storage.azure.com'."
+          },
+          "useDefaultAzureCredential": {
+            "type": {
+              "$ref": "#/9"
+            },
+            "flags": 0,
+            "description": "Whether to authenticate with DefaultAzureCredential (environment, workload identity, managed identity, Azure CLI, ...). Defaults to true when no other credential is supplied."
+          }
+        }
+      }
+    ]
+  },
+  "samples": [
+    {
+      "title": "Blob container and blob",
+      "description": "Creates a blob container and uploads a settings blob.",
+      "url": "https://github.com/anthony-c-martin/bicep-ext-storage/blob/main/samples/basic/main.bicep",
+      "content": "targetScope = 'local'\n\n@description('Name of the storage account to manage.')\nparam storageAccountName string\n\n@description('Name of the blob container to create.')\nparam containerName string\n\nextension storage with {\n  accountName: storageAccountName\n}\n\nresource container 'BlobContainer' = {\n  name: containerName\n  metadata: {\n    managedBy: 'bicep'\n  }\n}\n\nresource settings 'Blob' = {\n  containerName: container.name\n  name: 'config/settings.json'\n  contentType: 'application/json'\n  content: string({\n    environment: 'dev'\n    featureFlags: [\n      'search'\n    ]\n  })\n  tags: {\n    project: 'bicep-ext-storage'\n  }\n}\n\noutput containerUrl string? = container.url\noutput settingsUrl string? = settings.url"
+    },
+    {
+      "title": "Data Lake filesystems",
+      "description": "Bronze, silver and gold filesystems with curated directory structure.",
+      "url": "https://github.com/anthony-c-martin/bicep-ext-storage/blob/main/samples/data-lake/main.bicep",
+      "content": "targetScope = 'local'\n\n@description('Name of the ADLS Gen2 (hierarchical namespace) storage account to manage.')\nparam storageAccountName string\n\n@description('Microsoft Entra object ID of the group granted access to the curated zone.')\nparam dataEngineersGroupId string\n\nextension storage with {\n  accountName: storageAccountName\n}\n\n@description('A medallion layout, with one file system per zone.')\nresource bronze 'DataLakeFileSystem' = {\n  name: 'bronze'\n  metadata: {\n    zone: 'raw'\n  }\n}\n\nresource silver 'DataLakeFileSystem' = {\n  name: 'silver'\n  metadata: {\n    zone: 'cleansed'\n  }\n}\n\nresource gold 'DataLakeFileSystem' = {\n  name: 'gold'\n  metadata: {\n    zone: 'curated'\n  }\n  // Default entries are inherited by directories and files created later.\n  accessControl: [\n    {\n      type: 'User'\n      permissions: 'rwx'\n    }\n    {\n      type: 'Group'\n      permissions: 'r-x'\n    }\n    {\n      type: 'Other'\n      permissions: '---'\n    }\n    {\n      scope: 'Default'\n      type: 'Group'\n      id: dataEngineersGroupId\n      permissions: 'r-x'\n    }\n    {\n      scope: 'Default'\n      type: 'Mask'\n      permissions: 'rwx'\n    }\n  ]\n}\n\nresource landing 'DataLakeDirectory' = {\n  fileSystemName: bronze.name\n  path: 'landing/events'\n  permissions: '0750'\n}\n\nresource curatedSales 'DataLakeDirectory' = {\n  fileSystemName: gold.name\n  path: 'sales'\n  accessControl: [\n    {\n      type: 'User'\n      permissions: 'rwx'\n    }\n    {\n      type: 'Group'\n      id: dataEngineersGroupId\n      permissions: 'r-x'\n    }\n    {\n      type: 'Other'\n      permissions: '---'\n    }\n    {\n      type: 'Mask'\n      permissions: 'r-x'\n    }\n  ]\n}\n\noutput bronzeUrl string? = bronze.url\noutput landingUrl string? = landing.url\noutput curatedSalesUrl string? = curatedSales.url"
+    },
+    {
+      "title": "Queues and tables",
+      "description": "An orders queue with a dead-letter queue, plus table entities for configuration.",
+      "url": "https://github.com/anthony-c-martin/bicep-ext-storage/blob/main/samples/messaging/main.bicep",
+      "content": "targetScope = 'local'\n\n@description('Name of the storage account to manage.')\nparam storageAccountName string\n\n@secure()\n@description('Storage account shared key. Required because the table ACL API rejects Microsoft Entra tokens.')\nparam storageAccountKey string\n\nextension storage with {\n  accountName: storageAccountName\n  accountKey: storageAccountKey\n}\n\nresource orders 'Queue' = {\n  name: 'orders'\n  metadata: {\n    consumer: 'order-processor'\n  }\n}\n\nresource ordersDeadLetter 'Queue' = {\n  name: 'orders-poison'\n  metadata: {\n    consumer: 'order-processor'\n    purpose: 'dead-letter'\n  }\n}\n\nresource settings 'Table' = {\n  name: 'settings'\n  accessPolicies: [\n    {\n      id: 'readonly'\n      permissions: 'r'\n      start: '2026-01-01T00:00:00Z'\n      expiry: '2027-01-01T00:00:00Z'\n    }\n  ]\n}\n\n@description('Seed configuration that the application reads at startup.')\nresource orderLimits 'TableEntity' = {\n  tableName: settings.name\n  partitionKey: 'orders'\n  rowKey: 'limits'\n  entity: {\n    maxItemsPerOrder: '50'\n    maxOrderValue: '2500.00'\n    requiresApproval: 'true'\n    updatedOn: '2026-01-01T00:00:00Z'\n  }\n  // Values default to Edm.String, so declare the ones that need a richer type.\n  entityTypes: {\n    maxItemsPerOrder: 'Int32'\n    maxOrderValue: 'Double'\n    requiresApproval: 'Boolean'\n    updatedOn: 'DateTime'\n  }\n}\n\nresource orderRegions 'TableEntity' = {\n  tableName: settings.name\n  partitionKey: 'orders'\n  rowKey: 'regions'\n  entity: {\n    primary: 'westeurope'\n    secondary: 'northeurope'\n  }\n}\n\noutput ordersQueueUrl string? = orders.url\noutput deadLetterQueueUrl string? = ordersDeadLetter.url\noutput settingsTableUrl string? = settings.url"
+    },
+    {
+      "title": "File share with directories",
+      "description": "A file share containing nested directories and an app settings file.",
+      "url": "https://github.com/anthony-c-martin/bicep-ext-storage/blob/main/samples/file-share/main.bicep",
+      "content": "targetScope = 'local'\n\n@description('Name of the storage account to manage.')\nparam storageAccountName string\n\nextension storage with {\n  accountName: storageAccountName\n}\n\nresource share 'FileShare' = {\n  name: 'app-config'\n  quota: 100\n  accessTier: 'TransactionOptimized'\n  metadata: {\n    managedBy: 'bicep'\n  }\n}\n\n@description('Parent directories must exist before their children, so create them in order.')\nresource configDirectory 'FileShareDirectory' = {\n  shareName: share.name\n  path: 'config'\n}\n\nresource environmentDirectory 'FileShareDirectory' = {\n  shareName: share.name\n  path: '${configDirectory.path}/production'\n}\n\nresource appSettings 'FileShareFile' = {\n  shareName: share.name\n  path: '${environmentDirectory.path}/appsettings.json'\n  contentType: 'application/json'\n  content: string({\n    logging: {\n      level: 'Information'\n    }\n    features: {\n      betaSearch: false\n    }\n  })\n  metadata: {\n    generatedBy: 'bicep'\n  }\n}\n\noutput shareUrl string? = share.url\noutput appSettingsUrl string? = appSettings.url"
+    },
+    {
+      "title": "Static content and logs",
+      "description": "Serves static pages from one container while archiving logs in another.",
+      "url": "https://github.com/anthony-c-martin/bicep-ext-storage/blob/main/samples/static-content/main.bicep",
+      "content": "targetScope = 'local'\n\n@description('Name of the storage account to manage.')\nparam storageAccountName string\n\nextension storage with {\n  accountName: storageAccountName\n}\n\n@description('Files to publish, mapped to the content type they are served with.')\nvar files = {\n  'index.html': 'text/html'\n}\n\nresource site 'BlobContainer' = {\n  name: 'public-site'\n  publicAccess: 'Blob'\n}\n\nresource landingPage 'Blob' = {\n  containerName: site.name\n  name: 'index.html'\n  contentType: files['index.html']\n  cacheControl: 'public, max-age=300'\n  // Uploads the file from disk rather than embedding its content in the template.\n  contentBase64: loadFileAsBase64('./assets/index.html')\n}\n\nresource logs 'BlobContainer' = {\n  name: 'site-logs'\n  metadata: {\n    retention: '30d'\n  }\n}\n\n@description('Append blobs suit log-style content that is added to over time.')\nresource accessLog 'Blob' = {\n  containerName: logs.name\n  name: 'access/current.log'\n  type: 'Append'\n  contentType: 'text/plain'\n  content: '# access log initialised by Bicep\\n'\n}\n\n@description('Archive rarely-read content to keep storage costs down.')\nresource archivedPage 'Blob' = {\n  containerName: logs.name\n  name: 'archive/index-v1.html'\n  accessTier: 'Cool'\n  contentType: files['index.html']\n  contentBase64: loadFileAsBase64('./assets/index.html')\n}\n\noutput landingPageUrl string? = landingPage.url\noutput accessLogUrl string? = accessLog.url\noutput archivedPageUrl string? = archivedPage.url"
+    }
+  ]
+}

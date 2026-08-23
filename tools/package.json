@@ -1,0 +1,26 @@
+{
+  "name": "@bicep-extensions/tools",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "refresh": "tsx src/refresh.ts",
+    "generate-docs": "tsx src/generate-docs.ts",
+    "typecheck": "tsc --noEmit",
+    "validate": "tsx src/validate.ts"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.12.5",
+    "@grpc/proto-loader": "^0.7.13",
+    "semver": "^7.6.3",
+    "tar": "^7.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/semver": "^7.5.8",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

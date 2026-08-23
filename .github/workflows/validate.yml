@@ -1,0 +1,32 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: tools/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --prefix tools
+
+      - name: Validate the catalogue configuration
+        run: npm run validate --prefix tools
+
+      - name: Type-check the tools
+        run: npm run typecheck --prefix tools

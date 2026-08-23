@@ -1,0 +1,12 @@
+node_modules/
+
+# Docusaurus build output and caches
+website/build/
+website/.docusaurus/
+
+# Reference pages and catalogue data are produced by `npm run generate-docs`
+website/docs/extensions/
+website/src/data/catalogue.json
+
+.DS_Store
+*.log

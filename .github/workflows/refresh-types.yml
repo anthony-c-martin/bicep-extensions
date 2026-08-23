@@ -1,0 +1,98 @@
+name: Refresh extension types
+
+# Type definitions are extracted by downloading each published extension,
+# running its binary, and calling the GetTypeFiles gRPC method. Because this
+# executes third-party code, the workflow is only ever started manually.
+on:
+  workflow_dispatch:
+    inputs:
+      extensions:
+        description: Space-separated extension ids to refresh. Leave empty to refresh all.
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  refresh:
+    name: Refresh
+    runs-on: ubuntu-latest
+    # Extensions are third-party binaries, so bound how long a hung one can run.
+    timeout-minutes: 60
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: tools/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --prefix tools
+
+      - name: Extract type definitions
+        env:
+          # Optional `user:token` pair used for private registries.
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+          # Passed via the environment so the input is never substituted into
+          # the script body, where shell metacharacters would be executed.
+          EXTENSIONS: ${{ inputs.extensions }}
+        run: npm run refresh --prefix tools -- $EXTENSIONS
+
+      - name: Check for changes
+        id: diff
+        run: |
+          # Stage first so newly added files are detected as well as edits.
+          git add -A generated
+          if git diff --cached --quiet -- generated; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Type definitions are already up to date."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git diff --cached --stat -- generated
+          fi
+
+      - name: Verify the site still builds
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          npm ci --prefix website
+          npm run generate-docs --prefix tools
+          npm run build --prefix website
+
+      - name: Open pull request
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE_BRANCH: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          branch="refresh-types/$(date -u +%Y%m%d-%H%M%S)"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git checkout -b "$branch"
+          git add -A generated
+          git commit -m "Refresh extension type definitions"
+          git push origin "$branch"
+
+          {
+            echo "Refreshed extension type definitions from the latest published artifacts."
+            echo
+            echo "Extracted by running each extension and calling the \`GetTypeFiles\` gRPC method."
+            echo
+            echo '```'
+            git diff --stat HEAD~1 -- generated
+            echo '```'
+          } > body.md
+
+          gh pr create \
+            --title "Refresh extension type definitions" \
+            --body-file body.md \
+            --head "$branch" \
+            --base "$BASE_BRANCH"

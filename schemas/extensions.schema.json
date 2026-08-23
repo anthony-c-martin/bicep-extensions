@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://anthony-c-martin.github.io/bicep-extensions/schemas/extensions.schema.json",
+  "title": "Bicep extension catalogue",
+  "description": "Central configuration listing the Bicep extensions included in the catalogue.",
+  "type": "object",
+  "required": ["extensions"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "extensions": {
+      "type": "array",
+      "description": "The extensions to include in the catalogue.",
+      "items": { "$ref": "#/definitions/extension" }
+    }
+  },
+  "definitions": {
+    "extension": {
+      "type": "object",
+      "required": ["id", "displayName", "description", "repository", "artifact"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Stable identifier, used for file names and site URLs.",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Human readable name shown in the catalogue."
+        },
+        "description": {
+          "type": "string",
+          "description": "Short summary shown on catalogue cards and the extension overview page."
+        },
+        "repository": {
+          "type": "string",
+          "description": "URL of the source repository.",
+          "format": "uri"
+        },
+        "artifact": {
+          "type": "string",
+          "description": "OCI artifact path, without a tag. The latest published version is resolved automatically.",
+          "pattern": "^[^:]+/[^:]+$"
+        },
+        "publisher": {
+          "type": "string",
+          "description": "Person or organisation that publishes the extension."
+        },
+        "category": {
+          "type": "string",
+          "description": "Grouping used to organise the catalogue."
+        },
+        "tags": {
+          "type": "array",
+          "description": "Free-form keywords used for filtering and search.",
+          "items": { "type": "string" }
+        },
+        "license": {
+          "type": "string",
+          "description": "SPDX licence identifier of the extension source."
+        },
+        "samples": {
+          "type": "array",
+          "description": "Example .bicep files, fetched and embedded when types are refreshed.",
+          "items": { "$ref": "#/definitions/sample" }
+        },
+        "docsUrl": {
+          "type": "string",
+          "description": "Optional link to documentation hosted outside this catalogue.",
+          "format": "uri"
+        }
+      }
+    },
+    "sample": {
+      "type": "object",
+      "required": ["title", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Short name for the sample."
+        },
+        "description": {
+          "type": "string",
+          "description": "One-line summary of what the sample demonstrates."
+        },
+        "url": {
+          "type": "string",
+          "description": "Link to a .bicep file. GitHub blob URLs are resolved to their raw content.",
+          "format": "uri"
+        }
+      }
+    }
+  }
+}
