@@ -8,7 +8,7 @@ const projectName = 'bicep-extensions';
 const config: Config = {
   title: 'Bicep Extensions',
   tagline: 'A catalogue of Bicep extensions and the resource types they expose',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/logo.svg',
 
   url: `https://${organizationName}.github.io`,
   baseUrl: `/${projectName}/`,
