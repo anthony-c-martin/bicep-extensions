@@ -1,0 +1,141 @@
+{
+  "id": "helm",
+  "version": "0.1.8",
+  "artifact": "ghcr.io/anthony-c-martin/bicep-ext-helm",
+  "digest": "sha256:7637cab65729fde27da01705aa50651f6fcad2d27b264f7b6e78791faf8f706f",
+  "extractedAt": "2026-08-23T01:35:03.083Z",
+  "settings": {
+    "name": "helm",
+    "version": "0.1.8",
+    "isSingleton": true,
+    "isPreview": false,
+    "isDeprecated": false,
+    "configurationType": {
+      "$ref": "types.json#/5"
+    }
+  },
+  "resources": {
+    "Release": {
+      "$ref": "types.json#/4"
+    }
+  },
+  "resourceFunctions": {},
+  "typeFiles": {
+    "types.json": [
+      {
+        "$type": "StringType"
+      },
+      {
+        "$type": "ObjectType",
+        "name": "HelmSetValue",
+        "properties": {
+          "name": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The Helm values path to set (for example, service.type)."
+          },
+          "value": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The value to assign to the specified Helm values path."
+          }
+        }
+      },
+      {
+        "$type": "ArrayType",
+        "itemType": {
+          "$ref": "#/1"
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Release",
+        "properties": {
+          "repository": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The Helm chart repository URL."
+          },
+          "chart": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The Helm chart name."
+          },
+          "namespace": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The Kubernetes namespace to deploy into."
+          },
+          "version": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "Optional Helm chart version."
+          },
+          "valuesFile": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "Optional values file path to pass with --values."
+          },
+          "set": {
+            "type": {
+              "$ref": "#/2"
+            },
+            "flags": 0,
+            "description": "Optional list of --set overrides."
+          },
+          "name": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The Helm release name."
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Release",
+        "body": {
+          "$ref": "#/3"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Configuration",
+        "properties": {
+          "kubeConfig": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The Kubernetes configuration file content."
+          }
+        }
+      }
+    ]
+  },
+  "samples": [
+    {
+      "title": "Install a chart",
+      "description": "Retrieves a kubeconfig and installs a Helm release.",
+      "url": "https://github.com/anthony-c-martin/bicep-ext-helm/blob/main/samples/basic/main.bicep",
+      "content": "targetScope = 'local'\n\n@secure()\nparam kubeConfig string\n\nextension helm with {\n  kubeConfig: kubeConfig\n}\n\nresource release 'Release' = {\n  name: 'azure-vote'\n  repository: 'https://azure-samples.github.io/helm-charts'\n  chart: 'azure-vote'\n  set: [\n    {\n      name: 'title'\n      value: 'Do you love Bicep?'\n    }\n    {\n      name: 'value1'\n      value: 'Of course!'\n    }\n    {\n      name: 'image.tag'\n      value: 'Nope :('\n    }\n  ]\n}"
+    }
+  ]
+}

@@ -1,0 +1,1751 @@
+{
+  "id": "github",
+  "version": "0.0.1",
+  "artifact": "ghcr.io/anthony-c-martin/bicep-ext-github",
+  "digest": "sha256:c33e2dca656dd3bb5eaecfbe5022eef0867d035c547c33989e555e9bf40822ad",
+  "extractedAt": "2026-08-23T01:34:38.805Z",
+  "settings": {
+    "name": "github",
+    "version": "0.0.1",
+    "isSingleton": true,
+    "isPreview": false,
+    "isDeprecated": false,
+    "configurationType": {
+      "$ref": "types.json#/67"
+    }
+  },
+  "resources": {
+    "Repository": {
+      "$ref": "types.json#/10"
+    },
+    "Collaborator": {
+      "$ref": "types.json#/12"
+    },
+    "Label": {
+      "$ref": "types.json#/14"
+    },
+    "ActionsSecret": {
+      "$ref": "types.json#/17"
+    },
+    "ActionsVariable": {
+      "$ref": "types.json#/19"
+    },
+    "BranchProtectionRule": {
+      "$ref": "types.json#/23"
+    },
+    "RepositoryRuleset": {
+      "$ref": "types.json#/35"
+    },
+    "TeamRepositoryPermission": {
+      "$ref": "types.json#/37"
+    },
+    "Environment": {
+      "$ref": "types.json#/41"
+    },
+    "RepositoryWebhook": {
+      "$ref": "types.json#/43"
+    },
+    "DeployKey": {
+      "$ref": "types.json#/45"
+    },
+    "GitHubFile": {
+      "$ref": "types.json#/47"
+    },
+    "Team": {
+      "$ref": "types.json#/49"
+    },
+    "TeamMembership": {
+      "$ref": "types.json#/51"
+    },
+    "OrganizationActionsSecret": {
+      "$ref": "types.json#/54"
+    },
+    "OrganizationActionsVariable": {
+      "$ref": "types.json#/56"
+    },
+    "DependabotSecret": {
+      "$ref": "types.json#/58"
+    },
+    "RepositoryActionsPermissions": {
+      "$ref": "types.json#/60"
+    },
+    "Branch": {
+      "$ref": "types.json#/62"
+    },
+    "EnvironmentSecret": {
+      "$ref": "types.json#/64"
+    },
+    "EnvironmentVariable": {
+      "$ref": "types.json#/66"
+    }
+  },
+  "resourceFunctions": {},
+  "typeFiles": {
+    "types.json": [
+      {
+        "$type": "StringType"
+      },
+      {
+        "$type": "NullType"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Public"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Private"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Internal"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/2"
+          },
+          {
+            "$ref": "#/3"
+          },
+          {
+            "$ref": "#/4"
+          }
+        ]
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/1"
+          },
+          {
+            "$ref": "#/5"
+          }
+        ]
+      },
+      {
+        "$type": "ArrayType",
+        "itemType": {
+          "$ref": "#/0"
+        }
+      },
+      {
+        "$type": "BooleanType"
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Repository",
+        "properties": {
+          "description": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The repository description"
+          },
+          "homepage": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The repository homepage url"
+          },
+          "visibility": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 0,
+            "description": "The repository visibility"
+          },
+          "topics": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Topics for the repository"
+          },
+          "hasIssues": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether the repository has issues enabled"
+          },
+          "hasProjects": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether the repository has projects enabled"
+          },
+          "hasWiki": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether the repository has wiki enabled"
+          },
+          "hasDownloads": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether the repository has downloads enabled"
+          },
+          "isTemplate": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether the repository is a template"
+          },
+          "allowSquashMerge": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether to allow squash merges"
+          },
+          "allowMergeCommit": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether to allow merge commits"
+          },
+          "allowRebaseMerge": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether to allow rebase merges"
+          },
+          "deleteBranchOnMerge": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether to automatically delete head branches"
+          },
+          "allowAutoMerge": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether to allow auto-merge"
+          },
+          "allowUpdateBranch": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether to allow updating pull request branches"
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The owner of the repository"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The repository"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Repository",
+        "body": {
+          "$ref": "#/9"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Collaborator",
+        "properties": {
+          "permission": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The collaborator permissions"
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The owner of the repository"
+          },
+          "repo": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The repository"
+          },
+          "user": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The collaborator user handle"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Collaborator",
+        "body": {
+          "$ref": "#/11"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Label",
+        "properties": {
+          "color": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The label color"
+          },
+          "description": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The label description"
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The owner of the repository"
+          },
+          "repo": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The repository"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The label name"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Label",
+        "body": {
+          "$ref": "#/13"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "StringType",
+        "sensitive": true
+      },
+      {
+        "$type": "ObjectType",
+        "name": "ActionsSecret",
+        "properties": {
+          "value": {
+            "type": {
+              "$ref": "#/15"
+            },
+            "flags": 5,
+            "description": "The secret value"
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The owner of the repository"
+          },
+          "repo": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The repository"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The secret name"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "ActionsSecret",
+        "body": {
+          "$ref": "#/16"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "ActionsVariable",
+        "properties": {
+          "value": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The variable value"
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The owner of the repository"
+          },
+          "repo": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The repository"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The variable name"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "ActionsVariable",
+        "body": {
+          "$ref": "#/18"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "IntegerType"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/1"
+          },
+          {
+            "$ref": "#/8"
+          }
+        ]
+      },
+      {
+        "$type": "ObjectType",
+        "name": "BranchProtectionRule",
+        "properties": {
+          "strictStatusChecks": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether status checks must be strict"
+          },
+          "requiredStatusCheckContexts": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Required status check contexts"
+          },
+          "enablePullRequestReviews": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether review requirements are enabled"
+          },
+          "dismissStaleReviews": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether stale reviews are dismissed on new pushes"
+          },
+          "requireCodeOwnerReviews": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether code owner reviews are required"
+          },
+          "requiredApprovingReviewCount": {
+            "type": {
+              "$ref": "#/20"
+            },
+            "flags": 0,
+            "description": "Required number of approving reviews (0-6)"
+          },
+          "requireLastPushApproval": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether the last push must be approved by another reviewer"
+          },
+          "enforceAdmins": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether branch protection is enforced for admins"
+          },
+          "requireSignedCommits": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether signed commits are required"
+          },
+          "requiredLinearHistory": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether linear history is required"
+          },
+          "allowForcePushes": {
+            "type": {
+              "$ref": "#/21"
+            },
+            "flags": 0,
+            "description": "Whether force pushes are allowed"
+          },
+          "allowDeletions": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether branch deletions are allowed"
+          },
+          "requiredConversationResolution": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether conversations must be resolved before merge"
+          },
+          "lockBranch": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether the protected branch is read-only"
+          },
+          "blockCreations": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether restrictions block branch creation pushes"
+          },
+          "pushRestrictionTeams": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Team slugs allowed to push"
+          },
+          "pushRestrictionUsers": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "User logins allowed to push"
+          },
+          "dismissalRestrictionTeams": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Team slugs that can dismiss reviews"
+          },
+          "dismissalRestrictionUsers": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "User logins that can dismiss reviews"
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The owner of the repository"
+          },
+          "repo": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The repository"
+          },
+          "branch": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The branch to protect"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "BranchProtectionRule",
+        "body": {
+          "$ref": "#/22"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "RepositoryRulesetRefNameCondition",
+        "properties": {
+          "include": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Included ref name patterns"
+          },
+          "exclude": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Excluded ref name patterns"
+          }
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "RepositoryRulesetConditions",
+        "properties": {
+          "refName": {
+            "type": {
+              "$ref": "#/24"
+            },
+            "flags": 0,
+            "description": "The ref name condition"
+          }
+        }
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/1"
+          },
+          {
+            "$ref": "#/20"
+          }
+        ]
+      },
+      {
+        "$type": "ObjectType",
+        "name": "RepositoryRulesetStatusCheck",
+        "properties": {
+          "context": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The name of the required status check"
+          },
+          "integrationId": {
+            "type": {
+              "$ref": "#/26"
+            },
+            "flags": 0,
+            "description": "The optional integration (GitHub App) ID that must provide the status check"
+          }
+        }
+      },
+      {
+        "$type": "ArrayType",
+        "itemType": {
+          "$ref": "#/27"
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "RepositoryRulesetPullRequestRuleParameters",
+        "properties": {
+          "dismissStaleReviewsOnPush": {
+            "type": {
+              "$ref": "#/21"
+            },
+            "flags": 0,
+            "description": "Whether stale reviews are dismissed on push"
+          },
+          "requireCodeOwnerReview": {
+            "type": {
+              "$ref": "#/21"
+            },
+            "flags": 0,
+            "description": "Whether code owner reviews are required"
+          },
+          "requireLastPushApproval": {
+            "type": {
+              "$ref": "#/21"
+            },
+            "flags": 0,
+            "description": "Whether the last push must be approved"
+          },
+          "requiredApprovingReviewCount": {
+            "type": {
+              "$ref": "#/26"
+            },
+            "flags": 0,
+            "description": "The required approving review count"
+          },
+          "requiredReviewThreadResolution": {
+            "type": {
+              "$ref": "#/21"
+            },
+            "flags": 0,
+            "description": "Whether review threads must be resolved"
+          },
+          "requiredStatusChecks": {
+            "type": {
+              "$ref": "#/28"
+            },
+            "flags": 0,
+            "description": "Status checks that must pass before merging (for required_status_checks rules)"
+          },
+          "strictRequiredStatusChecksPolicy": {
+            "type": {
+              "$ref": "#/21"
+            },
+            "flags": 0,
+            "description": "Whether the branch must be up to date before merging (for required_status_checks rules)"
+          }
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "RepositoryRulesetRule",
+        "properties": {
+          "type": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The ruleset rule type"
+          },
+          "parameters": {
+            "type": {
+              "$ref": "#/29"
+            },
+            "flags": 0,
+            "description": "The ruleset rule parameters"
+          }
+        }
+      },
+      {
+        "$type": "ArrayType",
+        "itemType": {
+          "$ref": "#/30"
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "RepositoryRulesetBypassActor",
+        "properties": {
+          "actorId": {
+            "type": {
+              "$ref": "#/20"
+            },
+            "flags": 0,
+            "description": "The ID of the actor"
+          },
+          "actorType": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The type of actor (OrganizationAdmin, RepositoryRole, Team, or Integration)"
+          },
+          "bypassMode": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The bypass mode (always or pull_request)"
+          }
+        }
+      },
+      {
+        "$type": "ArrayType",
+        "itemType": {
+          "$ref": "#/32"
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "RepositoryRuleset",
+        "properties": {
+          "target": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The ruleset target. Common value: branch"
+          },
+          "enforcement": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The enforcement mode. Common values: active, evaluate"
+          },
+          "conditions": {
+            "type": {
+              "$ref": "#/25"
+            },
+            "flags": 1,
+            "description": "The ruleset conditions"
+          },
+          "rules": {
+            "type": {
+              "$ref": "#/31"
+            },
+            "flags": 1,
+            "description": "The ruleset rules"
+          },
+          "bypassActors": {
+            "type": {
+              "$ref": "#/33"
+            },
+            "flags": 0,
+            "description": "Actors that can bypass the ruleset"
+          },
+          "bypassActorsJson": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "Optional JSON array string for bypass actors (deprecated: use bypassActors)"
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The owner of the repository"
+          },
+          "repo": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The repository"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The ruleset name"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "RepositoryRuleset",
+        "body": {
+          "$ref": "#/34"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "TeamRepositoryPermission",
+        "properties": {
+          "permission": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The permission to grant (pull, triage, push, maintain, admin)"
+          },
+          "org": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The organization that owns the team"
+          },
+          "teamSlug": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The team slug"
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The owner of the repository"
+          },
+          "repo": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The repository"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "TeamRepositoryPermission",
+        "body": {
+          "$ref": "#/36"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "EnvironmentReviewer",
+        "properties": {
+          "id": {
+            "type": {
+              "$ref": "#/20"
+            },
+            "flags": 0,
+            "description": "The ID of the reviewer (user ID or team ID)"
+          },
+          "type": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The type of reviewer (User or Team)"
+          }
+        }
+      },
+      {
+        "$type": "ArrayType",
+        "itemType": {
+          "$ref": "#/38"
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Environment",
+        "properties": {
+          "waitTimer": {
+            "type": {
+              "$ref": "#/20"
+            },
+            "flags": 0,
+            "description": "Wait timer in minutes"
+          },
+          "preventSelfReview": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether self-review is prevented"
+          },
+          "protectedBranches": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether protected branches can deploy"
+          },
+          "customBranchPolicies": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether custom branch policies can deploy"
+          },
+          "reviewers": {
+            "type": {
+              "$ref": "#/39"
+            },
+            "flags": 0,
+            "description": "Deployment reviewers for this environment"
+          },
+          "deploymentBranchPolicyEnvironments": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Alternative environment names allowed for deployment"
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The owner of the repository"
+          },
+          "repo": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The repository"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The environment name"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Environment",
+        "body": {
+          "$ref": "#/40"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "RepositoryWebhook",
+        "properties": {
+          "events": {
+            "type": {
+              "$ref": "#/7"
+            },
+            "flags": 0,
+            "description": "Events this webhook subscribes to"
+          },
+          "active": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether the webhook is active"
+          },
+          "contentType": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "Payload content type (json or form)"
+          },
+          "secret": {
+            "type": {
+              "$ref": "#/15"
+            },
+            "flags": 0,
+            "description": "Shared secret for webhook signature"
+          },
+          "insecureSsl": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether SSL verification is disabled"
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The owner of the repository"
+          },
+          "repo": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The repository"
+          },
+          "url": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The webhook delivery URL"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "RepositoryWebhook",
+        "body": {
+          "$ref": "#/42"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "DeployKey",
+        "properties": {
+          "key": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The public deploy key"
+          },
+          "readOnly": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether the deploy key is read-only"
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The owner of the repository"
+          },
+          "repo": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The repository"
+          },
+          "title": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The deploy key title"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "DeployKey",
+        "body": {
+          "$ref": "#/44"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "GitHubFile",
+        "properties": {
+          "content": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The file content"
+          },
+          "branch": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "Optional branch name. Defaults to the repository default branch"
+          },
+          "commitMessage": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "Optional commit message"
+          },
+          "sha": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 2,
+            "description": "The current blob SHA"
+          },
+          "htmlUrl": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 2,
+            "description": "The file HTML URL"
+          },
+          "downloadUrl": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 2,
+            "description": "The direct download URL"
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The owner of the repository"
+          },
+          "repo": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The repository"
+          },
+          "path": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The file path in the repository"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "GitHubFile",
+        "body": {
+          "$ref": "#/46"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Team",
+        "properties": {
+          "description": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The team description"
+          },
+          "privacy": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The level of privacy the team should have (secret or closed)"
+          },
+          "parentTeamId": {
+            "type": {
+              "$ref": "#/26"
+            },
+            "flags": 0,
+            "description": "The ID of the parent team, if this should be a nested team"
+          },
+          "slug": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 2,
+            "description": "The team slug generated by GitHub"
+          },
+          "id": {
+            "type": {
+              "$ref": "#/26"
+            },
+            "flags": 2,
+            "description": "The team ID"
+          },
+          "org": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The organization that owns the team"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The team name"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Team",
+        "body": {
+          "$ref": "#/48"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "TeamMembership",
+        "properties": {
+          "role": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The role of the user in the team (member or maintainer)"
+          },
+          "org": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The organization that owns the team"
+          },
+          "teamSlug": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The team slug"
+          },
+          "username": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The user handle to add to the team"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "TeamMembership",
+        "body": {
+          "$ref": "#/50"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ArrayType",
+        "itemType": {
+          "$ref": "#/20"
+        }
+      },
+      {
+        "$type": "ObjectType",
+        "name": "OrganizationActionsSecret",
+        "properties": {
+          "value": {
+            "type": {
+              "$ref": "#/15"
+            },
+            "flags": 5,
+            "description": "The secret value"
+          },
+          "visibility": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "Which repositories can access the secret (all, private, or selected)"
+          },
+          "selectedRepositoryIds": {
+            "type": {
+              "$ref": "#/52"
+            },
+            "flags": 0,
+            "description": "Repository IDs that can access the secret when visibility is 'selected'"
+          },
+          "org": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The organization"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The secret name"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "OrganizationActionsSecret",
+        "body": {
+          "$ref": "#/53"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "OrganizationActionsVariable",
+        "properties": {
+          "value": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The variable value"
+          },
+          "visibility": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "Which repositories can access the variable (all, private, or selected)"
+          },
+          "selectedRepositoryIds": {
+            "type": {
+              "$ref": "#/52"
+            },
+            "flags": 0,
+            "description": "Repository IDs that can access the variable when visibility is 'selected'"
+          },
+          "org": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The organization"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The variable name"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "OrganizationActionsVariable",
+        "body": {
+          "$ref": "#/55"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "DependabotSecret",
+        "properties": {
+          "value": {
+            "type": {
+              "$ref": "#/15"
+            },
+            "flags": 5,
+            "description": "The secret value"
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The owner of the repository"
+          },
+          "repo": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The repository"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The secret name"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "DependabotSecret",
+        "body": {
+          "$ref": "#/57"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "RepositoryActionsPermissions",
+        "properties": {
+          "enabled": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether GitHub Actions is enabled for the repository"
+          },
+          "allowedActions": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "Which actions are allowed to run (all, local_only, or selected)"
+          },
+          "defaultWorkflowPermissions": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The default workflow token permissions (read or write)"
+          },
+          "canApprovePullRequestReviews": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Whether GitHub Actions can approve pull request reviews"
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The owner of the repository"
+          },
+          "repo": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The repository"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "RepositoryActionsPermissions",
+        "body": {
+          "$ref": "#/59"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Branch",
+        "properties": {
+          "sourceBranch": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The source branch to create the new branch from. Defaults to the repository default branch"
+          },
+          "sourceSha": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The source commit SHA to create the new branch from. Takes precedence over sourceBranch"
+          },
+          "sha": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 2,
+            "description": "The commit SHA the branch points to"
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The owner of the repository"
+          },
+          "repo": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The repository"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The name of the branch to create"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Branch",
+        "body": {
+          "$ref": "#/61"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "EnvironmentSecret",
+        "properties": {
+          "value": {
+            "type": {
+              "$ref": "#/15"
+            },
+            "flags": 5,
+            "description": "The secret value"
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The owner of the repository"
+          },
+          "repo": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The repository"
+          },
+          "environment": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The environment name"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The secret name"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "EnvironmentSecret",
+        "body": {
+          "$ref": "#/63"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "EnvironmentVariable",
+        "properties": {
+          "value": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The variable value"
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The owner of the repository"
+          },
+          "repo": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The repository"
+          },
+          "environment": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The environment name"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The variable name"
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "EnvironmentVariable",
+        "body": {
+          "$ref": "#/65"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Configuration",
+        "properties": {
+          "token": {
+            "type": {
+              "$ref": "#/15"
+            },
+            "flags": 1,
+            "description": "The GitHub personal access token with the required permissions"
+          }
+        }
+      }
+    ]
+  },
+  "samples": [
+    {
+      "title": "Repository with labels and rules",
+      "description": "Creates a repository with a README, CI workflow, labels, branch ruleset and collaborators.",
+      "url": "https://github.com/anthony-c-martin/bicep-ext-github/blob/main/samples/basic/main.bicep",
+      "content": "targetScope = 'local'\n\n@secure()\n@description('GitHub personal access token used to authenticate the extension.')\nparam githubToken string\n\n@description('The personal account that owns the repository.')\nparam owner string\n\n@description('The name of the repository to create.')\nparam repoName string\n\nparam repoConfig {\n  description: string\n  topics: string[]\n}\n\n@description('GitHub users to grant write access to.')\nparam collaborators string[]\n\nextension github with {\n  token: githubToken\n}\n\nvar labels = [\n  {\n    name: 'bug'\n    description: 'Something is not working'\n    color: 'd73a4a'\n  }\n  {\n    name: 'enhancement'\n    description: 'New feature or request'\n    color: 'a2eeef'\n  }\n]\n\nresource repo 'Repository' = {\n  owner: owner\n  name: repoName\n  description: repoConfig.description\n  homepage: 'https://${owner}.github.io/${repoName}'\n  visibility: 'Public'\n  topics: repoConfig.topics\n  hasIssues: true\n  hasWiki: false\n  allowSquashMerge: true\n  allowMergeCommit: false\n  allowRebaseMerge: false\n  deleteBranchOnMerge: true\n}\n\nresource readme 'GitHubFile' = {\n  owner: repo.owner\n  repo: repo.name\n  path: 'README.md'\n  commitMessage: 'Add README'\n  content: $'''\n# ${repoName}\n\nManaged with [bicep-ext-github](https://github.com/anthony-c-martin/bicep-ext-github).\n'''\n}\n\nresource ciWorkflow 'GitHubFile' = {\n  owner: repo.owner\n  repo: repo.name\n  path: '.github/workflows/ci.yml'\n  commitMessage: 'Add CI workflow'\n  content: '''\nname: ci\non:\n  push:\n    branches: [main]\n  pull_request:\n    branches: [main]\npermissions:\n  contents: read\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Build\n        run: echo \"Add your build and test commands here\"\n'''\n  dependsOn: [\n    readme\n  ]\n}\n\nresource resLabels 'Label' = [for label in labels: {\n  owner: repo.owner\n  repo: repo.name\n  name: label.name\n  color: label.color\n  description: label.description\n}]\n\nresource mainProtection 'RepositoryRuleset' = {\n  owner: repo.owner\n  repo: repo.name\n  name: 'protect-main'\n  target: 'branch'\n  enforcement: 'active'\n  conditions: {\n    refName: {\n      include: [\n        '~DEFAULT_BRANCH'\n      ]\n      exclude: []\n    }\n  }\n  rules: [\n    {\n      type: 'pull_request'\n      parameters: {\n        dismissStaleReviewsOnPush: true\n        requireCodeOwnerReview: false\n        requireLastPushApproval: false\n        requiredApprovingReviewCount: 1\n        requiredReviewThreadResolution: true\n      }\n    }\n    {\n      type: 'required_status_checks'\n      parameters: {\n        strictRequiredStatusChecksPolicy: true\n        requiredStatusChecks: [\n          {\n            context: 'build'\n          }\n        ]\n      }\n    }\n    {\n      type: 'deletion'\n    }\n    {\n      type: 'non_fast_forward'\n    }\n  ]\n  dependsOn: [\n    readme\n    ciWorkflow\n  ]\n}\n\n// Grant a friend/collaborator write access.\nresource resCollaborators 'Collaborator' = [for collaborator in collaborators: {\n  owner: repo.owner\n  repo: repo.name\n  user: collaborator\n  permission: 'push'\n}]"
+    },
+    {
+      "title": "Full service repository",
+      "description": "A production-shaped repository with branches, rulesets, environments, secrets and webhooks.",
+      "url": "https://github.com/anthony-c-martin/bicep-ext-github/blob/main/samples/service-repo/main.bicep",
+      "content": "targetScope = 'local'\n\n// End-to-end bootstrap of a brand-new service repository.\n//\n// This sample provisions a repository and then layers on the surrounding\n// configuration a platform team would typically set up on day one:\n//   * seed files (README, CODEOWNERS, CI workflow) that create the initial commit\n//   * a protected default branch + a long-lived integration branch\n//   * triage labels\n//   * hardened GitHub Actions permissions\n//   * CI/CD configuration (Actions + Dependabot secrets and variables)\n//   * deployment environments with approvals and per-environment config\n//   * access control (an owning team, a human maintainer, a deploy key)\n//   * an outbound webhook for ChatOps/CI notifications\n//\n// Deploy with: bicep local-deploy ./samples/service-repo/main.bicepparam\n\n@secure()\nparam githubToken string\n\n@description('The user or organization that will own the repository.')\nparam owner string\n\n@description('The name of the repository to create.')\nparam repoName string\n\n@description('The organization used for team management (usually the same as owner for org repos).')\nparam org string\n\n@description('Slug-friendly display name for the owning team.')\nparam teamName string\n\n@description('An additional human collaborator to grant write access.')\nparam maintainer string\n\n@description('Numeric GitHub user or team id allowed to approve production deployments.')\nparam productionReviewerId int\n\n@description('Public SSH key used as a read-only deploy key.')\nparam deployKey string\n\n@description('HTTPS endpoint that should receive repository webhook deliveries.')\nparam webhookUrl string\n\n@secure()\n@description('Token published to Actions for pushing packages.')\nparam nugetApiKey string\n\n@secure()\n@description('Token published to Dependabot for restoring from a private feed.')\nparam privateFeedToken string\n\n@secure()\n@description('Connection string exposed only to the production environment.')\nparam productionConnectionString string\n\n@secure()\n@description('Shared secret used to sign webhook deliveries.')\nparam webhookSecret string\n\nextension github with {\n  token: githubToken\n}\n\n// ---------------------------------------------------------------------------\n// 1. The repository itself.\n// ---------------------------------------------------------------------------\nresource repo 'Repository' = {\n  owner: owner\n  name: repoName\n  description: 'Service repository bootstrapped with bicep-ext-github'\n  visibility: 'Private'\n  hasIssues: true\n  hasWiki: false\n  allowSquashMerge: true\n  allowMergeCommit: false\n  allowRebaseMerge: false\n  deleteBranchOnMerge: true\n  allowAutoMerge: true\n}\n\n// ---------------------------------------------------------------------------\n// 2. Seed files. The first file creates the initial commit (and the default\n//    branch), so the files are chained to guarantee ordering.\n// ---------------------------------------------------------------------------\nresource readme 'GitHubFile' = {\n  owner: repo.owner\n  repo: repo.name\n  path: 'README.md'\n  commitMessage: 'Add README'\n  content: '''\n# ${repoName}\n\nBootstrapped automatically with [bicep-ext-github](https://github.com/anthony-c-martin/bicep-ext-github).\n'''\n}\n\nresource codeowners 'GitHubFile' = {\n  owner: repo.owner\n  repo: repo.name\n  path: '.github/CODEOWNERS'\n  commitMessage: 'Add CODEOWNERS'\n  content: '* @${org}/${teamName}\\n'\n  dependsOn: [\n    readme\n  ]\n}\n\nresource ciWorkflow 'GitHubFile' = {\n  owner: repo.owner\n  repo: repo.name\n  path: '.github/workflows/ci.yml'\n  commitMessage: 'Add CI workflow'\n  content: '''\nname: ci\non:\n  push:\n    branches: [main, develop]\n  pull_request:\n    branches: [main]\npermissions:\n  contents: read\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: echo \"build $BUILD_CONFIGURATION\"\n'''\n  dependsOn: [\n    codeowners\n  ]\n}\n\n// ---------------------------------------------------------------------------\n// 3. Branching: a long-lived integration branch off the default branch.\n// ---------------------------------------------------------------------------\nresource develop 'Branch' = {\n  owner: repo.owner\n  repo: repo.name\n  name: 'develop'\n  sourceBranch: 'main'\n  dependsOn: [\n    ciWorkflow\n  ]\n}\n\n// ---------------------------------------------------------------------------\n// 4. Protect the default branch with a ruleset (require reviewed PRs).\n// ---------------------------------------------------------------------------\nresource mainProtection 'RepositoryRuleset' = {\n  owner: repo.owner\n  repo: repo.name\n  name: 'protect-main'\n  target: 'branch'\n  enforcement: 'active'\n  conditions: {\n    refName: {\n      include: [\n        '~DEFAULT_BRANCH'\n      ]\n      exclude: []\n    }\n  }\n  rules: [\n    {\n      type: 'pull_request'\n      parameters: {\n        dismissStaleReviewsOnPush: true\n        requireCodeOwnerReview: true\n        requireLastPushApproval: true\n        requiredApprovingReviewCount: 1\n        requiredReviewThreadResolution: true\n      }\n    }\n    {\n      type: 'deletion'\n    }\n    {\n      type: 'non_fast_forward'\n    }\n  ]\n}\n\n// ---------------------------------------------------------------------------\n// 5. Triage labels.\n// ---------------------------------------------------------------------------\nresource bugLabel 'Label' = {\n  owner: repo.owner\n  repo: repo.name\n  name: 'bug'\n  color: 'd73a4a'\n  description: 'Something is not working'\n}\n\nresource needsTriageLabel 'Label' = {\n  owner: repo.owner\n  repo: repo.name\n  name: 'needs-triage'\n  color: 'fbca04'\n  description: 'Awaiting initial review'\n}\n\n// ---------------------------------------------------------------------------\n// 6. Harden GitHub Actions: read-only default token, no PR approvals from bots.\n// ---------------------------------------------------------------------------\nresource actionsPermissions 'RepositoryActionsPermissions' = {\n  owner: repo.owner\n  repo: repo.name\n  enabled: true\n  allowedActions: 'all'\n  defaultWorkflowPermissions: 'read'\n  canApprovePullRequestReviews: false\n}\n\n// ---------------------------------------------------------------------------\n// 7. CI/CD configuration: repo-level Actions variable + secret, and a\n//    Dependabot secret for private package restores.\n// ---------------------------------------------------------------------------\nresource buildConfig 'ActionsVariable' = {\n  owner: repo.owner\n  repo: repo.name\n  name: 'BUILD_CONFIGURATION'\n  value: 'Release'\n}\n\nresource nugetSecret 'ActionsSecret' = {\n  owner: repo.owner\n  repo: repo.name\n  name: 'NUGET_API_KEY'\n  value: nugetApiKey\n}\n\nresource feedToken 'DependabotSecret' = {\n  owner: repo.owner\n  repo: repo.name\n  name: 'PRIVATE_FEED_TOKEN'\n  value: privateFeedToken\n}\n\n// ---------------------------------------------------------------------------\n// 8. Deployment environments. Production requires an approval and a wait timer.\n// ---------------------------------------------------------------------------\nresource staging 'Environment' = {\n  owner: repo.owner\n  repo: repo.name\n  name: 'staging'\n  waitTimer: 0\n  preventSelfReview: false\n  protectedBranches: false\n  customBranchPolicies: true\n}\n\nresource production 'Environment' = {\n  owner: repo.owner\n  repo: repo.name\n  name: 'production'\n  waitTimer: 10\n  preventSelfReview: true\n  protectedBranches: true\n  customBranchPolicies: false\n  reviewers: [\n    {\n      id: productionReviewerId\n      type: 'Team'\n    }\n  ]\n}\n\nresource productionAppEnv 'EnvironmentVariable' = {\n  owner: repo.owner\n  repo: repo.name\n  environment: production.name\n  name: 'APP_ENV'\n  value: 'production'\n}\n\nresource productionConnection 'EnvironmentSecret' = {\n  owner: repo.owner\n  repo: repo.name\n  environment: production.name\n  name: 'DATABASE_CONNECTION_STRING'\n  value: productionConnectionString\n}\n\n// ---------------------------------------------------------------------------\n// 9. Access control: an owning team, a human maintainer, and a deploy key.\n// ---------------------------------------------------------------------------\nresource platformTeam 'Team' = {\n  org: org\n  name: teamName\n  description: 'Owns and operates the ${repoName} service'\n  privacy: 'closed'\n}\n\nresource teamAccess 'TeamRepositoryPermission' = {\n  org: org\n  teamSlug: platformTeam.slug!\n  owner: repo.owner\n  repo: repo.name\n  permission: 'maintain'\n}\n\nresource humanMaintainer 'Collaborator' = {\n  owner: repo.owner\n  repo: repo.name\n  user: maintainer\n  permission: 'push'\n}\n\nresource ciDeployKey 'DeployKey' = {\n  owner: repo.owner\n  repo: repo.name\n  title: 'ci-deploy'\n  key: deployKey\n  readOnly: true\n}\n\n// ---------------------------------------------------------------------------\n// 10. Outbound webhook for CI/ChatOps notifications.\n// ---------------------------------------------------------------------------\nresource notifications 'RepositoryWebhook' = {\n  owner: repo.owner\n  repo: repo.name\n  url: webhookUrl\n  contentType: 'json'\n  active: true\n  secret: webhookSecret\n  events: [\n    'push'\n    'pull_request'\n    'deployment_status'\n  ]\n}\n\noutput repositoryUrl string = 'https://github.com/${owner}/${repoName}'\noutput developBranchSha string = develop.sha!\noutput owningTeamSlug string = platformTeam.slug!"
+    }
+  ]
+}

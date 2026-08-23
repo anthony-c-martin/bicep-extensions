@@ -1,0 +1,149 @@
+.intro {
+  margin-bottom: 1.75rem;
+}
+
+.title {
+  font-size: 1.85rem;
+  margin-bottom: 0.35rem;
+}
+
+.tagline {
+  margin: 0;
+  color: var(--ifm-color-emphasis-700);
+  max-width: 46rem;
+}
+
+.summary {
+  margin-top: 1.75rem;
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.search {
+  width: 100%;
+  max-width: 28rem;
+  padding: 0.6rem 0.9rem;
+  font-size: 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-global-radius);
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+}
+
+.search:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 1px;
+}
+
+.filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filter {
+  padding: 0.35rem 0.85rem;
+  border-radius: 2rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background: transparent;
+  color: var(--ifm-font-color-base);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.filter:hover {
+  border-color: var(--ifm-color-primary);
+}
+
+.filterActive {
+  background: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+  color: #fff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-global-radius);
+  background: var(--ifm-card-background-color);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  text-decoration: none;
+  color: inherit;
+  border-color: var(--ifm-color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--ifm-global-shadow-lw);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.version {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-700);
+  white-space: nowrap;
+}
+
+.cardDescription {
+  flex: 1;
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+  color: var(--ifm-color-emphasis-800);
+  line-height: 1.5;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+}
+
+.resourceCount {
+  color: var(--ifm-color-emphasis-700);
+}
+
+.category {
+  padding: 0.15rem 0.6rem;
+  border-radius: 2rem;
+  background: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-emphasis-800);
+}
+
+.empty {
+  padding: 2rem 0;
+  color: var(--ifm-color-emphasis-700);
+}
+
