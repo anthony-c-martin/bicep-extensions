@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "artifact": "ghcr.io/anthony-c-martin/bicep-ext-github",
   "digest": "sha256:c33e2dca656dd3bb5eaecfbe5022eef0867d035c547c33989e555e9bf40822ad",
-  "extractedAt": "2026-08-23T01:34:38.805Z",
+  "extractedAt": "2026-08-23T03:24:48.168Z",
   "settings": {
     "name": "github",
     "version": "0.0.1",
@@ -15,47 +15,41 @@
     }
   },
   "resources": {
-    "Repository": {
-      "$ref": "types.json#/10"
-    },
-    "Collaborator": {
-      "$ref": "types.json#/12"
-    },
-    "Label": {
-      "$ref": "types.json#/14"
-    },
     "ActionsSecret": {
       "$ref": "types.json#/17"
     },
     "ActionsVariable": {
       "$ref": "types.json#/19"
     },
+    "Branch": {
+      "$ref": "types.json#/62"
+    },
     "BranchProtectionRule": {
       "$ref": "types.json#/23"
     },
-    "RepositoryRuleset": {
-      "$ref": "types.json#/35"
+    "Collaborator": {
+      "$ref": "types.json#/12"
     },
-    "TeamRepositoryPermission": {
-      "$ref": "types.json#/37"
-    },
-    "Environment": {
-      "$ref": "types.json#/41"
-    },
-    "RepositoryWebhook": {
-      "$ref": "types.json#/43"
+    "DependabotSecret": {
+      "$ref": "types.json#/58"
     },
     "DeployKey": {
       "$ref": "types.json#/45"
     },
+    "Environment": {
+      "$ref": "types.json#/41"
+    },
+    "EnvironmentSecret": {
+      "$ref": "types.json#/64"
+    },
+    "EnvironmentVariable": {
+      "$ref": "types.json#/66"
+    },
     "GitHubFile": {
       "$ref": "types.json#/47"
     },
-    "Team": {
-      "$ref": "types.json#/49"
-    },
-    "TeamMembership": {
-      "$ref": "types.json#/51"
+    "Label": {
+      "$ref": "types.json#/14"
     },
     "OrganizationActionsSecret": {
       "$ref": "types.json#/54"
@@ -63,20 +57,26 @@
     "OrganizationActionsVariable": {
       "$ref": "types.json#/56"
     },
-    "DependabotSecret": {
-      "$ref": "types.json#/58"
+    "Repository": {
+      "$ref": "types.json#/10"
     },
     "RepositoryActionsPermissions": {
       "$ref": "types.json#/60"
     },
-    "Branch": {
-      "$ref": "types.json#/62"
+    "RepositoryRuleset": {
+      "$ref": "types.json#/35"
     },
-    "EnvironmentSecret": {
-      "$ref": "types.json#/64"
+    "RepositoryWebhook": {
+      "$ref": "types.json#/43"
     },
-    "EnvironmentVariable": {
-      "$ref": "types.json#/66"
+    "Team": {
+      "$ref": "types.json#/49"
+    },
+    "TeamMembership": {
+      "$ref": "types.json#/51"
+    },
+    "TeamRepositoryPermission": {
+      "$ref": "types.json#/37"
     }
   },
   "resourceFunctions": {},

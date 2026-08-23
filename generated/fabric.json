@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "artifact": "ghcr.io/anthony-c-martin/bicep-ext-fabric",
   "digest": "sha256:3628810ab87b0205db2b5bb23c99f0134882a84b9eb64602feabc68ca801b59a",
-  "extractedAt": "2026-08-23T01:35:37.065Z",
+  "extractedAt": "2026-08-23T03:25:51.371Z",
   "settings": {
     "name": "fabric",
     "version": "0.0.1",
@@ -15,17 +15,47 @@
     }
   },
   "resources": {
+    "AnomalyDetector": {
+      "$ref": "types.json#/216"
+    },
+    "ApacheAirflowJob": {
+      "$ref": "types.json#/218"
+    },
     "Connection": {
       "$ref": "types.json#/58"
     },
     "ConnectionRoleAssignment": {
       "$ref": "types.json#/71"
     },
+    "CopyJob": {
+      "$ref": "types.json#/220"
+    },
+    "CosmosDBDatabase": {
+      "$ref": "types.json#/222"
+    },
+    "Dashboard": {
+      "$ref": "types.json#/306"
+    },
+    "DataAgent": {
+      "$ref": "types.json#/224"
+    },
+    "Dataflow": {
+      "$ref": "types.json#/226"
+    },
+    "Datamart": {
+      "$ref": "types.json#/308"
+    },
+    "DataPipeline": {
+      "$ref": "types.json#/228"
+    },
     "DeploymentPipeline": {
       "$ref": "types.json#/75"
     },
     "DeploymentPipelineRoleAssignment": {
       "$ref": "types.json#/85"
+    },
+    "DigitalTwinBuilder": {
+      "$ref": "types.json#/230"
     },
     "DigitalTwinBuilderFlow": {
       "$ref": "types.json#/93"
@@ -45,6 +75,9 @@
     "Eventhouse": {
       "$ref": "types.json#/126"
     },
+    "Eventstream": {
+      "$ref": "types.json#/232"
+    },
     "ExternalDataShare": {
       "$ref": "types.json#/140"
     },
@@ -57,59 +90,17 @@
     "GatewayRoleAssignment": {
       "$ref": "types.json#/162"
     },
-    "ItemJobScheduler": {
-      "$ref": "types.json#/192"
-    },
-    "KQLDatabase": {
-      "$ref": "types.json#/199"
-    },
-    "MirroredDatabase": {
-      "$ref": "types.json#/202"
-    },
-    "MirroredCatalog": {
-      "$ref": "types.json#/204"
-    },
-    "OperationsAgent": {
-      "$ref": "types.json#/206"
-    },
-    "VariableLibrary": {
-      "$ref": "types.json#/208"
-    },
-    "Workspace": {
-      "$ref": "types.json#/214"
-    },
-    "AnomalyDetector": {
-      "$ref": "types.json#/216"
-    },
-    "ApacheAirflowJob": {
-      "$ref": "types.json#/218"
-    },
-    "CopyJob": {
-      "$ref": "types.json#/220"
-    },
-    "CosmosDBDatabase": {
-      "$ref": "types.json#/222"
-    },
-    "DataAgent": {
-      "$ref": "types.json#/224"
-    },
-    "Dataflow": {
-      "$ref": "types.json#/226"
-    },
-    "DataPipeline": {
-      "$ref": "types.json#/228"
-    },
-    "DigitalTwinBuilder": {
-      "$ref": "types.json#/230"
-    },
-    "Eventstream": {
-      "$ref": "types.json#/232"
-    },
     "GraphQLApi": {
       "$ref": "types.json#/234"
     },
+    "ItemJobScheduler": {
+      "$ref": "types.json#/192"
+    },
     "KQLDashboard": {
       "$ref": "types.json#/236"
+    },
+    "KQLDatabase": {
+      "$ref": "types.json#/199"
     },
     "KQLQueryset": {
       "$ref": "types.json#/238"
@@ -119,6 +110,15 @@
     },
     "Map": {
       "$ref": "types.json#/244"
+    },
+    "MirroredCatalog": {
+      "$ref": "types.json#/204"
+    },
+    "MirroredDatabase": {
+      "$ref": "types.json#/202"
+    },
+    "MirroredWarehouse": {
+      "$ref": "types.json#/310"
     },
     "MLExperiment": {
       "$ref": "types.json#/246"
@@ -132,8 +132,14 @@
     "Notebook": {
       "$ref": "types.json#/252"
     },
+    "OneLakeDataAccessSecurity": {
+      "$ref": "types.json#/304"
+    },
     "Ontology": {
       "$ref": "types.json#/254"
+    },
+    "OperationsAgent": {
+      "$ref": "types.json#/206"
     },
     "PaginatedReport": {
       "$ref": "types.json#/256"
@@ -146,18 +152,6 @@
     },
     "SemanticModel": {
       "$ref": "types.json#/262"
-    },
-    "OneLakeDataAccessSecurity": {
-      "$ref": "types.json#/304"
-    },
-    "Dashboard": {
-      "$ref": "types.json#/306"
-    },
-    "Datamart": {
-      "$ref": "types.json#/308"
-    },
-    "MirroredWarehouse": {
-      "$ref": "types.json#/310"
     },
     "Shortcut": {
       "$ref": "types.json#/328"
@@ -183,6 +177,9 @@
     "TenantSetting": {
       "$ref": "types.json#/400"
     },
+    "VariableLibrary": {
+      "$ref": "types.json#/208"
+    },
     "Warehouse": {
       "$ref": "types.json#/407"
     },
@@ -191,6 +188,9 @@
     },
     "WarehouseSqlAuditSettings": {
       "$ref": "types.json#/416"
+    },
+    "Workspace": {
+      "$ref": "types.json#/214"
     },
     "WorkspaceGit": {
       "$ref": "types.json#/437"

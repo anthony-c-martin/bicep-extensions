@@ -11,7 +11,7 @@ import {
   parseArtifact,
   RegistryClient,
 } from './oci.js';
-import { BicepType, TypeIndex } from './bicep-types.js';
+import { SerializedTypeFile, TypeIndex } from './bicep-types.js';
 
 /** Shape of the files written to `generated/`. */
 export interface GeneratedExtension {
@@ -23,8 +23,12 @@ export interface GeneratedExtension {
   settings: TypeIndex['settings'];
   resources: TypeIndex['resources'];
   resourceFunctions: TypeIndex['resourceFunctions'];
-  /** Type declarations keyed by the file name that type pointers refer to. */
-  typeFiles: Record<string, BicepType[]>;
+  /**
+   * Type declarations exactly as the extension returned them, keyed by the file
+   * name that index pointers refer to. Kept in the serialized wire form so the
+   * committed data stays a faithful record of the `GetTypeFiles` response.
+   */
+  typeFiles: Record<string, SerializedTypeFile>;
   /** Example Bicep files declared in extensions.json, fetched at refresh time. */
   samples: FetchedSample[];
 }
@@ -42,12 +46,15 @@ function formatBytes(bytes: number): string {
 function parseTypeFiles(indexFile: string, typeFiles: Record<string, string>) {
   const index = JSON.parse(indexFile) as TypeIndex;
 
-  const parsed: Record<string, BicepType[]> = {};
-  for (const [name, content] of Object.entries(typeFiles)) {
+  const parsed: Record<string, SerializedTypeFile> = {};
+  // The response is a gRPC map, whose iteration order is not stable between
+  // calls. Sorting keeps the committed file byte-stable so a refresh only
+  // produces a diff when the types themselves have actually changed.
+  for (const name of Object.keys(typeFiles).sort()) {
     if (name === 'index.json') {
       continue;
     }
-    parsed[name] = JSON.parse(content) as BicepType[];
+    parsed[name] = JSON.parse(typeFiles[name]) as SerializedTypeFile;
   }
 
   if (Object.keys(parsed).length === 0) {
@@ -55,6 +62,11 @@ function parseTypeFiles(indexFile: string, typeFiles: Record<string, string>) {
   }
 
   return { index, typeFiles: parsed };
+}
+
+/** Returns the entries of a record ordered by key, for byte-stable output. */
+function sortKeys<T>(record: Record<string, T> | undefined): Record<string, T> {
+  return Object.fromEntries(Object.entries(record ?? {}).sort(([a], [b]) => a.localeCompare(b)));
 }
 
 async function refreshExtension(
@@ -105,8 +117,8 @@ async function refreshExtension(
     // Recorded so the site can show when reference content was last refreshed.
     extractedAt: new Date().toISOString(),
     settings: index.settings,
-    resources: index.resources ?? {},
-    resourceFunctions: index.resourceFunctions ?? {},
+    resources: sortKeys(index.resources),
+    resourceFunctions: sortKeys(index.resourceFunctions),
     typeFiles,
     samples,
   };

@@ -3,9 +3,12 @@ import path from 'node:path';
 
 import {
   BicepType,
-  ObjectProperty,
-  TypeReference,
+  IndexTypeReference,
+  ObjectTypeProperty,
+  TypeBaseKind,
   describePropertyFlags,
+  discriminatedElements,
+  parseTypeFile,
 } from './bicep-types.js';
 import { ExtensionConfigEntry, generatedDir, loadCatalogue, proseDir, websiteDir } from './config.js';
 import type { GeneratedExtension } from './refresh.js';
@@ -57,7 +60,7 @@ function frontmatter(fields: Record<string, string | number | null | undefined>)
   return `---\n${lines.join('\n')}\n---\n`;
 }
 
-/** Turns a resource type name such as `apps/Deployment@v1` into a file slug. */
+/** Turns a resource type name such as `Deployment@v1` into a file slug. */
 function resourceSlug(name: string): string {
   return (
     name
@@ -70,8 +73,23 @@ function resourceSlug(name: string): string {
   );
 }
 
+/**
+ * Splits a resource type into the group it belongs to and its leaf name.
+ *
+ * Extensions such as Kubernetes namespace their types by API group, for example
+ * `apps/Deployment@v1`. Those become a folder per group so the sidebar stays
+ * navigable; types without a `/` sit directly under the reference folder.
+ */
+function splitResourceName(name: string): { group?: string; leaf: string } {
+  const separator = name.lastIndexOf('/');
+  if (separator < 0) {
+    return { leaf: name };
+  }
+  return { group: name.slice(0, separator), leaf: name.slice(separator + 1) };
+}
+
 function renderPropertyTable(
-  properties: Record<string, ObjectProperty>,
+  properties: Record<string, ObjectTypeProperty>,
   currentFile: string,
   context: PageContext,
 ): string {
@@ -102,7 +120,35 @@ function renderPropertyTable(
 function renderObjectBody(type: BicepType, currentFile: string, context: PageContext): string {
   const sections: string[] = [];
 
-  if (type.properties && Object.keys(type.properties).length > 0) {
+  // A discriminated object selects its shape from a property's value, so it
+  // carries `baseProperties` and `elements` instead of a flat `properties` map.
+  if (type.type === TypeBaseKind.DiscriminatedObjectType) {
+    sections.push(
+      `The shape of this type is determined by the \`${escapeCell(type.discriminator)}\` property.\n`,
+    );
+
+    if (Object.keys(type.baseProperties).length > 0) {
+      sections.push(renderPropertyTable(type.baseProperties, currentFile, context));
+    }
+
+    const variants = Object.entries(discriminatedElements(type));
+    if (variants.length > 0) {
+      const rows = [`| \`${escapeCell(type.discriminator)}\` | Shape |`, '| --- | --- |'];
+      for (const [value, element] of variants) {
+        rows.push(
+          `| \`'${escapeCell(value)}'\` | ${renderTypeExpression(element, currentFile, context)} |`,
+        );
+      }
+      sections.push(`${rows.join('\n')}\n`);
+    }
+    return sections.join('\n');
+  }
+
+  if (type.type !== TypeBaseKind.ObjectType) {
+    return '_Type information is unavailable._\n';
+  }
+
+  if (Object.keys(type.properties).length > 0) {
     sections.push(renderPropertyTable(type.properties, currentFile, context));
   } else if (!type.additionalProperties) {
     sections.push('_This type has no properties._\n');
@@ -164,9 +210,8 @@ function renderInstallation(data: ExtensionData): string {
 }
 
 function renderConfiguration(data: ExtensionData, context: PageContext): string {
-  const configurationType = data.generated.settings?.configurationType;
-  const resolved = data.resolver.resolve(configurationType, data.resolver.defaultFile);
-  if (!resolved || !resolved.type.properties) {
+  const resolved = data.resolver.resolveFromIndex(data.generated.settings?.configurationType);
+  if (!resolved || resolved.type.type !== TypeBaseKind.ObjectType) {
     return '';
   }
 
@@ -182,17 +227,28 @@ function renderConfiguration(data: ExtensionData, context: PageContext): string 
   return lines.join('\n');
 }
 
+interface ResourcePage {
+  /** Path relative to the reference folder, without the `.md` extension. */
+  path: string;
+  title: string;
+  group?: string;
+}
+
 async function generateResourcePage(
   data: ExtensionData,
   resourceName: string,
-  reference: TypeReference,
-): Promise<{ slug: string; title: string }> {
+  reference: IndexTypeReference,
+): Promise<ResourcePage> {
   const context = new PageContext(data.resolver);
-  const resolved = data.resolver.resolve(reference, data.resolver.defaultFile);
+  const resolved = data.resolver.resolveFromIndex(reference);
   const resourceType = resolved?.type;
-  const body = data.resolver.resolve(resourceType?.body, resolved?.file ?? data.resolver.defaultFile);
+  const body =
+    resourceType?.type === TypeBaseKind.ResourceType
+      ? data.resolver.resolve(resourceType.body, resolved!.file)
+      : undefined;
 
-  const slug = resourceSlug(resourceName);
+  const { group, leaf } = splitResourceName(resourceName);
+  const relativePath = group ? `${resourceSlug(group)}/${resourceSlug(leaf)}` : resourceSlug(leaf);
   const bodyFile = body?.file ?? data.resolver.defaultFile;
 
   // Reserve the properties anchor so nested sections cannot claim it.
@@ -205,7 +261,8 @@ async function generateResourcePage(
   parts.push(
     frontmatter({
       title: resourceName,
-      sidebar_label: resourceName,
+      // The folder already shows the group, so the sidebar shows just the leaf.
+      sidebar_label: leaf,
       description: `${resourceName} resource type in the ${data.config.displayName} Bicep extension.`,
       pagination_prev: null,
       pagination_next: null,
@@ -224,10 +281,11 @@ async function generateResourcePage(
     parts.push(nested);
   }
 
-  const target = path.join(outputDir, data.config.id, REFERENCE_DIR, `${slug}.md`);
+  const target = path.join(outputDir, data.config.id, REFERENCE_DIR, `${relativePath}.md`);
+  await mkdir(path.dirname(target), { recursive: true });
   await writeFile(target, `${parts.join('\n')}`);
 
-  return { slug, title: resourceName };
+  return { path: relativePath, title: resourceName, group };
 }
 
 /** Derives a stable page slug for a sample, preferring its folder name. */
@@ -332,7 +390,7 @@ async function generateSamplePages(
 /** Writes the category metadata and index page for an extension's reference. */
 async function generateReferenceIndex(
   data: ExtensionData,
-  resources: Array<{ slug: string; title: string }>,
+  resources: ResourcePage[],
 ): Promise<void> {
   const directory = path.join(outputDir, data.config.id, REFERENCE_DIR);
   await mkdir(directory, { recursive: true });
@@ -350,6 +408,16 @@ async function generateReferenceIndex(
     )}\n`,
   );
 
+  // Group folders are labelled with the API group they represent, and sorted
+  // alphabetically so the sidebar order is predictable.
+  const groups = [...new Set(resources.map(resource => resource.group).filter(Boolean))].sort() as string[];
+  for (const [position, group] of groups.entries()) {
+    await writeFile(
+      path.join(directory, resourceSlug(group), '_category_.json'),
+      `${JSON.stringify({ label: group, position: position + 1, collapsed: true }, null, 2)}\n`,
+    );
+  }
+
   const parts: string[] = [];
   parts.push(
     frontmatter({
@@ -366,18 +434,34 @@ async function generateReferenceIndex(
       `version \`${data.generated.version}\`.\n`,
   );
 
-  const rows = ['| Resource type | Reference |', '| --- | --- |'];
-  for (const resource of [...resources].sort((a, b) => a.title.localeCompare(b.title))) {
-    rows.push(`| \`${escapeCell(resource.title)}\` | [View](./${resource.slug}.md) |`);
+  const sorted = [...resources].sort((a, b) => a.title.localeCompare(b.title));
+  const renderRows = (items: ResourcePage[]) => {
+    const rows = ['| Resource type | Reference |', '| --- | --- |'];
+    for (const item of items) {
+      rows.push(`| \`${escapeCell(item.title)}\` | [View](./${item.path}.md) |`);
+    }
+    return `${rows.join('\n')}\n`;
+  };
+
+  if (groups.length === 0) {
+    parts.push(renderRows(sorted));
+  } else {
+    const ungrouped = sorted.filter(resource => !resource.group);
+    if (ungrouped.length > 0) {
+      parts.push(renderRows(ungrouped));
+    }
+    for (const group of groups) {
+      parts.push(`## ${escapeCell(group)}\n`);
+      parts.push(renderRows(sorted.filter(resource => resource.group === group)));
+    }
   }
-  parts.push(`${rows.join('\n')}\n`);
 
   await writeFile(path.join(directory, 'index.md'), parts.join('\n'));
 }
 
 async function generateOverviewPage(
   data: ExtensionData,
-  resources: Array<{ slug: string; title: string }>,
+  resources: ResourcePage[],
 ): Promise<void> {
   const context = new PageContext(data.resolver);
   const { config, generated } = data;
@@ -574,7 +658,11 @@ async function main(): Promise<void> {
     const data: ExtensionData = {
       config,
       generated,
-      resolver: new TypeResolver(generated.typeFiles),
+      resolver: new TypeResolver(
+        Object.fromEntries(
+          Object.entries(generated.typeFiles).map(([name, types]) => [name, parseTypeFile(types)]),
+        ),
+      ),
       prose: await readProse(config.id),
     };
 
@@ -594,7 +682,7 @@ async function main(): Promise<void> {
       )}\n`,
     );
 
-    const resources: Array<{ slug: string; title: string }> = [];
+    const resources: ResourcePage[] = [];
     if (Object.keys(generated.resources ?? {}).length > 0) {
       await mkdir(path.join(outputDir, config.id, REFERENCE_DIR), { recursive: true });
       for (const [resourceName, reference] of Object.entries(generated.resources ?? {})) {

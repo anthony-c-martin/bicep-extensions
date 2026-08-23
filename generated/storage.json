@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "artifact": "ghcr.io/anthony-c-martin/bicep-ext-storage",
   "digest": "sha256:774c3f8df2b18947140f2439851b78506abd013f062c63e76d46ed2647e644df",
-  "extractedAt": "2026-08-23T01:35:19.568Z",
+  "extractedAt": "2026-08-23T03:25:33.986Z",
   "settings": {
     "name": "storage",
     "version": "0.0.1",
@@ -15,17 +15,17 @@
     }
   },
   "resources": {
-    "BlobContainer": {
-      "$ref": "types.json#/11"
-    },
     "Blob": {
       "$ref": "types.json#/26"
     },
-    "DataLakeFileSystem": {
-      "$ref": "types.json#/39"
+    "BlobContainer": {
+      "$ref": "types.json#/11"
     },
     "DataLakeDirectory": {
       "$ref": "types.json#/41"
+    },
+    "DataLakeFileSystem": {
+      "$ref": "types.json#/39"
     },
     "FileShare": {
       "$ref": "types.json#/53"

@@ -1,7 +1,7 @@
 ## Connecting to a cluster
 
 The extension needs the contents of a kubeconfig file identifying the cluster to
-deploy into:
+deploy into, either as raw YAML or base64-encoded:
 
 ```bicep
 extension helm with {

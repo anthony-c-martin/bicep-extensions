@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "artifact": "ghcr.io/anthony-c-martin/bicep-ext-utilities",
   "digest": "sha256:967ff30d8ebeaf0fe3047f548354c8a4e68a4fee2055013d4793fa900221509a",
-  "extractedAt": "2026-08-23T01:35:48.258Z",
+  "extractedAt": "2026-08-23T03:26:02.261Z",
   "settings": {
     "name": "utilities",
     "version": "0.0.1",
@@ -12,17 +12,17 @@
     "isDeprecated": false
   },
   "resources": {
-    "Wait": {
-      "$ref": "types.json#/2"
-    },
-    "Script": {
-      "$ref": "types.json#/10"
+    "Assert": {
+      "$ref": "types.json#/15"
     },
     "Command": {
       "$ref": "types.json#/12"
     },
-    "Assert": {
-      "$ref": "types.json#/15"
+    "Script": {
+      "$ref": "types.json#/10"
+    },
+    "Wait": {
+      "$ref": "types.json#/2"
     }
   },
   "resourceFunctions": {},

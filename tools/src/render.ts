@@ -1,4 +1,13 @@
-import { BicepType, ObjectProperty, TypeReference, resolvePointer } from './bicep-types.js';
+import {
+  BicepType,
+  IndexTypeReference,
+  ObjectTypeProperty,
+  ObjectTypePropertyFlags,
+  TypeBaseKind,
+  TypeReference,
+  resolveIndexPointer,
+  unionElements,
+} from './bicep-types.js';
 
 export interface ResolvedType {
   type: BicepType;
@@ -6,7 +15,12 @@ export interface ResolvedType {
   index: number;
 }
 
-/** Resolves `$ref` pointers across the type files returned by an extension. */
+/**
+ * Resolves type references against an extension's type files.
+ *
+ * References inside a type file are local, carrying only an index. References
+ * from the type index may additionally name the file they point into.
+ */
 export class TypeResolver {
   constructor(private readonly files: Record<string, BicepType[]>) {}
 
@@ -15,13 +29,21 @@ export class TypeResolver {
   }
 
   resolve(reference: TypeReference | undefined, currentFile: string): ResolvedType | undefined {
-    const pointer = resolvePointer(reference);
+    if (!reference) {
+      return undefined;
+    }
+    const type = this.files[currentFile]?.[reference.index];
+    return type ? { type, file: currentFile, index: reference.index } : undefined;
+  }
+
+  /** Resolves a reference taken from the type index, which may cross files. */
+  resolveFromIndex(reference: IndexTypeReference | undefined): ResolvedType | undefined {
+    const pointer = resolveIndexPointer(reference);
     if (!pointer) {
       return undefined;
     }
-    const file = pointer.file ?? currentFile;
-    const types = this.files[file];
-    const type = types?.[pointer.index];
+    const file = pointer.file ?? this.defaultFile;
+    const type = this.files[file]?.[pointer.index];
     return type ? { type, file, index: pointer.index } : undefined;
   }
 }
@@ -146,8 +168,15 @@ function inlineCode(value: string): string {
   return `${fence}${padding}${value}${padding}${fence}`;
 }
 
-function isObjectLike(type: BicepType): boolean {
-  return type.$type === 'ObjectType' || type.$type === 'DiscriminatedObjectType';
+type NamedObjectType = Extract<
+  BicepType,
+  { type: TypeBaseKind.ObjectType | TypeBaseKind.DiscriminatedObjectType }
+>;
+
+function isObjectLike(type: BicepType): type is NamedObjectType {
+  return (
+    type.type === TypeBaseKind.ObjectType || type.type === TypeBaseKind.DiscriminatedObjectType
+  );
 }
 
 /**
@@ -185,18 +214,18 @@ function collectUnionMembers(
       continue;
     }
 
-    if (resolved.type.$type === 'NullType') {
+    if (resolved.type.type === TypeBaseKind.NullType) {
       continue;
     }
 
-    if (resolved.type.$type === 'UnionType' && depth <= MAX_TYPE_DEPTH) {
+    if (resolved.type.type === TypeBaseKind.UnionType && depth <= MAX_TYPE_DEPTH) {
       const key = `${resolved.file}#${resolved.index}`;
       if (seen.has(key)) {
         continue;
       }
       seen.add(key);
       members.push(
-        ...collectUnionMembers(resolved.type.elements ?? [], resolved.file, context, depth + 1, seen),
+        ...collectUnionMembers(unionElements(resolved.type), resolved.file, context, depth + 1, seen),
       );
       continue;
     }
@@ -224,22 +253,22 @@ function renderInternal(
 
   const { type } = resolved;
 
-  switch (type.$type) {
-    case 'StringType':
+  switch (type.type) {
+    case TypeBaseKind.StringType:
       // Sensitivity is surfaced as a property attribute rather than baked into
       // the type name, so the type column stays comparable across properties.
       return { text: 'string', isLink: false };
-    case 'IntegerType':
+    case TypeBaseKind.IntegerType:
       return { text: 'int', isLink: false };
-    case 'BooleanType':
+    case TypeBaseKind.BooleanType:
       return { text: 'bool', isLink: false };
-    case 'NullType':
+    case TypeBaseKind.NullType:
       return { text: 'null', isLink: false };
-    case 'AnyType':
+    case TypeBaseKind.AnyType:
       return { text: 'any', isLink: false };
-    case 'StringLiteralType':
+    case TypeBaseKind.StringLiteralType:
       return { text: `'${type.value}'`, isLink: false };
-    case 'ArrayType': {
+    case TypeBaseKind.ArrayType: {
       const item = renderInternal(type.itemType, resolved.file, context, depth + 1);
       // A union item must be bracketed so the suffix applies to the whole union.
       if (item.isUnion) {
@@ -247,9 +276,9 @@ function renderInternal(
       }
       return { text: `${item.text}[]`, isLink: item.isLink };
     }
-    case 'UnionType': {
+    case TypeBaseKind.UnionType: {
       const members = collectUnionMembers(
-        type.elements ?? [],
+        unionElements(type),
         resolved.file,
         context,
         depth,
@@ -270,7 +299,7 @@ function renderInternal(
       const parts = members.map(member => (member.isLink ? member.text : inlineCode(member.text)));
       return { text: parts.join(' \\| '), isLink: true, isUnion: true };
     }
-    case 'ResourceFunctionType':
+    case TypeBaseKind.ResourceFunctionType:
       return { text: type.name ?? 'function', isLink: false };
     default:
       if (isObjectLike(type)) {
@@ -280,7 +309,7 @@ function renderInternal(
         const section = context.register(resolved, type.name);
         return { text: `[${escapeCell(type.name)}](#${section.anchor})`, isLink: true };
       }
-      return { text: type.$type.replace(/Type$/, '').toLowerCase(), isLink: false };
+      return { text: String(type.type).replace(/Type$/, '').toLowerCase(), isLink: false };
   }
 }
 
@@ -301,15 +330,18 @@ export function isSensitive(
   }
 
   const { type } = resolved;
-  if (type.sensitive) {
+  if (
+    (type.type === TypeBaseKind.StringType || type.type === TypeBaseKind.ObjectType) &&
+    type.sensitive
+  ) {
     return true;
   }
 
-  if (type.$type === 'ArrayType') {
+  if (type.type === TypeBaseKind.ArrayType) {
     return isSensitive(type.itemType, resolved.file, context, depth + 1);
   }
-  if (type.$type === 'UnionType') {
-    return (type.elements ?? []).some(element =>
+  if (type.type === TypeBaseKind.UnionType) {
+    return unionElements(type).some(element =>
       isSensitive(element, resolved.file, context, depth + 1),
     );
   }
@@ -344,11 +376,11 @@ export function renderFlags(flags: string[]): string {
 
 export interface PropertyRow {
   name: string;
-  property: ObjectProperty;
+  property: ObjectTypeProperty;
 }
 
 /** Sorts required properties first, then alphabetically. */
-export function sortProperties(properties: Record<string, ObjectProperty>): PropertyRow[] {
+export function sortProperties(properties: Record<string, ObjectTypeProperty>): PropertyRow[] {
   return Object.entries(properties)
     .map(([name, property]) => ({ name, property }))
     .sort((a, b) => {

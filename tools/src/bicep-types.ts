@@ -1,48 +1,49 @@
 /**
- * Model for Bicep's serialized type format, as produced by the `GetTypeFiles`
- * RPC. Types are stored as a flat array and refer to one another by index using
- * `{ "$ref": "#/12" }` pointers.
+ * Adapter over the `bicep-types` package, which owns the canonical definition
+ * of Bicep's serialized type format.
+ *
+ * The package models the contents of a single type file: `readTypesJson` turns
+ * the serialized `$type`/`$ref` form into its in-memory model, where references
+ * carry only an index. Everything in this module covers what sits outside that
+ * scope — the type index, whose references may point across files.
  */
+import type { BicepType, ObjectTypeProperty, TypeReference } from 'bicep-types';
+import {
+  ObjectTypePropertyFlags,
+  ScopeType,
+  TypeBaseKind,
+  getObjectTypePropertyFlagsLabels,
+  getScopeTypeLabels,
+  readTypesJson,
+} from 'bicep-types';
 
-export interface TypeReference {
+export type { BicepType, ObjectTypeProperty, TypeReference };
+export { ObjectTypePropertyFlags, ScopeType, TypeBaseKind, readTypesJson };
+
+/**
+ * A type file in its serialized form, as returned by `GetTypeFiles` and stored
+ * under `generated/`. Use `parseTypeFile` to turn it into the canonical model.
+ */
+export type SerializedTypeFile = unknown[];
+
+/** Parses a stored type file into the canonical `bicep-types` model. */
+export function parseTypeFile(types: SerializedTypeFile): BicepType[] {
+  return readTypesJson(JSON.stringify(types));
+}
+
+/**
+ * A reference as it appears in the type index, which may name another file.
+ * Within a type file every reference is local, so the package's `TypeReference`
+ * is sufficient there.
+ */
+export interface IndexTypeReference {
   $ref: string;
 }
 
-export interface ObjectProperty {
-  type: TypeReference;
-  flags?: number;
-  description?: string;
-}
-
-export interface BicepType {
-  $type: string;
-  name?: string;
-  body?: TypeReference;
-  properties?: Record<string, ObjectProperty>;
-  additionalProperties?: TypeReference;
-  sensitive?: boolean;
-  itemType?: TypeReference;
-  elements?: TypeReference[];
-  value?: string | number | boolean;
-  flags?: number;
-  scopeType?: number;
-  readableScopes?: number;
-  writableScopes?: number;
-  minLength?: number;
-  maxLength?: number;
-  minValue?: number;
-  maxValue?: number;
-  pattern?: string;
-  discriminator?: string;
-  baseProperties?: Record<string, ObjectProperty>;
-  elementTypes?: Record<string, TypeReference>;
-  input?: TypeReference;
-  output?: TypeReference;
-}
-
+/** The index file an extension returns alongside its type files. */
 export interface TypeIndex {
-  resources: Record<string, TypeReference>;
-  resourceFunctions?: Record<string, Record<string, TypeReference[]>>;
+  resources: Record<string, IndexTypeReference>;
+  resourceFunctions?: Record<string, Record<string, IndexTypeReference[]>>;
   namespaceFunctions?: unknown[];
   settings?: {
     name?: string;
@@ -50,62 +51,16 @@ export interface TypeIndex {
     isSingleton?: boolean;
     isPreview?: boolean;
     isDeprecated?: boolean;
-    configurationType?: TypeReference;
+    configurationType?: IndexTypeReference;
   };
 }
 
-export enum PropertyFlags {
-  None = 0,
-  Required = 1 << 0,
-  ReadOnly = 1 << 1,
-  WriteOnly = 1 << 2,
-  DeployTimeConstant = 1 << 3,
-  Identifier = 1 << 4,
-}
-
-export enum ScopeType {
-  None = 0,
-  Tenant = 1 << 0,
-  ManagementGroup = 1 << 1,
-  Subscription = 1 << 2,
-  ResourceGroup = 1 << 3,
-  Extension = 1 << 4,
-}
-
-export function describePropertyFlags(flags: number | undefined): string[] {
-  if (!flags) {
-    return [];
-  }
-  const labels: Array<[PropertyFlags, string]> = [
-    [PropertyFlags.Required, 'Required'],
-    [PropertyFlags.ReadOnly, 'ReadOnly'],
-    [PropertyFlags.WriteOnly, 'WriteOnly'],
-    [PropertyFlags.DeployTimeConstant, 'DeployTimeConstant'],
-    [PropertyFlags.Identifier, 'Identifier'],
-  ];
-  return labels.filter(([flag]) => (flags & flag) === flag).map(([, label]) => label);
-}
-
-export function describeScopes(scopes: number | undefined): string[] {
-  if (scopes === undefined || scopes === ScopeType.None) {
-    return [];
-  }
-  const labels: Array<[ScopeType, string]> = [
-    [ScopeType.Tenant, 'Tenant'],
-    [ScopeType.ManagementGroup, 'Management group'],
-    [ScopeType.Subscription, 'Subscription'],
-    [ScopeType.ResourceGroup, 'Resource group'],
-    [ScopeType.Extension, 'Extension'],
-  ];
-  return labels.filter(([scope]) => (scopes & scope) === scope).map(([, label]) => label);
-}
-
 /**
- * Type pointers take the form `#/123` (same file) or `types.json#/123`
- * (cross-file). Returns the target file, if specified, and the array index.
+ * Resolves an index pointer of the form `types.json#/12` or `#/12`, returning
+ * the file it names when it has one.
  */
-export function resolvePointer(
-  reference: TypeReference | undefined,
+export function resolveIndexPointer(
+  reference: IndexTypeReference | undefined,
 ): { file?: string; index: number } | undefined {
   if (!reference?.$ref) {
     return undefined;
@@ -116,4 +71,25 @@ export function resolvePointer(
     return undefined;
   }
   return { file: file || undefined, index };
+}
+
+export function describePropertyFlags(flags: ObjectTypePropertyFlags | undefined): string[] {
+  return flags ? getObjectTypePropertyFlagsLabels(flags) : [];
+}
+
+export function describeScopes(scopes: ScopeType | undefined): string[] {
+  return scopes ? getScopeTypeLabels(scopes) : [];
+}
+
+/**
+ * A discriminated object reuses the `elements` field as a map of discriminator
+ * value to shape, where a union uses it as an array. These narrow to whichever
+ * form the type in hand actually uses.
+ */
+export function unionElements(type: BicepType): TypeReference[] {
+  return type.type === TypeBaseKind.UnionType ? type.elements : [];
+}
+
+export function discriminatedElements(type: BicepType): Record<string, TypeReference> {
+  return type.type === TypeBaseKind.DiscriminatedObjectType ? type.elements : {};
 }

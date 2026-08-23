@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "artifact": "ghcr.io/anthony-c-martin/bicep-ext-keyvault",
   "digest": "sha256:7e8937fdbe04d02329bf555ea00f1c3383ed4d1f31c00195bac3e1e7b7dfc6c1",
-  "extractedAt": "2026-08-23T02:59:23.878Z",
+  "extractedAt": "2026-08-23T03:25:22.824Z",
   "settings": {
     "name": "keyvault",
     "version": "0.0.1",
@@ -33,11 +33,11 @@
     "ManagedHsmKeyRotationPolicy": {
       "$ref": "types.json#/39"
     },
-    "ManagedHsmRoleDefinition": {
-      "$ref": "types.json#/43"
-    },
     "ManagedHsmRoleAssignment": {
       "$ref": "types.json#/45"
+    },
+    "ManagedHsmRoleDefinition": {
+      "$ref": "types.json#/43"
     },
     "Secret": {
       "$ref": "types.json#/47"
