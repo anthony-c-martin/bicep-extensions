@@ -3,8 +3,8 @@
 The extension deploys container-based Microsoft Foundry Hosted Agents through the
 Foundry data plane REST API. A single resource type is exposed:
 
-| Resource type | Purpose |
-| --- | --- |
+| Resource type | Purpose                                            |
+| ------------- | -------------------------------------------------- |
 | `HostedAgent` | A logical hosted agent and its immutable versions. |
 
 ## Authentication

@@ -8,24 +8,24 @@ It needs no extension-level configuration:
 extension azuredevops
 ```
 
-| Resource type | Purpose |
-| --- | --- |
-| `AzureDevOpsProject` | Create a team project with a process and source control type. |
-| `AzureDevOpsRepository` | Create a Git repository inside a project. |
-| `AzureDevOpsArtifactFeed` | Create a project-scoped artifact feed. |
-| `AzureDevOpsServiceConnection` | Create a federated (workload identity) service connection. |
-| `AzureDevOpsPermission` | Assign an Entra ID group to a project role. |
-| `AzureDevOpsExtension` | Install a Marketplace extension into the organisation. |
-| `AzureDevOpsWorkItem` | Create or update a work item. |
+| Resource type                  | Purpose                                                       |
+| ------------------------------ | ------------------------------------------------------------- |
+| `AzureDevOpsProject`           | Create a team project with a process and source control type. |
+| `AzureDevOpsRepository`        | Create a Git repository inside a project.                     |
+| `AzureDevOpsArtifactFeed`      | Create a project-scoped artifact feed.                        |
+| `AzureDevOpsServiceConnection` | Create a federated (workload identity) service connection.    |
+| `AzureDevOpsPermission`        | Assign an Entra ID group to a project role.                   |
+| `AzureDevOpsExtension`         | Install a Marketplace extension into the organisation.        |
+| `AzureDevOpsWorkItem`          | Create or update a work item.                                 |
 
 ## Authentication
 
 Two authentication methods are supported:
 
-| Method | When to use |
-| --- | --- |
+| Method                       | When to use                                                                                                              |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | Workload identity federation | Preferred. Microsoft Entra access tokens are acquired for the signed-in identity, so no token is stored in the template. |
-| Personal access token (PAT) | Fallback. Pass the token through a `@secure()` parameter and set `pat` on each resource. |
+| Personal access token (PAT)  | Fallback. Pass the token through a `@secure()` parameter and set `pat` on each resource.                                 |
 
 When running inside an Azure Pipeline, make sure the service principal behind the
 service connection has the required permissions in the target organisation.
