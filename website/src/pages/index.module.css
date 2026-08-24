@@ -108,6 +108,10 @@
   font-size: 1.15rem;
 }
 
+.cardBadges {
+  margin-bottom: 0.65rem;
+}
+
 .version {
   font-family: var(--ifm-font-family-monospace);
   font-size: 0.8rem;
@@ -146,4 +150,3 @@
   padding: 2rem 0;
   color: var(--ifm-color-emphasis-700);
 }
-

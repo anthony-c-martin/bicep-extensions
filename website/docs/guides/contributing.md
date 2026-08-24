@@ -35,6 +35,7 @@ Add an object to the `extensions` array:
   "description": "Declaratively manage GitHub repositories, teams and secrets from Bicep.",
   "repository": "https://github.com/anthony-c-martin/bicep-ext-github",
   "artifact": "ghcr.io/anthony-c-martin/bicep-ext-github",
+  "communityContributed": true,
   "publisher": "anthony-c-martin",
   "category": "DevOps",
   "tags": ["github", "git"],
@@ -49,6 +50,7 @@ Add an object to the `extensions` array:
 | `description` | yes | One-line summary used on the card and overview page. |
 | `repository` | yes | Source repository URL. |
 | `artifact` | yes | OCI path **without** a tag; the latest version is resolved automatically. |
+| `communityContributed` | yes | Set to `true` for community-contributed extensions and `false` for official extensions. |
 | `publisher` | no | Person or organisation publishing the extension. |
 | `category` | no | Used to group and filter the catalogue. |
 | `tags` | no | Keywords used by the search box. |

@@ -480,6 +480,11 @@ async function generateOverviewPage(
 
   parts.push(`# ${escapeCell(config.displayName)}\n`);
   parts.push(`${config.description}\n`);
+  if (config.communityContributed) {
+    parts.push(
+      '<span className="community-badge" title="Community-maintained; not an official Bicep extension">Community Maintained</span>\n',
+    );
+  }
 
   const metadata = [
     '| | |',
