@@ -254,6 +254,57 @@
           "url": "https://github.com/anthony-c-martin/bicep-ext-utilities/blob/main/samples/assert/main.bicep"
         }
       ]
+    },
+    {
+      "id": "azuredevops",
+      "displayName": "Azure DevOps",
+      "description": "Declaratively manage Azure DevOps projects, repositories, artifact feeds, service connections and pipelines from Bicep.",
+      "repository": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy",
+      "artifact": "azuredevopsbicep.azurecr.io/extensions/azuredevops",
+      "publisher": "johnlokerse",
+      "category": "DevOps",
+      "tags": [
+        "azure-devops",
+        "devops",
+        "pipelines",
+        "git"
+      ],
+      "license": "MIT",
+      "samples": [
+        {
+          "title": "Project with repository and feed",
+          "description": "Creates a project, a repository, an artifact feed, a service connection, permissions and a work item.",
+          "url": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy/blob/main/Sample/main.bicep"
+        },
+        {
+          "title": "Trigger a pipeline",
+          "description": "Queues a run of an existing Azure Pipeline as part of the deployment.",
+          "url": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy/blob/main/Sample/triggerPipeline.bicep"
+        }
+      ]
+    },
+    {
+      "id": "foundry-hosted-agents",
+      "displayName": "Microsoft Foundry Hosted Agents",
+      "description": "Deploy container-based Microsoft Foundry Hosted Agents and their immutable versions through the Foundry data plane API.",
+      "repository": "https://github.com/johnlokerse/bicep-ext-foundry-hosted-agents",
+      "artifact": "n/a",
+      "publisher": "johnlokerse",
+      "category": "Azure",
+      "tags": [
+        "azure",
+        "foundry",
+        "ai",
+        "agents"
+      ],
+      "license": "MIT",
+      "samples": [
+        {
+          "title": "Hosted agent",
+          "description": "Creates a hosted agent from an ACR image with protocols, environment variables and an optional RAI policy.",
+          "url": "https://github.com/johnlokerse/bicep-ext-foundry-hosted-agents/blob/main/Sample/main.bicep"
+        }
+      ]
     }
   ]
 }
