@@ -29,6 +29,33 @@
       ]
     },
     {
+      "id": "azure-devops",
+      "displayName": "Azure DevOps",
+      "description": "Manage Azure DevOps projects, repositories, feeds, service connections, permissions, extensions and work items.",
+      "repository": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy",
+      "artifact": "azuredevopsbicep.azurecr.io/extensions/azuredevops",
+      "publisher": "johnlokerse",
+      "category": "DevOps",
+      "tags": [
+        "azure-devops",
+        "repositories",
+        "pipelines",
+        "work-items"
+      ],
+      "samples": [
+        {
+          "title": "Azure DevOps project",
+          "description": "Creates a project with a repository, feed, service connection, permissions, extensions and work items.",
+          "url": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy/blob/main/Sample/main.bicep"
+        },
+        {
+          "title": "Trigger a pipeline",
+          "description": "Triggers an Azure Pipeline from a local Bicep deployment.",
+          "url": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy/blob/main/Sample/triggerPipeline.bicep"
+        }
+      ]
+    },
+    {
       "id": "kubernetes",
       "displayName": "Kubernetes",
       "description": "Deploy and manage Kubernetes objects against any cluster reachable from the machine running the deployment.",
@@ -74,6 +101,38 @@
           "title": "Install a chart",
           "description": "Retrieves a kubeconfig and installs a Helm release.",
           "url": "https://github.com/anthony-c-martin/bicep-ext-helm/blob/main/samples/basic/main.bicep"
+        }
+      ]
+    },
+    {
+      "id": "cloudflare",
+      "displayName": "Cloudflare",
+      "description": "Manage Cloudflare DNS records, WAF custom rules and URL redirect rules from Bicep.",
+      "repository": "https://github.com/riosengineer/cloudflare-bicep-deploy",
+      "artifact": "cloudflarebicep.azurecr.io/cloudflare",
+      "publisher": "riosengineer",
+      "category": "Networking",
+      "tags": [
+        "cloudflare",
+        "dns",
+        "waf",
+        "redirects"
+      ],
+      "samples": [
+        {
+          "title": "DNS records",
+          "description": "Creates several types of DNS records in a Cloudflare zone.",
+          "url": "https://github.com/riosengineer/cloudflare-bicep-deploy/blob/main/Sample/dns.bicep"
+        },
+        {
+          "title": "WAF custom rule",
+          "description": "Creates a Cloudflare WAF custom rule.",
+          "url": "https://github.com/riosengineer/cloudflare-bicep-deploy/blob/main/Sample/security-rule.bicep"
+        },
+        {
+          "title": "URL redirect rule",
+          "description": "Creates a URL redirect with a Cloudflare Page Rule.",
+          "url": "https://github.com/riosengineer/cloudflare-bicep-deploy/blob/main/Sample/redirect-rule.bicep"
         }
       ]
     },
@@ -166,6 +225,23 @@
           "url": "https://github.com/anthony-c-martin/bicep-ext-storage/blob/main/samples/static-content/main.bicep"
         }
       ]
+    },
+    {
+      "id": "databricks",
+      "displayName": "Azure Databricks",
+      "description": "Manage Azure Databricks compute, workspace and Unity Catalog resources from Bicep.",
+      "repository": "https://github.com/Gijsreyn/bicep-ext-databricks",
+      "artifact": "acrdbtextension.azurecr.io/extension/databricks",
+      "publisher": "Gijsreyn",
+      "category": "Data",
+      "tags": [
+        "azure",
+        "databricks",
+        "analytics",
+        "data"
+      ],
+      "license": "MIT",
+      "docsUrl": "https://github.com/Gijsreyn/bicep-ext-databricks/tree/main/docs"
     },
     {
       "id": "fabric",
