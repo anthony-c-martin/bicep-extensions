@@ -2,8 +2,8 @@
   "id": "helm",
   "version": "0.0.1",
   "artifact": "ghcr.io/anthony-c-martin/bicep-ext-helm",
-  "digest": "sha256:5631254404f2b4a4d3b2591207289716d9d96f5e614405263507c2a4d91f7941",
-  "extractedAt": "2026-08-23T03:21:38.685Z",
+  "digest": "sha256:cc49efcbbb5b596781e1058023e2aa65475064ad2bc41482b5298771e74ad6dd",
+  "extractedAt": "2026-08-24T20:23:55.954Z",
   "settings": {
     "name": "helm",
     "version": "0.0.1",

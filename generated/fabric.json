@@ -2,8 +2,8 @@
   "id": "fabric",
   "version": "0.0.1",
   "artifact": "ghcr.io/anthony-c-martin/bicep-ext-fabric",
-  "digest": "sha256:3628810ab87b0205db2b5bb23c99f0134882a84b9eb64602feabc68ca801b59a",
-  "extractedAt": "2026-08-23T03:25:51.371Z",
+  "digest": "sha256:eff36360c5fa9f4ed627c04b2616c646b0b28841025d90fd3f8eae8021078753",
+  "extractedAt": "2026-08-24T20:24:35.277Z",
   "settings": {
     "name": "fabric",
     "version": "0.0.1",

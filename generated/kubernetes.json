@@ -2,8 +2,8 @@
   "id": "kubernetes",
   "version": "0.0.1",
   "artifact": "ghcr.io/anthony-c-martin/bicep-ext-kubernetes",
-  "digest": "sha256:7e398e245992b61ed6466d181b1734a4c239260ab9bb1809c27fd62d5c257622",
-  "extractedAt": "2026-08-23T03:25:01.008Z",
+  "digest": "sha256:f20bd0f00db5dd2c778f2865fa2419940495ceb52cf5a74eb38c053a3277caee",
+  "extractedAt": "2026-08-24T20:23:50.431Z",
   "settings": {
     "name": "kubernetes",
     "isSingleton": true,

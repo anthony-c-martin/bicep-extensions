@@ -2,8 +2,8 @@
   "id": "keyvault",
   "version": "0.0.1",
   "artifact": "ghcr.io/anthony-c-martin/bicep-ext-keyvault",
-  "digest": "sha256:7e8937fdbe04d02329bf555ea00f1c3383ed4d1f31c00195bac3e1e7b7dfc6c1",
-  "extractedAt": "2026-08-23T03:25:22.824Z",
+  "digest": "sha256:a429b8e9727e85e83914de2eb3b6e942a8eda2258a94c7e0f42d825d1e489f09",
+  "extractedAt": "2026-08-24T20:24:12.837Z",
   "settings": {
     "name": "keyvault",
     "version": "0.0.1",

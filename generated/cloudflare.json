@@ -2,8 +2,8 @@
   "id": "cloudflare",
   "version": "0.1.58",
   "artifact": "cloudflarebicep.azurecr.io/cloudflare",
-  "digest": "sha256:4023553a2a0a29d55b22afd8285fa584c2a7764a2fb50f9982aafb4713da7f74",
-  "extractedAt": "2026-08-24T19:41:05.371Z",
+  "digest": "sha256:7aee2b27acdca372da90b08cc427de4fc081ddcf21cd6936b58356a464fac4d0",
+  "extractedAt": "2026-08-24T20:24:07.392Z",
   "settings": {
     "name": "Cloudflare",
     "version": "1.0.0",
@@ -32,11 +32,6 @@
   "typeFiles": {
     "types.json": [
       {
-        "$type": "IntegerType",
-        "minValue": null,
-        "maxValue": null
-      },
-      {
         "$type": "StringType",
         "sensitive": null,
         "minLength": null,
@@ -45,6 +40,11 @@
       },
       {
         "$type": "BooleanType"
+      },
+      {
+        "$type": "IntegerType",
+        "minValue": null,
+        "maxValue": null
       },
       {
         "$type": "StringType",

@@ -2,8 +2,8 @@
   "id": "github",
   "version": "0.0.1",
   "artifact": "ghcr.io/anthony-c-martin/bicep-ext-github",
-  "digest": "sha256:c33e2dca656dd3bb5eaecfbe5022eef0867d035c547c33989e555e9bf40822ad",
-  "extractedAt": "2026-08-23T03:24:48.168Z",
+  "digest": "sha256:9ce5a7c345dbc7c9d63743103cbfe54e9f947343c7a399b922e8dfced8c28031",
+  "extractedAt": "2026-08-24T20:23:24.678Z",
   "settings": {
     "name": "github",
     "version": "0.0.1",

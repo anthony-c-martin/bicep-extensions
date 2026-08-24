@@ -2,8 +2,8 @@
   "id": "utilities",
   "version": "0.0.1",
   "artifact": "ghcr.io/anthony-c-martin/bicep-ext-utilities",
-  "digest": "sha256:967ff30d8ebeaf0fe3047f548354c8a4e68a4fee2055013d4793fa900221509a",
-  "extractedAt": "2026-08-23T03:26:02.261Z",
+  "digest": "sha256:2135dfa2bfc65770506cc14bd35af1dafa7013cf3eef6b4280b7c66e95ad6206",
+  "extractedAt": "2026-08-24T20:24:40.485Z",
   "settings": {
     "name": "utilities",
     "version": "0.0.1",

@@ -2,8 +2,8 @@
   "id": "storage",
   "version": "0.0.1",
   "artifact": "ghcr.io/anthony-c-martin/bicep-ext-storage",
-  "digest": "sha256:774c3f8df2b18947140f2439851b78506abd013f062c63e76d46ed2647e644df",
-  "extractedAt": "2026-08-23T03:25:33.986Z",
+  "digest": "sha256:6b12c6ad94424fde5c932c8917ebe0dfcd75c8f77ba26597b2b00c15445bf16c",
+  "extractedAt": "2026-08-24T20:24:18.013Z",
   "settings": {
     "name": "storage",
     "version": "0.0.1",
