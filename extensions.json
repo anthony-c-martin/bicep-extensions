@@ -1,259 +1,272 @@
 {
-  "$schema": "./schemas/extensions.schema.json",
-  "extensions": [
-    {
-      "id": "github",
-      "displayName": "GitHub",
-      "description": "Declaratively manage GitHub repositories, teams, secrets and other GitHub resources from Bicep.",
-      "repository": "https://github.com/anthony-c-martin/bicep-ext-github",
-      "artifact": "ghcr.io/anthony-c-martin/bicep-ext-github",
-      "publisher": "anthony-c-martin",
-      "category": "DevOps",
-      "tags": [
-        "github",
-        "git",
-        "source-control"
-      ],
-      "license": "MIT",
-      "samples": [
-        {
-          "title": "Repository with labels and rules",
-          "description": "Creates a repository with a README, CI workflow, labels, branch ruleset and collaborators.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-github/blob/main/samples/basic/main.bicep"
-        },
-        {
-          "title": "Full service repository",
-          "description": "A production-shaped repository with branches, rulesets, environments, secrets and webhooks.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-github/blob/main/samples/service-repo/main.bicep"
-        }
-      ]
-    },
-    {
-      "id": "kubernetes",
-      "displayName": "Kubernetes",
-      "description": "Deploy and manage Kubernetes objects against any cluster reachable from the machine running the deployment.",
-      "repository": "https://github.com/anthony-c-martin/bicep-ext-kubernetes",
-      "artifact": "ghcr.io/anthony-c-martin/bicep-ext-kubernetes",
-      "publisher": "anthony-c-martin",
-      "category": "Containers",
-      "tags": [
-        "kubernetes",
-        "k8s",
-        "containers"
-      ],
-      "license": "MIT",
-      "samples": [
-        {
-          "title": "Echo server",
-          "description": "A deployment and service running a simple echo server.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-kubernetes/blob/main/samples/echo-server/main.bicep"
-        },
-        {
-          "title": "Multi-tier voting app",
-          "description": "Front-end and back-end deployments with their services.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-kubernetes/blob/main/samples/voting-app/main.bicep"
-        }
-      ]
-    },
-    {
-      "id": "helm",
-      "displayName": "Helm",
-      "description": "Install and manage Helm releases as part of a Bicep deployment.",
-      "repository": "https://github.com/anthony-c-martin/bicep-ext-helm",
-      "artifact": "ghcr.io/anthony-c-martin/bicep-ext-helm",
-      "publisher": "anthony-c-martin",
-      "category": "Containers",
-      "tags": [
-        "helm",
-        "kubernetes",
-        "containers"
-      ],
-      "license": "MIT",
-      "samples": [
-        {
-          "title": "Install a chart",
-          "description": "Retrieves a kubeconfig and installs a Helm release.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-helm/blob/main/samples/basic/main.bicep"
-        }
-      ]
-    },
-    {
-      "id": "keyvault",
-      "displayName": "Azure Key Vault",
-      "description": "Manage data plane objects in Azure Key Vault, such as secrets, keys and certificates.",
-      "repository": "https://github.com/anthony-c-martin/bicep-ext-keyvault",
-      "artifact": "ghcr.io/anthony-c-martin/bicep-ext-keyvault",
-      "publisher": "anthony-c-martin",
-      "category": "Azure",
-      "tags": [
-        "azure",
-        "keyvault",
-        "secrets",
-        "certificates"
-      ],
-      "license": "MIT",
-      "samples": [
-        {
-          "title": "Secrets, keys and certificates",
-          "description": "Creates a secret, a key, certificate contacts and a self-signed certificate.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/basic/main.bicep"
-        },
-        {
-          "title": "Application secrets",
-          "description": "Stores a set of application configuration values as secrets.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/app-secrets/main.bicep"
-        },
-        {
-          "title": "Certificate lifecycle",
-          "description": "Self-signed and CA-issued certificates, a certificate issuer, and importing an existing certificate.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/certificates/main.bicep"
-        },
-        {
-          "title": "Encryption and signing keys",
-          "description": "Creates keys intended for encryption and for signing.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/encryption-keys/main.bicep"
-        },
-        {
-          "title": "Managed HSM",
-          "description": "Keys in a Managed HSM with a rotation policy and role assignments.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/managed-hsm/main.bicep"
-        },
-        {
-          "title": "Replicating across vaults",
-          "description": "Copies a secret from a primary vault into replica vaults.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/multi-vault/main.bicep"
-        }
-      ]
-    },
-    {
-      "id": "storage",
-      "displayName": "Azure Storage",
-      "description": "Manage data plane resources in Azure Storage accounts, such as blob containers, blobs, queues and tables.",
-      "repository": "https://github.com/anthony-c-martin/bicep-ext-storage",
-      "artifact": "ghcr.io/anthony-c-martin/bicep-ext-storage",
-      "publisher": "anthony-c-martin",
-      "category": "Azure",
-      "tags": [
-        "azure",
-        "storage",
-        "blobs"
-      ],
-      "license": "MIT",
-      "samples": [
-        {
-          "title": "Blob container and blob",
-          "description": "Creates a blob container and uploads a settings blob.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-storage/blob/main/samples/basic/main.bicep"
-        },
-        {
-          "title": "Data Lake filesystems",
-          "description": "Bronze, silver and gold filesystems with curated directory structure.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-storage/blob/main/samples/data-lake/main.bicep"
-        },
-        {
-          "title": "Queues and tables",
-          "description": "An orders queue with a dead-letter queue, plus table entities for configuration.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-storage/blob/main/samples/messaging/main.bicep"
-        },
-        {
-          "title": "File share with directories",
-          "description": "A file share containing nested directories and an app settings file.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-storage/blob/main/samples/file-share/main.bicep"
-        },
-        {
-          "title": "Static content and logs",
-          "description": "Serves static pages from one container while archiving logs in another.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-storage/blob/main/samples/static-content/main.bicep"
-        }
-      ]
-    },
-    {
-      "id": "fabric",
-      "displayName": "Microsoft Fabric",
-      "description": "Manage Microsoft Fabric workspaces, lakehouses, notebooks and other Fabric items.",
-      "repository": "https://github.com/anthony-c-martin/bicep-ext-fabric",
-      "artifact": "ghcr.io/anthony-c-martin/bicep-ext-fabric",
-      "publisher": "anthony-c-martin",
-      "category": "Data",
-      "tags": [
-        "fabric",
-        "analytics",
-        "data"
-      ],
-      "license": "MIT",
-      "samples": [
-        {
-          "title": "Workspace with a lakehouse",
-          "description": "Creates a workspace containing a lakehouse and a SQL database.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-fabric/blob/main/samples/basic/main.bicep"
-        },
-        {
-          "title": "Medallion lakehouse",
-          "description": "Bronze, silver and gold lakehouses with an ingestion pipeline and a warehouse.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-fabric/blob/main/samples/medallion-lakehouse/main.bicep"
-        },
-        {
-          "title": "Real-time analytics",
-          "description": "An eventhouse, eventstream, KQL database, queryset and dashboard.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-fabric/blob/main/samples/real-time-analytics/main.bicep"
-        },
-        {
-          "title": "Data science workspace",
-          "description": "A lakehouse, Spark environment, training job, ML experiment and registered model.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-fabric/blob/main/samples/data-science/main.bicep"
-        },
-        {
-          "title": "Domains, folders and tags",
-          "description": "Organises a workspace with folders, a domain, tags and role assignments.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-fabric/blob/main/samples/governance/main.bicep"
-        },
-        {
-          "title": "Git-connected workspace",
-          "description": "Connects a workspace to a Git repository for source control.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-fabric/blob/main/samples/workspace-git/main.bicep"
-        },
-        {
-          "title": "Workspace security settings",
-          "description": "Outbound gateway rules, network communication policy and Spark settings.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-fabric/blob/main/samples/workspace-security/main.bicep"
-        }
-      ]
-    },
-    {
-      "id": "utilities",
-      "displayName": "Utilities",
-      "description": "General purpose helpers for Bicep deployments, such as running scripts and generating values.",
-      "repository": "https://github.com/anthony-c-martin/bicep-ext-utilities",
-      "artifact": "ghcr.io/anthony-c-martin/bicep-ext-utilities",
-      "publisher": "anthony-c-martin",
-      "category": "Utilities",
-      "tags": [
-        "utilities",
-        "helpers"
-      ],
-      "license": "MIT",
-      "samples": [
-        {
-          "title": "Pause a deployment",
-          "description": "Waits for a fixed duration before continuing.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-utilities/blob/main/samples/wait/main.bicep"
-        },
-        {
-          "title": "Run a command",
-          "description": "Runs a single command and captures its output.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-utilities/blob/main/samples/command/main.bicep"
-        },
-        {
-          "title": "Run a script",
-          "description": "Runs the same script with Bash and with PowerShell.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-utilities/blob/main/samples/script/main.bicep"
-        },
-        {
-          "title": "Assert a condition",
-          "description": "Fails the deployment when a condition is not met.",
-          "url": "https://github.com/anthony-c-martin/bicep-ext-utilities/blob/main/samples/assert/main.bicep"
-        }
-      ]
-    }
-  ]
+	"$schema": "./schemas/extensions.schema.json",
+	"extensions": [
+		{
+			"id": "github",
+			"displayName": "GitHub",
+			"description": "Declaratively manage GitHub repositories, teams, secrets and other GitHub resources from Bicep.",
+			"repository": "https://github.com/anthony-c-martin/bicep-ext-github",
+			"artifact": "ghcr.io/anthony-c-martin/bicep-ext-github",
+			"publisher": "anthony-c-martin",
+			"category": "DevOps",
+			"tags": ["github", "git", "source-control"],
+			"license": "MIT",
+			"samples": [
+				{
+					"title": "Repository with labels and rules",
+					"description": "Creates a repository with a README, CI workflow, labels, branch ruleset and collaborators.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-github/blob/main/samples/basic/main.bicep"
+				},
+				{
+					"title": "Full service repository",
+					"description": "A production-shaped repository with branches, rulesets, environments, secrets and webhooks.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-github/blob/main/samples/service-repo/main.bicep"
+				}
+			]
+		},
+		{
+			"id": "kubernetes",
+			"displayName": "Kubernetes",
+			"description": "Deploy and manage Kubernetes objects against any cluster reachable from the machine running the deployment.",
+			"repository": "https://github.com/anthony-c-martin/bicep-ext-kubernetes",
+			"artifact": "ghcr.io/anthony-c-martin/bicep-ext-kubernetes",
+			"publisher": "anthony-c-martin",
+			"category": "Containers",
+			"tags": ["kubernetes", "k8s", "containers"],
+			"license": "MIT",
+			"samples": [
+				{
+					"title": "Echo server",
+					"description": "A deployment and service running a simple echo server.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-kubernetes/blob/main/samples/echo-server/main.bicep"
+				},
+				{
+					"title": "Multi-tier voting app",
+					"description": "Front-end and back-end deployments with their services.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-kubernetes/blob/main/samples/voting-app/main.bicep"
+				}
+			]
+		},
+		{
+			"id": "helm",
+			"displayName": "Helm",
+			"description": "Install and manage Helm releases as part of a Bicep deployment.",
+			"repository": "https://github.com/anthony-c-martin/bicep-ext-helm",
+			"artifact": "ghcr.io/anthony-c-martin/bicep-ext-helm",
+			"publisher": "anthony-c-martin",
+			"category": "Containers",
+			"tags": ["helm", "kubernetes", "containers"],
+			"license": "MIT",
+			"samples": [
+				{
+					"title": "Install a chart",
+					"description": "Retrieves a kubeconfig and installs a Helm release.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-helm/blob/main/samples/basic/main.bicep"
+				}
+			]
+		},
+		{
+			"id": "keyvault",
+			"displayName": "Azure Key Vault",
+			"description": "Manage data plane objects in Azure Key Vault, such as secrets, keys and certificates.",
+			"repository": "https://github.com/anthony-c-martin/bicep-ext-keyvault",
+			"artifact": "ghcr.io/anthony-c-martin/bicep-ext-keyvault",
+			"publisher": "anthony-c-martin",
+			"category": "Azure",
+			"tags": ["azure", "keyvault", "secrets", "certificates"],
+			"license": "MIT",
+			"samples": [
+				{
+					"title": "Secrets, keys and certificates",
+					"description": "Creates a secret, a key, certificate contacts and a self-signed certificate.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/basic/main.bicep"
+				},
+				{
+					"title": "Application secrets",
+					"description": "Stores a set of application configuration values as secrets.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/app-secrets/main.bicep"
+				},
+				{
+					"title": "Certificate lifecycle",
+					"description": "Self-signed and CA-issued certificates, a certificate issuer, and importing an existing certificate.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/certificates/main.bicep"
+				},
+				{
+					"title": "Encryption and signing keys",
+					"description": "Creates keys intended for encryption and for signing.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/encryption-keys/main.bicep"
+				},
+				{
+					"title": "Managed HSM",
+					"description": "Keys in a Managed HSM with a rotation policy and role assignments.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/managed-hsm/main.bicep"
+				},
+				{
+					"title": "Replicating across vaults",
+					"description": "Copies a secret from a primary vault into replica vaults.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-keyvault/blob/main/samples/multi-vault/main.bicep"
+				}
+			]
+		},
+		{
+			"id": "storage",
+			"displayName": "Azure Storage",
+			"description": "Manage data plane resources in Azure Storage accounts, such as blob containers, blobs, queues and tables.",
+			"repository": "https://github.com/anthony-c-martin/bicep-ext-storage",
+			"artifact": "ghcr.io/anthony-c-martin/bicep-ext-storage",
+			"publisher": "anthony-c-martin",
+			"category": "Azure",
+			"tags": ["azure", "storage", "blobs"],
+			"license": "MIT",
+			"samples": [
+				{
+					"title": "Blob container and blob",
+					"description": "Creates a blob container and uploads a settings blob.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-storage/blob/main/samples/basic/main.bicep"
+				},
+				{
+					"title": "Data Lake filesystems",
+					"description": "Bronze, silver and gold filesystems with curated directory structure.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-storage/blob/main/samples/data-lake/main.bicep"
+				},
+				{
+					"title": "Queues and tables",
+					"description": "An orders queue with a dead-letter queue, plus table entities for configuration.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-storage/blob/main/samples/messaging/main.bicep"
+				},
+				{
+					"title": "File share with directories",
+					"description": "A file share containing nested directories and an app settings file.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-storage/blob/main/samples/file-share/main.bicep"
+				},
+				{
+					"title": "Static content and logs",
+					"description": "Serves static pages from one container while archiving logs in another.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-storage/blob/main/samples/static-content/main.bicep"
+				}
+			]
+		},
+		{
+			"id": "fabric",
+			"displayName": "Microsoft Fabric",
+			"description": "Manage Microsoft Fabric workspaces, lakehouses, notebooks and other Fabric items.",
+			"repository": "https://github.com/anthony-c-martin/bicep-ext-fabric",
+			"artifact": "ghcr.io/anthony-c-martin/bicep-ext-fabric",
+			"publisher": "anthony-c-martin",
+			"category": "Data",
+			"tags": ["fabric", "analytics", "data"],
+			"license": "MIT",
+			"samples": [
+				{
+					"title": "Workspace with a lakehouse",
+					"description": "Creates a workspace containing a lakehouse and a SQL database.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-fabric/blob/main/samples/basic/main.bicep"
+				},
+				{
+					"title": "Medallion lakehouse",
+					"description": "Bronze, silver and gold lakehouses with an ingestion pipeline and a warehouse.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-fabric/blob/main/samples/medallion-lakehouse/main.bicep"
+				},
+				{
+					"title": "Real-time analytics",
+					"description": "An eventhouse, eventstream, KQL database, queryset and dashboard.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-fabric/blob/main/samples/real-time-analytics/main.bicep"
+				},
+				{
+					"title": "Data science workspace",
+					"description": "A lakehouse, Spark environment, training job, ML experiment and registered model.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-fabric/blob/main/samples/data-science/main.bicep"
+				},
+				{
+					"title": "Domains, folders and tags",
+					"description": "Organises a workspace with folders, a domain, tags and role assignments.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-fabric/blob/main/samples/governance/main.bicep"
+				},
+				{
+					"title": "Git-connected workspace",
+					"description": "Connects a workspace to a Git repository for source control.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-fabric/blob/main/samples/workspace-git/main.bicep"
+				},
+				{
+					"title": "Workspace security settings",
+					"description": "Outbound gateway rules, network communication policy and Spark settings.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-fabric/blob/main/samples/workspace-security/main.bicep"
+				}
+			]
+		},
+		{
+			"id": "utilities",
+			"displayName": "Utilities",
+			"description": "General purpose helpers for Bicep deployments, such as running scripts and generating values.",
+			"repository": "https://github.com/anthony-c-martin/bicep-ext-utilities",
+			"artifact": "ghcr.io/anthony-c-martin/bicep-ext-utilities",
+			"publisher": "anthony-c-martin",
+			"category": "Utilities",
+			"tags": ["utilities", "helpers"],
+			"license": "MIT",
+			"samples": [
+				{
+					"title": "Pause a deployment",
+					"description": "Waits for a fixed duration before continuing.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-utilities/blob/main/samples/wait/main.bicep"
+				},
+				{
+					"title": "Run a command",
+					"description": "Runs a single command and captures its output.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-utilities/blob/main/samples/command/main.bicep"
+				},
+				{
+					"title": "Run a script",
+					"description": "Runs the same script with Bash and with PowerShell.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-utilities/blob/main/samples/script/main.bicep"
+				},
+				{
+					"title": "Assert a condition",
+					"description": "Fails the deployment when a condition is not met.",
+					"url": "https://github.com/anthony-c-martin/bicep-ext-utilities/blob/main/samples/assert/main.bicep"
+				}
+			]
+		},
+		{
+			"id": "azuredevops",
+			"displayName": "Azure DevOps",
+			"description": "Declaratively manage Azure DevOps projects, repositories, artifact feeds, service connections and pipelines from Bicep.",
+			"repository": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy",
+			"artifact": "azuredevopsbicep.azurecr.io/extensions/azuredevops",
+			"publisher": "johnlokerse",
+			"category": "DevOps",
+			"tags": ["azure-devops", "devops", "pipelines", "git"],
+			"license": "MIT",
+			"samples": [
+				{
+					"title": "Project with repository and feed",
+					"description": "Creates a project, a repository, an artifact feed, a service connection, permissions and a work item.",
+					"url": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy/blob/main/Sample/main.bicep"
+				},
+				{
+					"title": "Trigger a pipeline",
+					"description": "Queues a run of an existing Azure Pipeline as part of the deployment.",
+					"url": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy/blob/main/Sample/triggerPipeline.bicep"
+				}
+			]
+		},
+		{
+			"id": "foundry-hosted-agents",
+			"displayName": "Microsoft Foundry Hosted Agents",
+			"description": "Deploy container-based Microsoft Foundry Hosted Agents and their immutable versions through the Foundry data plane API.",
+			"repository": "https://github.com/johnlokerse/bicep-ext-foundry-hosted-agents",
+			"artifact": "n/a",
+			"publisher": "johnlokerse",
+			"category": "Azure",
+			"tags": ["azure", "foundry", "ai", "agents"],
+			"license": "MIT",
+			"samples": [
+				{
+					"title": "Hosted agent",
+					"description": "Creates a hosted agent from an ACR image with protocols, environment variables and an optional RAI policy.",
+					"url": "https://github.com/johnlokerse/bicep-ext-foundry-hosted-agents/blob/main/Sample/main.bicep"
+				}
+			]
+		}
+	]
 }
