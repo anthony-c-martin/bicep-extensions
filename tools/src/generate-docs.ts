@@ -73,6 +73,11 @@ function resourceSlug(name: string): string {
   );
 }
 
+function resourcePath(name: string): string {
+  const { group, leaf } = splitResourceName(name);
+  return group ? `${resourceSlug(group)}/${resourceSlug(leaf)}` : resourceSlug(leaf);
+}
+
 /**
  * Splits a resource type into the group it belongs to and its leaf name.
  *
@@ -715,6 +720,10 @@ async function main(): Promise<void> {
     ...config,
     version: generated.version,
     resourceCount: count,
+    resourceTypes: Object.entries(generated.resources ?? {}).map(([name]) => ({
+      name,
+      path: `/docs/extensions/${config.id}/${REFERENCE_DIR}/${resourcePath(name)}`,
+    })),
     extractedAt: generated.extractedAt,
   }));
 
