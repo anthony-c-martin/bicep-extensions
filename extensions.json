@@ -341,7 +341,7 @@
       ]
     },
     {
-      "id": "azure-devops",
+      "id": "azuredevops",
       "displayName": "Azure DevOps",
       "description": "Declaratively manage Azure DevOps projects, repositories, artifact feeds, service connections and pipelines from Bicep.",
       "communityContributed": true,
