@@ -20,9 +20,17 @@ interface CatalogueEntry {
   license?: string;
   version: string;
   resourceCount: number;
+  resourceTypes: Array<{ name: string; path: string }>;
+  extractedAt: string;
 }
 
 const entries = catalogue as CatalogueEntry[];
+
+interface ResourceSearchResult {
+  extension: CatalogueEntry;
+  name: string;
+  path: string;
+}
 
 const ALL = 'All';
 
@@ -54,6 +62,15 @@ function ExtensionCard({ entry }: { entry: CatalogueEntry }): ReactNode {
   );
 }
 
+function ResourceResult({ result }: { result: ResourceSearchResult }): ReactNode {
+  return (
+    <Link className={styles.resourceResult} to={result.path}>
+      <span className={styles.resourceName}>{result.name}</span>
+      <span className={styles.resourceExtension}>{result.extension.displayName}</span>
+    </Link>
+  );
+}
+
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
   const [query, setQuery] = useState('');
@@ -79,6 +96,26 @@ export default function Home(): ReactNode {
       })
       .sort((a, b) => a.displayName.localeCompare(b.displayName));
   }, [query, category]);
+
+  const resourceResults = useMemo(() => {
+    const needle = query.trim().toLowerCase();
+    if (!needle) {
+      return [];
+    }
+
+    return entries
+      .flatMap(extension =>
+        extension.resourceTypes
+          .filter(resource =>
+            `${resource.name} ${extension.displayName} ${extension.id}`
+              .toLowerCase()
+              .includes(needle),
+          )
+          .map(resource => ({ extension, ...resource })),
+      )
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .slice(0, 12);
+  }, [query]);
 
   const totalResources = entries.reduce((total, entry) => total + entry.resourceCount, 0);
 
@@ -115,6 +152,20 @@ export default function Home(): ReactNode {
             ))}
           </div>
         </div>
+
+        {resourceResults.length > 0 && (
+          <section className={styles.resourceSearch} aria-labelledby="resource-search-title">
+            <div className={styles.resourceSearchHeader}>
+              <h2 id="resource-search-title">Resource types</h2>
+              <span>Matching generated reference pages</span>
+            </div>
+            <div className={styles.resourceResults}>
+              {resourceResults.map(result => (
+                <ResourceResult key={`${result.extension.id}:${result.name}`} result={result} />
+              ))}
+            </div>
+          </section>
+        )}
 
         {filtered.length === 0 ? (
           <p className={styles.empty}>No extensions match your search.</p>

@@ -26,6 +26,64 @@
   margin: 1.5rem 0 2rem;
 }
 
+.resourceSearch {
+  margin: -0.5rem 0 2rem;
+  padding: 1rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-global-radius);
+  background: var(--ifm-card-background-color);
+}
+
+.resourceSearchHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.resourceSearchHeader h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.resourceSearchHeader span {
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.8rem;
+}
+
+.resourceResults {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 0.5rem;
+}
+
+.resourceResult {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-global-radius);
+  color: inherit;
+  text-decoration: none;
+}
+
+.resourceResult:hover {
+  border-color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.resourceName {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.88rem;
+}
+
+.resourceExtension {
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.78rem;
+}
+
 .search {
   width: 100%;
   max-width: 28rem;
