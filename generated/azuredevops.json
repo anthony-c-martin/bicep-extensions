@@ -1,9 +1,9 @@
 {
-  "id": "azure-devops",
+  "id": "azuredevops",
   "version": "0.1.102",
   "artifact": "azuredevopsbicep.azurecr.io/extensions/azuredevops",
   "digest": "sha256:1371087cac004a86e2103f5fb681dc581be952764e3f035f1d343dd9f89b8880",
-  "extractedAt": "2026-08-24T19:40:45.825Z",
+  "extractedAt": "2026-08-24T17:40:26.644Z",
   "settings": {
     "name": "AzureDevOps",
     "version": "0.1.102",
@@ -926,14 +926,14 @@
   },
   "samples": [
     {
-      "title": "Azure DevOps project",
-      "description": "Creates a project with a repository, feed, service connection, permissions, extensions and work items.",
+      "title": "Project with repository and feed",
+      "description": "Creates a project, a repository, an artifact feed, a service connection, permissions and a work item.",
       "url": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy/blob/main/Sample/main.bicep",
       "content": "targetScope = 'local'\nextension azuredevops\n\n@description('Azure DevOps organization name (short org slug, not full URL).')\nparam organization string\n\n@description('Project name')\nparam projectName string\n\n@description('Optional project description')\nparam projectDescription string = ''\n\n@allowed([\n  'Private'\n  'Public'\n])\nparam visibility string = 'Private'\n\n@description('Process name (Agile, Scrum, Basic, CMMI)')\nparam processName string = 'Agile'\n\n@allowed([\n  'Git'\n  'Tfvc'\n])\nparam sourceControl string = 'Git'\n\n@description('Repository name')\nparam repositoryName string\n\n@description('Artifact feed name')\nparam artifactName string\n\n@description('Entra ID group objectId (GUID) to assign to the project role')\nparam entraGroupObjectId string?\n\n@description('Project role to grant to the Entra group')\nparam azureDevOpsRole string?\n\n@description('Client ID of the service principal')\nparam clientId string\n\n@description('Subscription ID')\nparam subscriptionId string\n\n@description('Subscription name')\nparam subscriptionName string\n\n@description('Tenant ID')\nparam tenantId string\n\n@description('List of Azure DevOps extensions to install')\nparam extensions extensionType[]\n\n@description('List of work items to create')\nparam workItems workItemType[]\n\nresource project 'AzureDevOpsProject' = {\n  name: projectName\n  organization: organization\n  description: empty(projectDescription) ? null : projectDescription\n  visibility: visibility\n  processName: processName\n  sourceControlType: sourceControl\n}\n\nresource extension 'AzureDevOpsExtension' = [for ext in extensions: {\n  organization: organization\n  publisherName: ext.publisherName\n  extensionName: ext.extensionName\n  version: ext.version\n}]\n\nresource repository 'AzureDevOpsRepository' = {\n  name: repositoryName\n  organization: organization\n  project: project.name\n}\n\nresource artifactFeed 'AzureDevOpsArtifactFeed' = {\n  name: artifactName\n  organization: organization\n  project: project.name\n}\n\nresource workItemList 'AzureDevOpsWorkItem' = [for workItem in workItems: {\n  project: project.name\n  organization: organization  \n  id: workItem.id  \n  title: workItem.title\n  description: workItem.?description\n  type: workItem.type\n}]\n\nresource readerPermission 'AzureDevOpsPermission' = if (!empty(entraGroupObjectId) && !empty(azureDevOpsRole)) {\n  groupObjectId: entraGroupObjectId!\n  organization: organization\n  project: project.name\n  role: azureDevOpsRole!\n}\n\nresource serviceConnection 'AzureDevOpsServiceConnection' = {\n  name: 'my-first-service-connection'\n  organization: organization\n  project: project.name\n  grantAllPipelines: true\n  description: 'Service connection for Azure resources created by Bicep'\n  clientId: clientId\n  subscriptionId: subscriptionId\n  subscriptionName: subscriptionName\n  tenantId: tenantId\n}\n\n\n// Outputs\noutput projectId string = project.projectId\noutput projectState string = project.state\noutput projectUrl string = project.url\n\noutput repositoryId string = repository.repositoryId\noutput repositoryWebUrl string = repository.webUrl\noutput repositoryRemoteUrl string = repository.remoteUrl\noutput repositorySshUrl string = repository.sshUrl\n\noutput artifactFeedId string = artifactFeed.feedId\noutput artifactFeedUrl string = artifactFeed.url\n\noutput serviceConnectionIdentifier string = serviceConnection.subjectIdentifier\noutput serviceConnectionIssuer string = serviceConnection.issuer\n\ntype extensionType = {\n  publisherName: string\n  extensionName: string\n  version: string\n}\n\n\ntype workItemType = {\n  id: int\n  title: string\n  description: string?\n  type: string\n}"
     },
     {
       "title": "Trigger a pipeline",
-      "description": "Triggers an Azure Pipeline from a local Bicep deployment.",
+      "description": "Queues a run of an existing Azure Pipeline as part of the deployment.",
       "url": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy/blob/main/Sample/triggerPipeline.bicep",
       "content": "targetScope = 'local'\nextension azuredevops\n\nparam parOrganization string\nparam parProject string\nparam parPipelineId string\nparam parPipelineBranch string\nparam parTemplateParameters string\n\nresource pipelineRun 'AzureDevOpsPipelineRun' = {\n  organization: parOrganization\n  project: parProject\n  pipelineId: parPipelineId\n  branch: parPipelineBranch\n  templateParameters: parTemplateParameters\n}"
     }
