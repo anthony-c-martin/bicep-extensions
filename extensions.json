@@ -59,27 +59,27 @@
     {
       "id": "azure-devops",
       "displayName": "Azure DevOps",
-      "description": "Manage Azure DevOps projects, repositories, feeds, service connections, permissions, extensions and work items.",
-      "communityContributed": true,
+      "description": "Declaratively manage Azure DevOps projects, repositories, artifact feeds, service connections and pipelines from Bicep.",
       "repository": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy",
       "artifact": "azuredevopsbicep.azurecr.io/extensions/azuredevops",
       "publisher": "johnlokerse",
       "category": "DevOps",
       "tags": [
         "azure-devops",
-        "repositories",
+        "devops",
         "pipelines",
-        "work-items"
+        "git"
       ],
+      "license": "MIT",
       "samples": [
         {
-          "title": "Azure DevOps project",
-          "description": "Creates a project with a repository, feed, service connection, permissions, extensions and work items.",
+          "title": "Project with repository and feed",
+          "description": "Creates a project, a repository, an artifact feed, a service connection, permissions and a work item.",
           "url": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy/blob/main/Sample/main.bicep"
         },
         {
           "title": "Trigger a pipeline",
-          "description": "Triggers an Azure Pipeline from a local Bicep deployment.",
+          "description": "Queues a run of an existing Azure Pipeline as part of the deployment.",
           "url": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy/blob/main/Sample/triggerPipeline.bicep"
         }
       ]
@@ -365,34 +365,6 @@
           "title": "Assert a condition",
           "description": "Fails the deployment when a condition is not met.",
           "url": "https://github.com/anthony-c-martin/bicep-ext-utilities/blob/main/samples/assert/main.bicep"
-        }
-      ]
-    },
-    {
-      "id": "azuredevops",
-      "displayName": "Azure DevOps",
-      "description": "Declaratively manage Azure DevOps projects, repositories, artifact feeds, service connections and pipelines from Bicep.",
-      "repository": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy",
-      "artifact": "azuredevopsbicep.azurecr.io/extensions/azuredevops",
-      "publisher": "johnlokerse",
-      "category": "DevOps",
-      "tags": [
-        "azure-devops",
-        "devops",
-        "pipelines",
-        "git"
-      ],
-      "license": "MIT",
-      "samples": [
-        {
-          "title": "Project with repository and feed",
-          "description": "Creates a project, a repository, an artifact feed, a service connection, permissions and a work item.",
-          "url": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy/blob/main/Sample/main.bicep"
-        },
-        {
-          "title": "Trigger a pipeline",
-          "description": "Queues a run of an existing Azure Pipeline as part of the deployment.",
-          "url": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy/blob/main/Sample/triggerPipeline.bicep"
         }
       ]
     },
