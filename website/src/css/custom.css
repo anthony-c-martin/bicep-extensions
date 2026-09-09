@@ -27,6 +27,20 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
+.community-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--ifm-color-primary);
+  border-radius: 2rem;
+  background: var(--ifm-color-primary);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: normal;
+  white-space: nowrap;
+}
+
 /* Reference tables carry long type expressions, so keep them readable. */
 .markdown table {
   display: table;

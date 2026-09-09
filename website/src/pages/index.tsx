@@ -13,6 +13,7 @@ interface CatalogueEntry {
   description: string;
   repository: string;
   artifact: string;
+  communityContributed: boolean;
   publisher?: string;
   category?: string;
   tags?: string[];
@@ -32,6 +33,16 @@ function ExtensionCard({ entry }: { entry: CatalogueEntry }): ReactNode {
         <h3 className={styles.cardTitle}>{entry.displayName}</h3>
         <span className={styles.version}>{entry.version}</span>
       </div>
+      {entry.communityContributed && (
+        <div className={styles.cardBadges}>
+          <span
+            className="community-badge"
+            title="Community-maintained; not an official Bicep extension"
+          >
+            Community Maintained
+          </span>
+        </div>
+      )}
       <p className={styles.cardDescription}>{entry.description}</p>
       <div className={styles.cardFooter}>
         <span className={styles.resourceCount}>

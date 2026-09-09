@@ -28,7 +28,11 @@ export type SerializedTypeFile = unknown[];
 
 /** Parses a stored type file into the canonical `bicep-types` model. */
 export function parseTypeFile(types: SerializedTypeFile): BicepType[] {
-  return readTypesJson(JSON.stringify(types));
+  // Some extension SDK versions emit null for omitted optional properties, but
+  // the bicep-types reviver assumes every JSON object is non-null.
+  return readTypesJson(JSON.stringify(types, function (_key, value) {
+    return value === null && !Array.isArray(this) ? undefined : value;
+  }));
 }
 
 /**

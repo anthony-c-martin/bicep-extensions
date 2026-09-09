@@ -1,0 +1,452 @@
+{
+  "id": "cloudflare",
+  "version": "0.1.58",
+  "artifact": "cloudflarebicep.azurecr.io/cloudflare",
+  "digest": "sha256:4023553a2a0a29d55b22afd8285fa584c2a7764a2fb50f9982aafb4713da7f74",
+  "extractedAt": "2026-08-24T19:41:05.371Z",
+  "settings": {
+    "name": "Cloudflare",
+    "version": "1.0.0",
+    "isSingleton": true,
+    "isPreview": false,
+    "isDeprecated": false,
+    "configurationType": {
+      "$ref": "types.json#/15"
+    }
+  },
+  "resources": {
+    "DnsRecord": {
+      "$ref": "types.json#/10"
+    },
+    "RedirectRule": {
+      "$ref": "types.json#/14"
+    },
+    "SecurityRule": {
+      "$ref": "types.json#/12"
+    },
+    "Zone": {
+      "$ref": "types.json#/7"
+    }
+  },
+  "resourceFunctions": {},
+  "typeFiles": {
+    "types.json": [
+      {
+        "$type": "IntegerType",
+        "minValue": null,
+        "maxValue": null
+      },
+      {
+        "$type": "StringType",
+        "sensitive": null,
+        "minLength": null,
+        "maxLength": null,
+        "pattern": null
+      },
+      {
+        "$type": "BooleanType"
+      },
+      {
+        "$type": "StringType",
+        "sensitive": null,
+        "minLength": null,
+        "maxLength": null,
+        "pattern": null
+      },
+      {
+        "$type": "BooleanType"
+      },
+      {
+        "$type": "ArrayType",
+        "itemType": {
+          "$ref": "#/3"
+        },
+        "minLength": null,
+        "maxLength": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "CloudflareZone",
+        "properties": {
+          "plan": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 1,
+            "description": "The zone plan type"
+          },
+          "paused": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Whether the zone is paused"
+          },
+          "status": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 0,
+            "description": "Zone status"
+          },
+          "zoneId": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 0,
+            "description": "Zone ID (output only)"
+          },
+          "nameServers": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "Name servers assigned to the zone"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 17,
+            "description": "The zone name (domain)"
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Zone",
+        "body": {
+          "$ref": "#/6"
+        },
+        "functions": null,
+        "readableScopes": 31,
+        "writableScopes": 31,
+        "scopeType": null,
+        "readOnlyScopes": null,
+        "flags": null
+      },
+      {
+        "$type": "IntegerType",
+        "minValue": null,
+        "maxValue": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "CloudflareDnsRecord",
+        "properties": {
+          "type": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 1,
+            "description": "The DNS record type"
+          },
+          "content": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 1,
+            "description": "The DNS record content/value"
+          },
+          "ttl": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Time to live for the record"
+          },
+          "proxied": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Whether the record is proxied through Cloudflare"
+          },
+          "priority": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Priority for MX/SRV records"
+          },
+          "recordId": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 0,
+            "description": "DNS record ID (output only)"
+          },
+          "proxiable": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Whether this record can be proxied"
+          },
+          "comment": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 0,
+            "description": "A comment describing the DNS record"
+          },
+          "zoneId": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 1,
+            "description": "The zone ID this record belongs to"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 17,
+            "description": "The DNS record name"
+          },
+          "zoneName": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 17,
+            "description": "The zone name this record belongs to"
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "DnsRecord",
+        "body": {
+          "$ref": "#/9"
+        },
+        "functions": null,
+        "readableScopes": 31,
+        "writableScopes": 31,
+        "scopeType": null,
+        "readOnlyScopes": null,
+        "flags": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "CloudflareSecurityRule",
+        "properties": {
+          "description": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 0,
+            "description": "Human friendly description shown in the Cloudflare dashboard"
+          },
+          "enabled": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Whether the rule is enabled (set to false to pause the rule)"
+          },
+          "expression": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 1,
+            "description": "Security rule expression that defines matching traffic"
+          },
+          "action": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 1,
+            "description": "Action applied to matching requests (allow, block, challenge, js_challenge, managed_challenge, log)"
+          },
+          "ruleId": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 0,
+            "description": "Cloudflare custom rule ID (output only)"
+          },
+          "reference": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 0,
+            "description": "Optional reference identifier persisted with the rule; defaults to the resource name on create"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 17,
+            "description": "The logical name of the security rule"
+          },
+          "zoneId": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 17,
+            "description": "The zone ID this security rule applies to"
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "SecurityRule",
+        "body": {
+          "$ref": "#/11"
+        },
+        "functions": null,
+        "readableScopes": 31,
+        "writableScopes": 31,
+        "scopeType": null,
+        "readOnlyScopes": null,
+        "flags": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "CloudflareRedirectRule",
+        "properties": {
+          "description": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 0,
+            "description": "Human friendly description shown in the Cloudflare dashboard"
+          },
+          "enabled": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Whether the rule is enabled"
+          },
+          "urlPattern": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 1,
+            "description": "URL pattern to match using * wildcards (e.g. example.com/old-page*)"
+          },
+          "redirectUrl": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 1,
+            "description": "The target URL to redirect matching requests to"
+          },
+          "statusCode": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "HTTP status code for the redirect (301 or 302)"
+          },
+          "priority": {
+            "type": {
+              "$ref": "#/8"
+            },
+            "flags": 0,
+            "description": "Priority of the page rule (lower number = higher priority)"
+          },
+          "pageRuleId": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 0,
+            "description": "Cloudflare page rule ID (output only)"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 17,
+            "description": "The logical name of the redirect rule"
+          },
+          "zoneId": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 17,
+            "description": "The zone ID this redirect rule applies to"
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "RedirectRule",
+        "body": {
+          "$ref": "#/13"
+        },
+        "functions": null,
+        "readableScopes": 31,
+        "writableScopes": 31,
+        "scopeType": null,
+        "readOnlyScopes": null,
+        "flags": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Configuration",
+        "properties": {
+          "apiToken": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 0,
+            "description": "Cloudflare API Token (recommended)"
+          },
+          "apiKey": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 0,
+            "description": "Cloudflare API Key (legacy)"
+          },
+          "email": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 0,
+            "description": "Cloudflare account email (required with API Key)"
+          },
+          "baseUrl": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 0,
+            "description": "Base URL for Cloudflare API"
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      }
+    ]
+  },
+  "samples": [
+    {
+      "title": "DNS records",
+      "description": "Creates several types of DNS records in a Cloudflare zone.",
+      "url": "https://github.com/riosengineer/cloudflare-bicep-deploy/blob/main/Sample/dns.bicep",
+      "content": "targetScope = 'local'\n\nextension Cloudflare\n\n@description('Domain name for the DNS record samples')\nparam domainName string = 'rios.engineer'\n\n@description('Cloudflare Zone ID for the domain')\n@minLength(32)\n@maxLength(32)\nparam zoneId string\n\n@description('Test value for the TXT record')\nparam testValue string = 'Hello from Bicep Cloudflare Extension!'\n\n// Create TXT Record in Cloudflare\nresource txtRecord 'DnsRecord' = {\n  name: 'txtRecord'\n  zoneName: domainName\n  zoneId: zoneId\n  type: 'TXT'\n  content: testValue\n  ttl: 300\n  proxied: false\n  comment: 'TXT record for domain verification'\n}\n\n// Create A Record pointing to an IP\nresource aRecord 'DnsRecord' = {\n  name: 'aRecord'\n  zoneName: domainName\n  zoneId: zoneId\n  type: 'A'\n  content: '192.168.1.101'\n  ttl: 300\n  proxied: false\n  comment: 'A record for primary server'\n}\n\n// Create CNAME Record pointing to another domain\nresource cnameRecord 'DnsRecord' = {\n  name: 'cname'\n  zoneName: domainName\n  zoneId: zoneId\n  type: 'CNAME'\n  content: 'test.example.com'\n  ttl: 300\n  proxied: false\n  comment: 'CNAME record for aliasing'\n}\n\n// Create AAAA Record (IPv6)\nresource aaaaRecord 'DnsRecord' = {\n  name: 'aaaaRecord'\n  zoneName: domainName\n  zoneId: zoneId\n  type: 'AAAA'\n  content: '2001:db8::2'\n  ttl: 300\n  proxied: false\n  comment: 'AAAA record for IPv6 address'\n}\n\n// Create MX Record for mail\nresource mxRecord 'DnsRecord' = {\n  name: 'mxRecord'\n  zoneName: domainName\n  zoneId: zoneId\n  type: 'MX'\n  content: 'mail2.example.com'\n  priority: 20\n  ttl: 300\n  proxied: false\n  comment: 'Mail exchange record for mail routing'\n}\n\n// Outputs\noutput txtRecordName string = txtRecord.name\noutput txtRecordContent string = txtRecord.content\noutput aRecordName string = aRecord.name\noutput aRecordContent string = aRecord.content\noutput cnameRecordName string = cnameRecord.name\noutput cnameRecordContent string = cnameRecord.content\noutput aaaaRecordName string = aaaaRecord.name\noutput aaaaRecordContent string = aaaaRecord.content\noutput mxRecordName string = mxRecord.name\noutput mxRecordContent string = mxRecord.content"
+    },
+    {
+      "title": "WAF custom rule",
+      "description": "Creates a Cloudflare WAF custom rule.",
+      "url": "https://github.com/riosengineer/cloudflare-bicep-deploy/blob/main/Sample/security-rule.bicep",
+      "content": "targetScope = 'local'\n\nextension Cloudflare\n\n@description('Cloudflare Zone ID for the domain.')\n@minLength(32)\n@maxLength(32)\nparam zoneId string\n\n@description('Security rule expression to evaluate.')\nparam securityRuleExpression string\n// Example: '(ip.src.country eq \"CN\")'\n\n@description('Whether the security rule is enabled.')\nparam enabled bool = true\n\n// Block traffic from country using Cloudflare free plan security rules\nresource blockCountryTraffic 'SecurityRule' = {\n  name: 'blockCountryTraffic'\n  zoneId: zoneId\n  description: 'Block requests originating from specified country'\n  expression: securityRuleExpression\n  action: 'block'\n  enabled: enabled\n}\n\n// Outputs\noutput securityRuleName string = blockCountryTraffic.name\noutput securityRuleAction string = blockCountryTraffic.action\noutput securityRuleExpression string = blockCountryTraffic.expression\noutput securityRuleEnabled bool = blockCountryTraffic.enabled\noutput securityRuleId string = blockCountryTraffic.ruleId"
+    },
+    {
+      "title": "URL redirect rule",
+      "description": "Creates a URL redirect with a Cloudflare Page Rule.",
+      "url": "https://github.com/riosengineer/cloudflare-bicep-deploy/blob/main/Sample/redirect-rule.bicep",
+      "content": "targetScope = 'local'\n\nextension Cloudflare\n\n@description('Cloudflare Zone ID for the domain.')\n@minLength(32)\n@maxLength(32)\nparam zoneId string\n\n@description('URL pattern to match using * wildcards (e.g. example.com/old-page*).')\nparam urlPattern string\n\n@description('The target URL to redirect matching requests to.')\nparam redirectUrl string\n\n@description('HTTP status code for the redirect.')\n@allowed([301, 302])\nparam statusCode int = 301\n\n@description('Whether the redirect rule is enabled.')\nparam enabled bool = true\n\nresource oldPageRedirect 'RedirectRule' = {\n  name: 'oldPageRedirect'\n  zoneId: zoneId\n  urlPattern: urlPattern\n  redirectUrl: redirectUrl\n  statusCode: statusCode\n  enabled: enabled\n}\n\noutput redirectRuleName string = oldPageRedirect.name\noutput redirectRuleId string = oldPageRedirect.pageRuleId\noutput redirectRuleUrlPattern string = oldPageRedirect.urlPattern\noutput redirectRuleUrl string = oldPageRedirect.redirectUrl\noutput redirectRuleStatusCode int = oldPageRedirect.statusCode\noutput redirectRuleEnabled bool = oldPageRedirect.enabled"
+    }
+  ]
+}

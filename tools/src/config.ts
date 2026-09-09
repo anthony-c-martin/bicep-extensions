@@ -13,6 +13,7 @@ export interface ExtensionConfigEntry {
   description: string;
   repository: string;
   artifact: string;
+  communityContributed: boolean;
   publisher?: string;
   category?: string;
   tags?: string[];
@@ -38,6 +39,11 @@ export async function loadCatalogue(): Promise<ExtensionConfigEntry[]> {
       if (!extension[field]) {
         throw new Error(`Extension '${extension.id ?? '(unknown)'}' is missing required field '${field}'.`);
       }
+    }
+    if (typeof extension.communityContributed !== 'boolean') {
+      throw new Error(
+        `Extension '${extension.id ?? '(unknown)'}' is missing required boolean field 'communityContributed'.`,
+      );
     }
     if (seen.has(extension.id)) {
       throw new Error(`Duplicate extension id '${extension.id}' in extensions.json.`);

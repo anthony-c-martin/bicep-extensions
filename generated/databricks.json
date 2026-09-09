@@ -1,0 +1,2592 @@
+{
+  "id": "databricks",
+  "version": "v0.2.0",
+  "artifact": "acrdbtextension.azurecr.io/extension/databricks",
+  "digest": "sha256:69fc9cd53cdd09a95e652d946e81318ec58c49854ccf7bd6488b6ec8eccb6094",
+  "extractedAt": "2026-08-24T19:46:57.742Z",
+  "settings": {
+    "name": "DatabricksExtension",
+    "version": "0.0.1",
+    "isSingleton": true,
+    "configurationType": {
+      "$ref": "types.json#/161"
+    }
+  },
+  "resources": {
+    "Cluster": {
+      "$ref": "types.json#/160"
+    },
+    "Directory": {
+      "$ref": "types.json#/12"
+    },
+    "GitCredential": {
+      "$ref": "types.json#/24"
+    },
+    "Repository": {
+      "$ref": "types.json#/37"
+    },
+    "Secret": {
+      "$ref": "types.json#/40"
+    },
+    "SecretScope": {
+      "$ref": "types.json#/46"
+    },
+    "UnityCatalog": {
+      "$ref": "types.json#/79"
+    },
+    "UnityConnection": {
+      "$ref": "types.json#/112"
+    },
+    "UnityCredential": {
+      "$ref": "types.json#/122"
+    },
+    "UnityExternalLocation": {
+      "$ref": "types.json#/134"
+    },
+    "UnitySchema": {
+      "$ref": "types.json#/150"
+    },
+    "UnityStorageCredential": {
+      "$ref": "types.json#/156"
+    }
+  },
+  "resourceFunctions": {},
+  "typeFiles": {
+    "types.json": [
+      {
+        "$type": "IntegerType",
+        "minValue": null,
+        "maxValue": null
+      },
+      {
+        "$type": "StringType",
+        "sensitive": null,
+        "minLength": null,
+        "maxLength": null,
+        "pattern": null
+      },
+      {
+        "$type": "BooleanType"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "NOTEBOOK"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "DIRECTORY"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "LIBRARY"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "FILE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "REPO"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "DASHBOARD"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/3"
+          },
+          {
+            "$ref": "#/4"
+          },
+          {
+            "$ref": "#/5"
+          },
+          {
+            "$ref": "#/6"
+          },
+          {
+            "$ref": "#/7"
+          },
+          {
+            "$ref": "#/8"
+          }
+        ]
+      },
+      {
+        "$type": "StringType",
+        "sensitive": null,
+        "minLength": null,
+        "maxLength": null,
+        "pattern": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Directory",
+        "properties": {
+          "objectType": {
+            "type": {
+              "$ref": "#/9"
+            },
+            "flags": 2,
+            "description": "The object type of the directory."
+          },
+          "objectId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The object id of the directory."
+          },
+          "size": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The size of the directory (if provided by the API)."
+          },
+          "path": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 17,
+            "description": "The path of the directory."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Directory",
+        "scopeType": 0,
+        "readOnlyScopes": null,
+        "body": {
+          "$ref": "#/11"
+        },
+        "flags": 0,
+        "functions": null
+      },
+      {
+        "$type": "BooleanType"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "gitHub"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "bitbucketCloud"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "gitLab"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "azureDevOpsServices"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "gitHubEnterprise"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "bitbucketServer"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "gitLabEnterpriseEdition"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "awsCodeCommit"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/14"
+          },
+          {
+            "$ref": "#/15"
+          },
+          {
+            "$ref": "#/16"
+          },
+          {
+            "$ref": "#/17"
+          },
+          {
+            "$ref": "#/18"
+          },
+          {
+            "$ref": "#/19"
+          },
+          {
+            "$ref": "#/20"
+          },
+          {
+            "$ref": "#/21"
+          }
+        ]
+      },
+      {
+        "$type": "ObjectType",
+        "name": "GitCredential",
+        "properties": {
+          "name": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "The name of the Git credential."
+          },
+          "isDefaultForProvider": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 0,
+            "description": "Whether this credential is the default for the provider."
+          },
+          "credentialId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The unique identifier of the Git credential."
+          },
+          "gitProvider": {
+            "type": {
+              "$ref": "#/22"
+            },
+            "flags": 17,
+            "description": "The Git provider."
+          },
+          "gitUsername": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 17,
+            "description": "The username for Git authentication."
+          },
+          "personalAccessToken": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 17,
+            "description": "The personal access token for Git authentication."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "GitCredential",
+        "scopeType": 0,
+        "readOnlyScopes": null,
+        "body": {
+          "$ref": "#/23"
+        },
+        "flags": 0,
+        "functions": null
+      },
+      {
+        "$type": "ArrayType",
+        "itemType": {
+          "$ref": "#/10"
+        },
+        "minLength": null,
+        "maxLength": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "SparseCheckout",
+        "properties": {
+          "patterns": {
+            "type": {
+              "$ref": "#/25"
+            },
+            "flags": 0,
+            "description": "List of patterns for sparse checkout."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "gitHub"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "bitbucketCloud"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "gitLab"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "azureDevOpsServices"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "gitHubEnterprise"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "bitbucketServer"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "gitLabEnterpriseEdition"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "awsCodeCommit"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/27"
+          },
+          {
+            "$ref": "#/28"
+          },
+          {
+            "$ref": "#/29"
+          },
+          {
+            "$ref": "#/30"
+          },
+          {
+            "$ref": "#/31"
+          },
+          {
+            "$ref": "#/32"
+          },
+          {
+            "$ref": "#/33"
+          },
+          {
+            "$ref": "#/34"
+          }
+        ]
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Repository",
+        "properties": {
+          "branch": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "The branch to checkout."
+          },
+          "sparseCheckout": {
+            "type": {
+              "$ref": "#/26"
+            },
+            "flags": 0,
+            "description": "Sparse checkout configuration."
+          },
+          "id": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The unique identifier of the repository."
+          },
+          "headCommitId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The head commit ID of the checked out branch."
+          },
+          "provider": {
+            "type": {
+              "$ref": "#/35"
+            },
+            "flags": 17,
+            "description": "The Git provider for the repository."
+          },
+          "url": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 17,
+            "description": "The URL of the Git repository."
+          },
+          "path": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 16,
+            "description": "The path where the repository will be cloned in the Databricks workspace."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Repository",
+        "scopeType": 0,
+        "readOnlyScopes": null,
+        "body": {
+          "$ref": "#/36"
+        },
+        "flags": 0,
+        "functions": null
+      },
+      {
+        "$type": "IntegerType",
+        "minValue": null,
+        "maxValue": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Secret",
+        "properties": {
+          "stringValue": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "The string value of the secret."
+          },
+          "bytesValue": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "If specified, value will be stored as bytes."
+          },
+          "lastUpdatedTimestamp": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 2,
+            "description": "The last updated timestamp of the secret."
+          },
+          "configReference": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The configuration reference for the secret in the format {{secrets/scope/key}}."
+          },
+          "scope": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The name of the secret scope."
+          },
+          "key": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The key name of the secret."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Secret",
+        "scopeType": 0,
+        "readOnlyScopes": null,
+        "body": {
+          "$ref": "#/39"
+        },
+        "flags": 0,
+        "functions": null
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "DATABRICKS"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "AZURE_KEYVAULT"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/41"
+          },
+          {
+            "$ref": "#/42"
+          }
+        ]
+      },
+      {
+        "$type": "ObjectType",
+        "name": "AzureKeyVaultMetadata",
+        "properties": {
+          "resourceId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The resource ID of the Azure Key Vault."
+          },
+          "dnsName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The DNS name of the Azure Key Vault."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "SecretScope",
+        "properties": {
+          "backendType": {
+            "type": {
+              "$ref": "#/43"
+            },
+            "flags": 2,
+            "description": "The backend type for the secret scope. Either 'DATABRICKS' or 'AZURE_KEYVAULT'."
+          },
+          "keyVaultMetadata": {
+            "type": {
+              "$ref": "#/44"
+            },
+            "flags": 0,
+            "description": "Azure Key Vault metadata if using Azure Key Vault backend."
+          },
+          "initialManagePrincipal": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "The principal that is initially granted MANAGE permission to the created scope."
+          },
+          "scopeName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The name of the secret scope. Must consist of alphanumeric characters, dashes, underscores, and periods, and may not exceed 128 characters."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "SecretScope",
+        "scopeType": 0,
+        "readOnlyScopes": null,
+        "body": {
+          "$ref": "#/45"
+        },
+        "flags": 0,
+        "functions": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Object",
+        "properties": {},
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "MANAGED_CATALOG"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "DELTASHARING_CATALOG"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "FOREIGN_CATALOG"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "SYSTEM_CATALOG"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/48"
+          },
+          {
+            "$ref": "#/49"
+          },
+          {
+            "$ref": "#/50"
+          },
+          {
+            "$ref": "#/51"
+          }
+        ]
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "CATALOG"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "SCHEMA"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "TABLE"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/53"
+          },
+          {
+            "$ref": "#/54"
+          },
+          {
+            "$ref": "#/55"
+          }
+        ]
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "DISABLE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "ENABLE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "INHERIT"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/57"
+          },
+          {
+            "$ref": "#/58"
+          },
+          {
+            "$ref": "#/59"
+          }
+        ]
+      },
+      {
+        "$type": "ObjectType",
+        "name": "EffectivePredictiveOptimizationFlag",
+        "properties": {
+          "inheritedFromName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The name of the object from which the flag was inherited."
+          },
+          "inheritedFromType": {
+            "type": {
+              "$ref": "#/56"
+            },
+            "flags": 2,
+            "description": "The type of the object from which the flag was inherited."
+          },
+          "value": {
+            "type": {
+              "$ref": "#/60"
+            },
+            "flags": 2,
+            "description": "The value of the effective predictive optimization flag."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "DISABLE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "ENABLE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "INHERIT"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "OPEN"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "ISOLATED"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/65"
+          },
+          {
+            "$ref": "#/66"
+          }
+        ]
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "PROVISIONING"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "PROVISIONED"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "FAILED"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/68"
+          },
+          {
+            "$ref": "#/69"
+          },
+          {
+            "$ref": "#/70"
+          }
+        ]
+      },
+      {
+        "$type": "ObjectType",
+        "name": "ProvisioningInfo",
+        "properties": {
+          "state": {
+            "type": {
+              "$ref": "#/71"
+            },
+            "flags": 2,
+            "description": "The current provisioning state of the catalog."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "CATALOG"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "SCHEMA"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "TABLE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "VOLUME"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/73"
+          },
+          {
+            "$ref": "#/74"
+          },
+          {
+            "$ref": "#/75"
+          },
+          {
+            "$ref": "#/76"
+          }
+        ]
+      },
+      {
+        "$type": "ObjectType",
+        "name": "UnityCatalog",
+        "properties": {
+          "comment": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "User-provided free-form text description."
+          },
+          "connectionName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "The name of the connection to an external data source."
+          },
+          "options": {
+            "type": {
+              "$ref": "#/47"
+            },
+            "flags": 0,
+            "description": "A map of key-value properties attached to the securable."
+          },
+          "providerName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "For catalogs corresponding to a share: the name of the provider."
+          },
+          "shareName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "For catalogs corresponding to a share: the name of the share."
+          },
+          "storageRoot": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Storage root URL for managed tables within catalog."
+          },
+          "forceDestroy": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 0,
+            "description": "Whether to force destroy the catalog even if it contains schemas and tables."
+          },
+          "browseOnly": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 2,
+            "description": "Whether the catalog is accessible from all workspaces or a specific set of workspaces."
+          },
+          "catalogType": {
+            "type": {
+              "$ref": "#/52"
+            },
+            "flags": 2,
+            "description": "The type of the catalog."
+          },
+          "createdAt": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 2,
+            "description": "Time at which this catalog was created, in epoch milliseconds."
+          },
+          "createdBy": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Username of catalog creator."
+          },
+          "effectivePredictiveOptimizationFlag": {
+            "type": {
+              "$ref": "#/61"
+            },
+            "flags": 2,
+            "description": "The effective predictive optimization flag."
+          },
+          "enablePredictiveOptimization": {
+            "type": {
+              "$ref": "#/60"
+            },
+            "flags": 0,
+            "description": "Whether predictive optimization should be enabled for this object and objects under it."
+          },
+          "fullName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The full name of the catalog."
+          },
+          "isolationMode": {
+            "type": {
+              "$ref": "#/67"
+            },
+            "flags": 0,
+            "description": "Whether the catalog is accessible from all workspaces or a specific set of workspaces."
+          },
+          "metastoreId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Unique identifier of the metastore for the catalog."
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Username of current owner of catalog."
+          },
+          "provisioningInfo": {
+            "type": {
+              "$ref": "#/72"
+            },
+            "flags": 2,
+            "description": "Provisioning info about the catalog."
+          },
+          "securableType": {
+            "type": {
+              "$ref": "#/77"
+            },
+            "flags": 2,
+            "description": "The type of the securable."
+          },
+          "storageLocation": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Path to the storage location."
+          },
+          "updatedAt": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 2,
+            "description": "Time at which this catalog was last modified, in epoch milliseconds."
+          },
+          "updatedBy": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Username of user who last modified catalog."
+          },
+          "name": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "Name of catalog."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "UnityCatalog",
+        "scopeType": 0,
+        "readOnlyScopes": null,
+        "body": {
+          "$ref": "#/78"
+        },
+        "flags": 0,
+        "functions": null
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "UNKNOWN_CONNECTION_TYPE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "MYSQL"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "POSTGRESQL"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "SNOWFLAKE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "REDSHIFT"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "SQLDW"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "SQLSERVER"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "DATABRICKS"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "SALESFORCE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "BIGQUERY"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "WORKDAY_RAAS"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "HIVE_METASTORE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "GA4_RAW_DATA"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "SERVICENOW"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "SALESFORCE_DATA_CLOUD"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "GLUE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "ORACLE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "TERADATA"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "HTTP"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "POWER_BI"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/80"
+          },
+          {
+            "$ref": "#/81"
+          },
+          {
+            "$ref": "#/82"
+          },
+          {
+            "$ref": "#/83"
+          },
+          {
+            "$ref": "#/84"
+          },
+          {
+            "$ref": "#/85"
+          },
+          {
+            "$ref": "#/86"
+          },
+          {
+            "$ref": "#/87"
+          },
+          {
+            "$ref": "#/88"
+          },
+          {
+            "$ref": "#/89"
+          },
+          {
+            "$ref": "#/90"
+          },
+          {
+            "$ref": "#/91"
+          },
+          {
+            "$ref": "#/92"
+          },
+          {
+            "$ref": "#/93"
+          },
+          {
+            "$ref": "#/94"
+          },
+          {
+            "$ref": "#/95"
+          },
+          {
+            "$ref": "#/96"
+          },
+          {
+            "$ref": "#/97"
+          },
+          {
+            "$ref": "#/98"
+          },
+          {
+            "$ref": "#/99"
+          }
+        ]
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "UNKNOWN_CREDENTIAL_TYPE"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/101"
+          }
+        ]
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "PROVISIONING"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "PROVISIONED"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "FAILED"
+      },
+      {
+        "$type": "ObjectType",
+        "name": "ConnectionProvisioningInfo",
+        "properties": {
+          "state": {
+            "type": {
+              "$ref": "#/71"
+            },
+            "flags": 2,
+            "description": "The current provisioning state of the connection."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "CATALOG"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "SCHEMA"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "TABLE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "VOLUME"
+      },
+      {
+        "$type": "ObjectType",
+        "name": "UnityConnection",
+        "properties": {
+          "comment": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "User-provided free-form text description."
+          },
+          "connectionType": {
+            "type": {
+              "$ref": "#/100"
+            },
+            "flags": 1,
+            "description": "The type of connection."
+          },
+          "readOnly": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 0,
+            "description": "Whether the connection is read-only."
+          },
+          "connectionId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Unique identifier of the connection."
+          },
+          "createdAt": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 2,
+            "description": "Time at which this connection was created, in epoch milliseconds."
+          },
+          "createdBy": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Username of connection creator."
+          },
+          "credentialType": {
+            "type": {
+              "$ref": "#/102"
+            },
+            "flags": 2,
+            "description": "The type of credential used for the connection."
+          },
+          "fullName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The full name of the connection."
+          },
+          "metastoreId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Unique identifier of the metastore for the connection."
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Username of current owner of connection."
+          },
+          "provisioningInfo": {
+            "type": {
+              "$ref": "#/106"
+            },
+            "flags": 2,
+            "description": "Provisioning info about the connection."
+          },
+          "securableType": {
+            "type": {
+              "$ref": "#/77"
+            },
+            "flags": 2,
+            "description": "The type of the securable."
+          },
+          "updatedAt": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 2,
+            "description": "Time at which this connection was last modified, in epoch milliseconds."
+          },
+          "updatedBy": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Username of user who last modified connection."
+          },
+          "url": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The URL of the connection."
+          },
+          "name": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The name of the connection."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "UnityConnection",
+        "scopeType": 0,
+        "readOnlyScopes": null,
+        "body": {
+          "$ref": "#/111"
+        },
+        "flags": 0,
+        "functions": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "AzureManagedIdentity",
+        "properties": {
+          "accessConnectorId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "The ID of the Azure Access Connector."
+          },
+          "credentialId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The credential ID (computed)."
+          },
+          "managedIdentityId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The ID of the Azure Managed Identity."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "AzureServicePrincipal",
+        "properties": {
+          "applicationId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The application ID of the Azure Service Principal."
+          },
+          "clientSecret": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The client secret of the Azure Service Principal."
+          },
+          "directoryId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The directory ID (tenant ID) of the Azure Service Principal."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "STORAGE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "SERVICE"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/115"
+          },
+          {
+            "$ref": "#/116"
+          }
+        ]
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "ISOLATION_MODE_OPEN"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "ISOLATION_MODE_ISOLATED"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/118"
+          },
+          {
+            "$ref": "#/119"
+          }
+        ]
+      },
+      {
+        "$type": "ObjectType",
+        "name": "UnityCredential",
+        "properties": {
+          "azureManagedIdentity": {
+            "type": {
+              "$ref": "#/113"
+            },
+            "flags": 0,
+            "description": "Azure Managed Identity configuration for the credential."
+          },
+          "azureServicePrincipal": {
+            "type": {
+              "$ref": "#/114"
+            },
+            "flags": 0,
+            "description": "Azure Service Principal configuration for the credential."
+          },
+          "comment": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "User-provided free-form text description."
+          },
+          "purpose": {
+            "type": {
+              "$ref": "#/117"
+            },
+            "flags": 1,
+            "description": "The purpose of the credential."
+          },
+          "readOnly": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 0,
+            "description": "Whether the credential is read-only."
+          },
+          "skipValidation": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 0,
+            "description": "Whether to skip validation of the credential."
+          },
+          "forceUpdate": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 0,
+            "description": "Whether to force update the credential."
+          },
+          "forceDestroy": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 0,
+            "description": "Whether to force destroy the credential."
+          },
+          "createdAt": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 2,
+            "description": "Time at which this credential was created, in epoch milliseconds."
+          },
+          "createdBy": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Username of credential creator."
+          },
+          "fullName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The full name of the credential."
+          },
+          "id": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Unique identifier of the credential."
+          },
+          "isolationMode": {
+            "type": {
+              "$ref": "#/120"
+            },
+            "flags": 2,
+            "description": "Whether the credential is accessible from all workspaces or a specific set of workspaces."
+          },
+          "metastoreId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Unique identifier of the metastore for the credential."
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Username of current owner of credential."
+          },
+          "updatedAt": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 2,
+            "description": "Time at which this credential was last modified, in epoch milliseconds."
+          },
+          "updatedBy": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Username of user who last modified credential."
+          },
+          "usedForManagedStorage": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 2,
+            "description": "Whether this credential is used for managed storage."
+          },
+          "name": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The name of the credential."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "UnityCredential",
+        "scopeType": 0,
+        "readOnlyScopes": null,
+        "body": {
+          "$ref": "#/121"
+        },
+        "flags": 0,
+        "functions": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "ManagedAqs",
+        "properties": {
+          "managedResourceId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The managed resource ID."
+          },
+          "queueUrl": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "The queue URL."
+          },
+          "resourceGroup": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The resource group."
+          },
+          "subscriptionId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The subscription ID."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "ManagedPubSub",
+        "properties": {
+          "managedResourceId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The managed resource ID."
+          },
+          "subscriptionName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "The subscription name."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "ManagedSqs",
+        "properties": {
+          "managedResourceId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The managed resource ID."
+          },
+          "queueUrl": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "The queue URL."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "ProvidedAqs",
+        "properties": {
+          "managedResourceId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The managed resource ID."
+          },
+          "queueUrl": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The queue URL."
+          },
+          "resourceGroup": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "The resource group."
+          },
+          "subscriptionId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "The subscription ID."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "ProvidedPubSub",
+        "properties": {
+          "managedResourceId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The managed resource ID."
+          },
+          "subscriptionName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The subscription name."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "ProvidedSqs",
+        "properties": {
+          "managedResourceId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The managed resource ID."
+          },
+          "queueUrl": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The queue URL."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "FileEventQueue",
+        "properties": {
+          "managedAqs": {
+            "type": {
+              "$ref": "#/123"
+            },
+            "flags": 0,
+            "description": "Managed Azure Queue Storage configuration."
+          },
+          "managedPubsub": {
+            "type": {
+              "$ref": "#/124"
+            },
+            "flags": 0,
+            "description": "Managed Google Pub/Sub configuration."
+          },
+          "managedSqs": {
+            "type": {
+              "$ref": "#/125"
+            },
+            "flags": 0,
+            "description": "Managed Amazon SQS configuration."
+          },
+          "providedAqs": {
+            "type": {
+              "$ref": "#/126"
+            },
+            "flags": 0,
+            "description": "Provided Azure Queue Storage configuration."
+          },
+          "providedPubsub": {
+            "type": {
+              "$ref": "#/127"
+            },
+            "flags": 0,
+            "description": "Provided Google Pub/Sub configuration."
+          },
+          "providedSqs": {
+            "type": {
+              "$ref": "#/128"
+            },
+            "flags": 0,
+            "description": "Provided Amazon SQS configuration."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "ISOLATION_MODE_OPEN"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "ISOLATION_MODE_ISOLATED"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/130"
+          },
+          {
+            "$ref": "#/131"
+          }
+        ]
+      },
+      {
+        "$type": "ObjectType",
+        "name": "UnityExternalLocation",
+        "properties": {
+          "comment": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "User-provided free-form text description."
+          },
+          "credentialName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The name of the credential used to access the external location."
+          },
+          "enableFileEvents": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 0,
+            "description": "Indicates whether file events are enabled for this external location."
+          },
+          "fallback": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 0,
+            "description": "Indicates whether this location will be used as a fallback location."
+          },
+          "fileEventQueue": {
+            "type": {
+              "$ref": "#/129"
+            },
+            "flags": 0,
+            "description": "Configuration for file event queue."
+          },
+          "readOnly": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 0,
+            "description": "Whether the external location is read-only."
+          },
+          "skipValidation": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 0,
+            "description": "Suppress validation errors."
+          },
+          "url": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "URL of the external location."
+          },
+          "browseOnly": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 2,
+            "description": "Whether this external location can only be browsed."
+          },
+          "createdAt": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 2,
+            "description": "Time at which this external location was created, in epoch milliseconds."
+          },
+          "createdBy": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Username of external location creator."
+          },
+          "credentialId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Unique identifier of the credential used to access the external location."
+          },
+          "isolationMode": {
+            "type": {
+              "$ref": "#/132"
+            },
+            "flags": 2,
+            "description": "Whether isolation mode is enabled for this external location."
+          },
+          "metastoreId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Unique identifier of the metastore for the external location."
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Username of current owner of external location."
+          },
+          "updatedAt": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 2,
+            "description": "Time at which this external location was last modified, in epoch milliseconds."
+          },
+          "updatedBy": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Username of user who last modified external location."
+          },
+          "name": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The name of the external location."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "UnityExternalLocation",
+        "scopeType": 0,
+        "readOnlyScopes": null,
+        "body": {
+          "$ref": "#/133"
+        },
+        "flags": 0,
+        "functions": null
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "MANAGED_CATALOG"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "DELTASHARING_CATALOG"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "FOREIGN_CATALOG"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "SYSTEM_CATALOG"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "CATALOG"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "SCHEMA"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "TABLE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "DISABLE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "ENABLE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "INHERIT"
+      },
+      {
+        "$type": "ObjectType",
+        "name": "SchemaEffectivePredictiveOptimizationFlag",
+        "properties": {
+          "inheritedFromName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The name from which the flag is inherited."
+          },
+          "inheritedFromType": {
+            "type": {
+              "$ref": "#/56"
+            },
+            "flags": 2,
+            "description": "The type from which the flag is inherited."
+          },
+          "value": {
+            "type": {
+              "$ref": "#/60"
+            },
+            "flags": 2,
+            "description": "The effective predictive optimization flag value."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "DISABLE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "ENABLE"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "INHERIT"
+      },
+      {
+        "$type": "ObjectType",
+        "name": "UnitySchema",
+        "properties": {
+          "catalogName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The name of the catalog."
+          },
+          "comment": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "User-provided free-form text description."
+          },
+          "storageRoot": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Storage root URL for the schema."
+          },
+          "browseOnly": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 2,
+            "description": "Whether this schema can only be browsed."
+          },
+          "catalogType": {
+            "type": {
+              "$ref": "#/52"
+            },
+            "flags": 2,
+            "description": "The type of the catalog."
+          },
+          "createdAt": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 2,
+            "description": "Time at which this schema was created, in epoch milliseconds."
+          },
+          "createdBy": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Username of schema creator."
+          },
+          "effectivePredictiveOptimizationFlag": {
+            "type": {
+              "$ref": "#/145"
+            },
+            "flags": 2,
+            "description": "Effective predictive optimization flag for the schema."
+          },
+          "enablePredictiveOptimization": {
+            "type": {
+              "$ref": "#/60"
+            },
+            "flags": 0,
+            "description": "Whether predictive optimization is enabled for the schema."
+          },
+          "fullName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The full name of the schema."
+          },
+          "metastoreId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Unique identifier of the metastore for the schema."
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Username of current owner of schema."
+          },
+          "schemaId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Unique identifier of the schema."
+          },
+          "storageLocation": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Storage location for the schema."
+          },
+          "updatedAt": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 2,
+            "description": "Time at which this schema was last modified, in epoch milliseconds."
+          },
+          "updatedBy": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Username of user who last modified schema."
+          },
+          "name": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The name of the schema."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "UnitySchema",
+        "scopeType": 0,
+        "readOnlyScopes": null,
+        "body": {
+          "$ref": "#/149"
+        },
+        "flags": 0,
+        "functions": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "StorageCredentialAzureManagedIdentity",
+        "properties": {
+          "accessConnectorId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The resource ID of the Azure Databricks Access Connector."
+          },
+          "credentialId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The credential ID."
+          },
+          "managedIdentityId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The resource ID of the Azure User Assigned Managed Identity."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "StorageCredentialAzureServicePrincipal",
+        "properties": {
+          "applicationId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The application ID of the Azure service principal."
+          },
+          "clientSecret": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "The client secret of the Azure service principal."
+          },
+          "directoryId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The directory ID of the Azure service principal."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "ISOLATION_MODE_OPEN"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "ISOLATION_MODE_ISOLATED"
+      },
+      {
+        "$type": "ObjectType",
+        "name": "UnityStorageCredential",
+        "properties": {
+          "azureManagedIdentity": {
+            "type": {
+              "$ref": "#/151"
+            },
+            "flags": 0,
+            "description": "Azure Managed Identity configuration."
+          },
+          "azureServicePrincipal": {
+            "type": {
+              "$ref": "#/152"
+            },
+            "flags": 0,
+            "description": "Azure Service Principal configuration."
+          },
+          "comment": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "User-provided free-form text description."
+          },
+          "readOnly": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 0,
+            "description": "Whether the storage credential is read-only."
+          },
+          "skipValidation": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 0,
+            "description": "Suppress validation errors."
+          },
+          "createdAt": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 2,
+            "description": "Time at which this storage credential was created, in epoch milliseconds."
+          },
+          "createdBy": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Username of storage credential creator."
+          },
+          "fullName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The full name of the storage credential."
+          },
+          "id": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Unique identifier of the storage credential."
+          },
+          "isolationMode": {
+            "type": {
+              "$ref": "#/132"
+            },
+            "flags": 2,
+            "description": "Whether isolation mode is enabled for this storage credential."
+          },
+          "metastoreId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Unique identifier of the metastore for the storage credential."
+          },
+          "owner": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Username of current owner of storage credential."
+          },
+          "updatedAt": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 2,
+            "description": "Time at which this storage credential was last modified, in epoch milliseconds."
+          },
+          "updatedBy": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "Username of user who last modified storage credential."
+          },
+          "usedForManagedStorage": {
+            "type": {
+              "$ref": "#/13"
+            },
+            "flags": 2,
+            "description": "Whether this credential is used for managed storage."
+          },
+          "name": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The name of the storage credential."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "UnityStorageCredential",
+        "scopeType": 0,
+        "readOnlyScopes": null,
+        "body": {
+          "$ref": "#/155"
+        },
+        "flags": 0,
+        "functions": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "AutoScale",
+        "properties": {
+          "minWorkers": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 1,
+            "description": "Minimum number of worker nodes."
+          },
+          "maxWorkers": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 1,
+            "description": "Maximum number of worker nodes."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "AzureAttributes",
+        "properties": {
+          "firstOnDemand": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 0,
+            "description": "Number of on-demand instances to use before using spot instances."
+          },
+          "availability": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Availability type for Azure instances."
+          },
+          "spotBidMaxPrice": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 0,
+            "description": "Maximum price for spot instances."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Cluster",
+        "properties": {
+          "sparkVersion": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The Spark version of the cluster."
+          },
+          "nodeTypeId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The node type ID for worker nodes."
+          },
+          "numWorkers": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 0,
+            "description": "The number of worker nodes."
+          },
+          "autoScale": {
+            "type": {
+              "$ref": "#/157"
+            },
+            "flags": 0,
+            "description": "Auto-scaling configuration for the cluster."
+          },
+          "driverNodeTypeId": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "The node type ID for the driver node."
+          },
+          "azureAttributes": {
+            "type": {
+              "$ref": "#/158"
+            },
+            "flags": 0,
+            "description": "Azure-specific attributes for the cluster."
+          },
+          "autoterminationMinutes": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 0,
+            "description": "Auto-termination time in minutes."
+          },
+          "dataSecurityMode": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Data security mode for the cluster."
+          },
+          "singleUserName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Single user name for single-user clusters."
+          },
+          "runtimeEngine": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Runtime engine for the cluster."
+          },
+          "state": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The current state of the cluster."
+          },
+          "stateMessage": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The state message of the cluster."
+          },
+          "jdbcPort": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 2,
+            "description": "The JDBC port of the cluster."
+          },
+          "clusterCores": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 2,
+            "description": "The number of cores in the cluster."
+          },
+          "clusterMemoryMb": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 2,
+            "description": "The memory in MB of the cluster."
+          },
+          "startTime": {
+            "type": {
+              "$ref": "#/38"
+            },
+            "flags": 2,
+            "description": "The start time of the cluster."
+          },
+          "creatorUserName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "The creator username of the cluster."
+          },
+          "clusterName": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 17,
+            "description": "The name of the cluster."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Cluster",
+        "scopeType": 0,
+        "readOnlyScopes": null,
+        "body": {
+          "$ref": "#/159"
+        },
+        "flags": 0,
+        "functions": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Configuration",
+        "properties": {
+          "workspaceUrl": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 1,
+            "description": "The Azure Databricks workspace URL."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      }
+    ]
+  },
+  "samples": []
+}

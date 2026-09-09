@@ -1,0 +1,941 @@
+{
+  "id": "azure-devops",
+  "version": "0.1.102",
+  "artifact": "azuredevopsbicep.azurecr.io/extensions/azuredevops",
+  "digest": "sha256:1371087cac004a86e2103f5fb681dc581be952764e3f035f1d343dd9f89b8880",
+  "extractedAt": "2026-08-24T19:40:45.825Z",
+  "settings": {
+    "name": "AzureDevOps",
+    "version": "0.1.102",
+    "isSingleton": true,
+    "isPreview": false,
+    "isDeprecated": false,
+    "configurationType": {
+      "$ref": "types.json#/33"
+    }
+  },
+  "resources": {
+    "AzureDevOpsArtifactFeed": {
+      "$ref": "types.json#/32"
+    },
+    "AzureDevOpsExtension": {
+      "$ref": "types.json#/25"
+    },
+    "AzureDevOpsPermission": {
+      "$ref": "types.json#/23"
+    },
+    "AzureDevOpsPipelineRun": {
+      "$ref": "types.json#/21"
+    },
+    "AzureDevOpsProject": {
+      "$ref": "types.json#/19"
+    },
+    "AzureDevOpsRepository": {
+      "$ref": "types.json#/14"
+    },
+    "AzureDevOpsServiceConnection": {
+      "$ref": "types.json#/12"
+    },
+    "AzureDevOpsWorkItem": {
+      "$ref": "types.json#/6"
+    }
+  },
+  "resourceFunctions": {},
+  "typeFiles": {
+    "types.json": [
+      {
+        "$type": "IntegerType",
+        "minValue": null,
+        "maxValue": null
+      },
+      {
+        "$type": "StringType",
+        "sensitive": null,
+        "minLength": null,
+        "maxLength": null,
+        "pattern": null
+      },
+      {
+        "$type": "BooleanType"
+      },
+      {
+        "$type": "IntegerType",
+        "minValue": null,
+        "maxValue": null
+      },
+      {
+        "$type": "StringType",
+        "sensitive": null,
+        "minLength": null,
+        "maxLength": null,
+        "pattern": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "AzureDevOpsWorkItem",
+        "properties": {
+          "id": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 1,
+            "description": "Internal Work item Id"
+          },
+          "title": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 1,
+            "description": "Work item title"
+          },
+          "type": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 1,
+            "description": "Work item type"
+          },
+          "description": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Work item description"
+          },
+          "organization": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "Azure DevOps organization name (e.g. 'myorg') or full https://dev.azure.com/{org} URL"
+          },
+          "project": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "Azure DevOps project name"
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "AzureDevOpsWorkItem",
+        "body": {
+          "$ref": "#/5"
+        },
+        "functions": null,
+        "readableScopes": 31,
+        "writableScopes": 31,
+        "scopeType": null,
+        "readOnlyScopes": null,
+        "flags": null
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Subscription"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "ManagementGroup"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/7"
+          },
+          {
+            "$ref": "#/8"
+          }
+        ]
+      },
+      {
+        "$type": "BooleanType"
+      },
+      {
+        "$type": "ObjectType",
+        "name": "AzureDevOpsServiceConnection",
+        "properties": {
+          "scopeLevel": {
+            "type": {
+              "$ref": "#/9"
+            },
+            "flags": 0,
+            "description": "Scope level: Subscription (default) or ManagementGroup."
+          },
+          "subscriptionId": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Azure subscription id (GUID). Required when scopeLevel = Subscription."
+          },
+          "subscriptionName": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Azure subscription display name. Required when scopeLevel = Subscription."
+          },
+          "tenantId": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 1,
+            "description": "Azure AD tenant id (directory id) containing the user-assigned managed identity."
+          },
+          "clientId": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 1,
+            "description": "ClientId (application id) of the user-assigned managed identity used for Workload Identity Federation."
+          },
+          "managementGroupName": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Management group name. Required when scopeLevel = ManagementGroup."
+          },
+          "managementGroupId": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Management group id. Required when scopeLevel = ManagementGroup."
+          },
+          "description": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Description for the service connection"
+          },
+          "grantAllPipelines": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Grant access permission to all pipelines (authorizes all pipelines after creation)"
+          },
+          "authorizationScheme": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] Authorization scheme actually used"
+          },
+          "serviceConnectionId": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT]Service connection id (GUID)"
+          },
+          "url": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] Service connection URL"
+          },
+          "issuer": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] Workload Identity Federation Issuer"
+          },
+          "subjectIdentifier": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] Workload Identity Federation Subject Identifier"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "Service connection name"
+          },
+          "organization": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "Azure DevOps organization name (e.g. 'myorg') or full https://dev.azure.com/{org} URL"
+          },
+          "project": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "Project name that will contain the service connection"
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "AzureDevOpsServiceConnection",
+        "body": {
+          "$ref": "#/11"
+        },
+        "functions": null,
+        "readableScopes": 31,
+        "writableScopes": 31,
+        "scopeType": null,
+        "readOnlyScopes": null,
+        "flags": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "AzureDevOpsRepository",
+        "properties": {
+          "defaultBranch": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Default branch name to set after creation (e.g. 'refs/heads/main'). If omitted, Azure DevOps sets one after first push."
+          },
+          "repositoryId": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] Repository id (GUID)"
+          },
+          "webUrl": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] Repository web URL"
+          },
+          "remoteUrl": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] HTTPS clone URL"
+          },
+          "sshUrl": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] SSH clone URL"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "The Azure DevOps repository name"
+          },
+          "organization": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "Azure DevOps organization name (e.g. 'myorg') or full https://dev.azure.com/{org} URL"
+          },
+          "project": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "Project name that will contain the repository"
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "AzureDevOpsRepository",
+        "body": {
+          "$ref": "#/13"
+        },
+        "functions": null,
+        "readableScopes": 31,
+        "writableScopes": 31,
+        "scopeType": null,
+        "readOnlyScopes": null,
+        "flags": null
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Private"
+      },
+      {
+        "$type": "StringLiteralType",
+        "value": "Public"
+      },
+      {
+        "$type": "UnionType",
+        "elements": [
+          {
+            "$ref": "#/15"
+          },
+          {
+            "$ref": "#/16"
+          }
+        ]
+      },
+      {
+        "$type": "ObjectType",
+        "name": "AzureDevOpsProject",
+        "properties": {
+          "description": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Project description"
+          },
+          "visibility": {
+            "type": {
+              "$ref": "#/17"
+            },
+            "flags": 0,
+            "description": "Project visibility (Private/Public)"
+          },
+          "processName": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Process name to use (e.g. Agile, Scrum, Basic, CMMI)"
+          },
+          "sourceControlType": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Source control type (Git or Tfvc)"
+          },
+          "projectId": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] Project id (GUID)"
+          },
+          "state": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] Project state"
+          },
+          "url": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] Project web URL"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "The Azure DevOps project name"
+          },
+          "organization": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "Azure DevOps organization name (e.g. 'myorg') or full https://dev.azure.com/{org} URL"
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "AzureDevOpsProject",
+        "body": {
+          "$ref": "#/18"
+        },
+        "functions": null,
+        "readableScopes": 31,
+        "writableScopes": 31,
+        "scopeType": null,
+        "readOnlyScopes": null,
+        "flags": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "AzureDevOpsPipelineRun",
+        "properties": {
+          "branch": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Branch to trigger the pipeline on (e.g., 'refs/heads/main' or 'main'). Either branch or tag must be specified."
+          },
+          "tag": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Tag to trigger the pipeline on (e.g., 'refs/tags/v1.0.0' or 'v1.0.0'). Either branch or tag must be specified."
+          },
+          "templateParameters": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Template parameters to pass to the pipeline as JSON string"
+          },
+          "variables": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Variables to pass to the pipeline as JSON string"
+          },
+          "runId": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] Run ID of the triggered pipeline"
+          },
+          "state": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] State of the pipeline run (e.g., 'completed', 'inProgress')"
+          },
+          "result": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] Result of the pipeline run (e.g., 'succeeded', 'failed')"
+          },
+          "url": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] URL to the pipeline run in Azure DevOps"
+          },
+          "organization": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "Azure DevOps organization name (e.g. 'myorg') or full https://dev.azure.com/{org} URL"
+          },
+          "project": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "Azure DevOps project name"
+          },
+          "pipelineId": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "Pipeline ID or name"
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "AzureDevOpsPipelineRun",
+        "body": {
+          "$ref": "#/20"
+        },
+        "functions": null,
+        "readableScopes": 31,
+        "writableScopes": 31,
+        "scopeType": null,
+        "readOnlyScopes": null,
+        "flags": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "AzureDevOpsPermission",
+        "properties": {
+          "groupObjectId": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 1,
+            "description": "Azure Entra ID group object id (GUID)"
+          },
+          "role": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 1,
+            "description": "Project role to assign the group to (e.g., Readers, Contributors, Project Administrators, or any custom role)"
+          },
+          "assigned": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] Whether the Entra ID group is currently assigned to the target role in the project"
+          },
+          "groupDescriptor": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] Descriptor of the Entra ID group in Azure DevOps Graph"
+          },
+          "projectGroupDescriptor": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] Descriptor of the target project security group"
+          },
+          "organization": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "Azure DevOps organization name (e.g. 'myorg') or full https://dev.azure.com/{org} URL"
+          },
+          "project": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "The Azure DevOps project name"
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "AzureDevOpsPermission",
+        "body": {
+          "$ref": "#/22"
+        },
+        "functions": null,
+        "readableScopes": 31,
+        "writableScopes": 31,
+        "scopeType": null,
+        "readOnlyScopes": null,
+        "flags": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "AzureDevOpsExtension",
+        "properties": {
+          "version": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 1,
+            "description": "Version of the extension to install (e.g. '1.0.0')"
+          },
+          "extensionId": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] Extension ID"
+          },
+          "publisherId": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "[OUTPUT] Publisher ID"
+          },
+          "organization": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "Azure DevOps organization name (e.g. 'myorg') or full https://dev.azure.com/{org} URL"
+          },
+          "publisherName": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "Publisher name (e.g. 'ms' or 'fabrikam')"
+          },
+          "extensionName": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "Extension name (e.g. 'vss-code-search')"
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "AzureDevOpsExtension",
+        "body": {
+          "$ref": "#/24"
+        },
+        "functions": null,
+        "readableScopes": 31,
+        "writableScopes": 31,
+        "scopeType": null,
+        "readOnlyScopes": null,
+        "flags": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "AzureDevOpsArtifactFeedPermission",
+        "properties": {
+          "identityDescriptor": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Identity descriptor for the permission"
+          },
+          "identityId": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Identity ID for the permission"
+          },
+          "role": {
+            "type": {
+              "$ref": "#/3"
+            },
+            "flags": 0,
+            "description": "Role level for the permission (1=Reader, 2=Contributor, 3=Collaborator, 4=Owner, 5=Administrator)"
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ArrayType",
+        "itemType": {
+          "$ref": "#/26"
+        },
+        "minLength": null,
+        "maxLength": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "AzureDevOpsArtifactFeedUpstreamSource",
+        "properties": {
+          "id": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Upstream source ID"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Upstream source name"
+          },
+          "location": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Upstream source location"
+          },
+          "protocol": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Upstream source protocol"
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ArrayType",
+        "itemType": {
+          "$ref": "#/28"
+        },
+        "minLength": null,
+        "maxLength": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "AzureDevOpsArtifactFeedProjectReference",
+        "properties": {
+          "id": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Project ID"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Project name"
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "AzureDevOpsArtifactFeed",
+        "properties": {
+          "description": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Feed description"
+          },
+          "hideDeletedPackageVersions": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Whether to hide deleted package versions"
+          },
+          "upstreamEnabled": {
+            "type": {
+              "$ref": "#/10"
+            },
+            "flags": 0,
+            "description": "Whether upstream sources are enabled"
+          },
+          "permissions": {
+            "type": {
+              "$ref": "#/27"
+            },
+            "flags": 0,
+            "description": "Feed permissions"
+          },
+          "upstreamSources": {
+            "type": {
+              "$ref": "#/29"
+            },
+            "flags": 0,
+            "description": "Upstream sources configuration"
+          },
+          "feedId": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "Feed ID"
+          },
+          "url": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 2,
+            "description": "Feed URL"
+          },
+          "projectReference": {
+            "type": {
+              "$ref": "#/30"
+            },
+            "flags": 2,
+            "description": "Project reference (when project-scoped)"
+          },
+          "name": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "The Azure DevOps artifact feed name"
+          },
+          "organization": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 17,
+            "description": "Azure DevOps organization name (e.g. 'myorg') or full https://dev.azure.com/{org} URL"
+          },
+          "project": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Azure DevOps project name (optional - if not provided, feed will be organization-scoped)"
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      },
+      {
+        "$type": "ResourceType",
+        "name": "AzureDevOpsArtifactFeed",
+        "body": {
+          "$ref": "#/31"
+        },
+        "functions": null,
+        "readableScopes": 31,
+        "writableScopes": 31,
+        "scopeType": null,
+        "readOnlyScopes": null,
+        "flags": null
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Configuration",
+        "properties": {
+          "accessToken": {
+            "type": {
+              "$ref": "#/4"
+            },
+            "flags": 0,
+            "description": "Personal Access Token (PAT) for Azure DevOps with appropriate scopes. If omitted, environment variable AZDO_PAT is used."
+          }
+        },
+        "additionalProperties": null,
+        "sensitive": null
+      }
+    ]
+  },
+  "samples": [
+    {
+      "title": "Azure DevOps project",
+      "description": "Creates a project with a repository, feed, service connection, permissions, extensions and work items.",
+      "url": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy/blob/main/Sample/main.bicep",
+      "content": "targetScope = 'local'\nextension azuredevops\n\n@description('Azure DevOps organization name (short org slug, not full URL).')\nparam organization string\n\n@description('Project name')\nparam projectName string\n\n@description('Optional project description')\nparam projectDescription string = ''\n\n@allowed([\n  'Private'\n  'Public'\n])\nparam visibility string = 'Private'\n\n@description('Process name (Agile, Scrum, Basic, CMMI)')\nparam processName string = 'Agile'\n\n@allowed([\n  'Git'\n  'Tfvc'\n])\nparam sourceControl string = 'Git'\n\n@description('Repository name')\nparam repositoryName string\n\n@description('Artifact feed name')\nparam artifactName string\n\n@description('Entra ID group objectId (GUID) to assign to the project role')\nparam entraGroupObjectId string?\n\n@description('Project role to grant to the Entra group')\nparam azureDevOpsRole string?\n\n@description('Client ID of the service principal')\nparam clientId string\n\n@description('Subscription ID')\nparam subscriptionId string\n\n@description('Subscription name')\nparam subscriptionName string\n\n@description('Tenant ID')\nparam tenantId string\n\n@description('List of Azure DevOps extensions to install')\nparam extensions extensionType[]\n\n@description('List of work items to create')\nparam workItems workItemType[]\n\nresource project 'AzureDevOpsProject' = {\n  name: projectName\n  organization: organization\n  description: empty(projectDescription) ? null : projectDescription\n  visibility: visibility\n  processName: processName\n  sourceControlType: sourceControl\n}\n\nresource extension 'AzureDevOpsExtension' = [for ext in extensions: {\n  organization: organization\n  publisherName: ext.publisherName\n  extensionName: ext.extensionName\n  version: ext.version\n}]\n\nresource repository 'AzureDevOpsRepository' = {\n  name: repositoryName\n  organization: organization\n  project: project.name\n}\n\nresource artifactFeed 'AzureDevOpsArtifactFeed' = {\n  name: artifactName\n  organization: organization\n  project: project.name\n}\n\nresource workItemList 'AzureDevOpsWorkItem' = [for workItem in workItems: {\n  project: project.name\n  organization: organization  \n  id: workItem.id  \n  title: workItem.title\n  description: workItem.?description\n  type: workItem.type\n}]\n\nresource readerPermission 'AzureDevOpsPermission' = if (!empty(entraGroupObjectId) && !empty(azureDevOpsRole)) {\n  groupObjectId: entraGroupObjectId!\n  organization: organization\n  project: project.name\n  role: azureDevOpsRole!\n}\n\nresource serviceConnection 'AzureDevOpsServiceConnection' = {\n  name: 'my-first-service-connection'\n  organization: organization\n  project: project.name\n  grantAllPipelines: true\n  description: 'Service connection for Azure resources created by Bicep'\n  clientId: clientId\n  subscriptionId: subscriptionId\n  subscriptionName: subscriptionName\n  tenantId: tenantId\n}\n\n\n// Outputs\noutput projectId string = project.projectId\noutput projectState string = project.state\noutput projectUrl string = project.url\n\noutput repositoryId string = repository.repositoryId\noutput repositoryWebUrl string = repository.webUrl\noutput repositoryRemoteUrl string = repository.remoteUrl\noutput repositorySshUrl string = repository.sshUrl\n\noutput artifactFeedId string = artifactFeed.feedId\noutput artifactFeedUrl string = artifactFeed.url\n\noutput serviceConnectionIdentifier string = serviceConnection.subjectIdentifier\noutput serviceConnectionIssuer string = serviceConnection.issuer\n\ntype extensionType = {\n  publisherName: string\n  extensionName: string\n  version: string\n}\n\n\ntype workItemType = {\n  id: int\n  title: string\n  description: string?\n  type: string\n}"
+    },
+    {
+      "title": "Trigger a pipeline",
+      "description": "Triggers an Azure Pipeline from a local Bicep deployment.",
+      "url": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy/blob/main/Sample/triggerPipeline.bicep",
+      "content": "targetScope = 'local'\nextension azuredevops\n\nparam parOrganization string\nparam parProject string\nparam parPipelineId string\nparam parPipelineBranch string\nparam parTemplateParameters string\n\nresource pipelineRun 'AzureDevOpsPipelineRun' = {\n  organization: parOrganization\n  project: parProject\n  pipelineId: parPipelineId\n  branch: parPipelineBranch\n  templateParameters: parTemplateParameters\n}"
+    }
+  ]
+}

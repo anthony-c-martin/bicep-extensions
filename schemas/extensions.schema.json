@@ -17,7 +17,7 @@
   "definitions": {
     "extension": {
       "type": "object",
-      "required": ["id", "displayName", "description", "repository", "artifact"],
+      "required": ["id", "displayName", "description", "repository", "artifact", "communityContributed"],
       "additionalProperties": false,
       "properties": {
         "id": {
@@ -42,6 +42,10 @@
           "type": "string",
           "description": "OCI artifact path, without a tag. The latest published version is resolved automatically.",
           "pattern": "^[^:]+/[^:]+$"
+        },
+        "communityContributed": {
+          "type": "boolean",
+          "description": "Whether the extension is contributed by the community rather than officially maintained."
         },
         "publisher": {
           "type": "string",
