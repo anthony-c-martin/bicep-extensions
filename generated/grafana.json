@@ -259,5 +259,12 @@
       }
     ]
   },
-  "samples": []
+  "samples": [
+    {
+      "title": "Basic Grafana resources",
+      "description": "Creates a Grafana folder, data source and dashboard.",
+      "url": "https://github.com/anthony-c-martin/bicep-ext-grafana/blob/main/samples/basic/main.bicep",
+      "content": "targetScope = 'local'\n\n@description('The absolute URL of the Grafana instance.')\nparam grafanaUrl string\n\n@secure()\n@description('A Grafana service account token with dashboard, folder, and data source permissions.')\nparam grafanaToken string\n\n@description('The URL of the Prometheus server to configure.')\nparam prometheusUrl string\n\nextension grafana with {\n  baseUrl: grafanaUrl\n  token: grafanaToken\n}\n\nresource operations 'Folder' = {\n  uid: 'operations'\n  title: 'Operations'\n  description: 'Operational dashboards managed by Bicep'\n}\n\nresource prometheus 'DataSource' = {\n  uid: 'prometheus'\n  name: 'Prometheus'\n  type: 'prometheus'\n  url: prometheusUrl\n  access: 'proxy'\n  isDefault: true\n  jsonDataJson: string({\n    httpMethod: 'POST'\n    timeInterval: '30s'\n  })\n}\n\nresource overview 'Dashboard' = {\n  uid: 'operations-overview'\n  title: 'Operations overview'\n  folderUid: operations.uid\n  message: 'Managed by Bicep'\n  definitionJson: string({\n    tags: [\n      'bicep'\n      'operations'\n    ]\n    timezone: 'browser'\n    schemaVersion: 41\n    refresh: '30s'\n    time: {\n      from: 'now-6h'\n      to: 'now'\n    }\n    panels: [\n      {\n        id: 1\n        type: 'timeseries'\n        title: 'Prometheus up'\n        datasource: {\n          type: 'prometheus'\n          uid: prometheus.uid\n        }\n        targets: [\n          {\n            refId: 'A'\n            expr: 'up'\n          }\n        ]\n        gridPos: {\n          h: 8\n          w: 24\n          x: 0\n          y: 0\n        }\n      }\n    ]\n  })\n}\n\noutput dashboardUid string = overview.uid"
+    }
+  ]
 }

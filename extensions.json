@@ -353,6 +353,13 @@
         "utilities",
         "password",
         "security"
+      ],
+      "samples": [
+        {
+          "title": "Generate a password",
+          "description": "Generates a complex password with configurable character sets and length.",
+          "url": "https://github.com/mimachniak/bicep-ext-PassWordGenerator/blob/main/example/local-deploy/main.bicep"
+        }
       ]
     },
     {
