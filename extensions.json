@@ -356,6 +356,30 @@
       ]
     },
     {
+      "id": "grafana",
+      "displayName": "Grafana",
+      "description": "Manage Grafana data-plane folders, data sources and dashboards from Bicep.",
+      "communityContributed": true,
+      "repository": "https://github.com/anthony-c-martin/bicep-ext-grafana",
+      "artifact": "ghcr.io/anthony-c-martin/bicep-ext-grafana",
+      "publisher": "anthony-c-martin",
+      "category": "Observability",
+      "tags": [
+        "grafana",
+        "monitoring",
+        "dashboards",
+        "data-sources"
+      ],
+      "license": "MIT",
+      "samples": [
+        {
+          "title": "Basic Grafana resources",
+          "description": "Creates a Grafana folder, data source and dashboard.",
+          "url": "https://github.com/anthony-c-martin/bicep-ext-grafana/blob/main/samples/basic/main.bicep"
+        }
+      ]
+    },
+    {
       "id": "azuredevops",
       "displayName": "Azure DevOps",
       "description": "Declaratively manage Azure DevOps projects, repositories, artifact feeds, service connections and pipelines from Bicep.",

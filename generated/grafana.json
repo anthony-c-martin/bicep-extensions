@@ -1,0 +1,263 @@
+{
+  "id": "grafana",
+  "version": "0.0.1",
+  "artifact": "ghcr.io/anthony-c-martin/bicep-ext-grafana",
+  "digest": "sha256:317a171c3fec40fcf6d965eccef903f843eb78b2edee37f989c74767c7c71cad",
+  "extractedAt": "2026-09-12T13:07:06.193Z",
+  "settings": {
+    "name": "grafana",
+    "version": "0.0.1",
+    "isSingleton": true,
+    "isPreview": false,
+    "isDeprecated": false,
+    "configurationType": {
+      "$ref": "types.json#/9"
+    }
+  },
+  "resources": {
+    "Dashboard": {
+      "$ref": "types.json#/2"
+    },
+    "DataSource": {
+      "$ref": "types.json#/8"
+    },
+    "Folder": {
+      "$ref": "types.json#/4"
+    }
+  },
+  "resourceFunctions": {},
+  "typeFiles": {
+    "types.json": [
+      {
+        "$type": "StringType"
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Dashboard",
+        "properties": {
+          "title": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The dashboard title."
+          },
+          "folderUid": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The UID of the folder that contains the dashboard."
+          },
+          "message": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "A message describing the dashboard change."
+          },
+          "definitionJson": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "A JSON object containing dashboard fields such as panels, tags, templating, and time settings."
+          },
+          "uid": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The stable Grafana dashboard UID."
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Dashboard",
+        "body": {
+          "$ref": "#/1"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Folder",
+        "properties": {
+          "title": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The folder title."
+          },
+          "description": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The folder description."
+          },
+          "parentUid": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The parent folder UID. Omit for a root-level folder."
+          },
+          "uid": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The stable Grafana folder UID."
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "Folder",
+        "body": {
+          "$ref": "#/3"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "BooleanType"
+      },
+      {
+        "$type": "StringType",
+        "sensitive": true
+      },
+      {
+        "$type": "ObjectType",
+        "name": "DataSource",
+        "properties": {
+          "name": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The data source name."
+          },
+          "type": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The data source plugin type, for example prometheus."
+          },
+          "url": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The data source URL."
+          },
+          "access": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The access mode. Grafana commonly uses proxy."
+          },
+          "isDefault": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "Whether this is the default data source."
+          },
+          "database": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The database name."
+          },
+          "user": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The user name."
+          },
+          "basicAuth": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "Whether basic authentication is enabled."
+          },
+          "basicAuthUser": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "The basic authentication user name."
+          },
+          "withCredentials": {
+            "type": {
+              "$ref": "#/5"
+            },
+            "flags": 0,
+            "description": "Whether credentials are sent with cross-site requests."
+          },
+          "jsonDataJson": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 0,
+            "description": "A JSON object containing plugin-specific non-secret configuration."
+          },
+          "secureJsonDataJson": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 4,
+            "description": "A JSON object containing plugin-specific secret configuration."
+          },
+          "uid": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 17,
+            "description": "The stable Grafana data source UID."
+          }
+        }
+      },
+      {
+        "$type": "ResourceType",
+        "name": "DataSource",
+        "body": {
+          "$ref": "#/7"
+        },
+        "readableScopes": 31,
+        "writableScopes": 31
+      },
+      {
+        "$type": "ObjectType",
+        "name": "Configuration",
+        "properties": {
+          "baseUrl": {
+            "type": {
+              "$ref": "#/0"
+            },
+            "flags": 1,
+            "description": "The absolute Grafana URL. The /api suffix is optional."
+          },
+          "token": {
+            "type": {
+              "$ref": "#/6"
+            },
+            "flags": 1,
+            "description": "A Grafana service account token or an Azure Managed Grafana Microsoft Entra access token."
+          }
+        }
+      }
+    ]
+  },
+  "samples": []
+}
