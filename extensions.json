@@ -341,6 +341,21 @@
       ]
     },
     {
+      "id": "passwordgenerator",
+      "displayName": "PassWordGenerator",
+      "description": "Generate complex passwords for use in Bicep deployments.",
+      "communityContributed": true,
+      "repository": "https://github.com/mimachniak/bicep-ext-PassWordGenerator",
+      "artifact": "bicepextsys4opsacr.azurecr.io/extensions/passwordgenerator",
+      "publisher": "mimachniak",
+      "category": "Utilities",
+      "tags": [
+        "utilities",
+        "password",
+        "security"
+      ]
+    },
+    {
       "id": "azuredevops",
       "displayName": "Azure DevOps",
       "description": "Declaratively manage Azure DevOps projects, repositories, artifact feeds, service connections and pipelines from Bicep.",
