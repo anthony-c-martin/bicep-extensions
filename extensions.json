@@ -392,7 +392,7 @@
       "description": "Declaratively manage Azure DevOps projects, repositories, artifact feeds, service connections and pipelines from Bicep.",
       "communityContributed": true,
       "repository": "https://github.com/johnlokerse/azure-devops-bicep-local-deploy",
-      "artifact": "azuredevopsbicep.azurecr.io/extensions/azuredevops",
+      "artifact": "ghcr.io/johnlokerse/azure-devops-bicep-local-deploy",
       "publisher": "johnlokerse",
       "category": "DevOps",
       "tags": [
@@ -421,7 +421,7 @@
       "description": "Deploy container-based Microsoft Foundry Hosted Agents and their immutable versions through the Foundry data plane API.",
       "communityContributed": true,
       "repository": "https://github.com/johnlokerse/bicep-ext-foundry-hosted-agents",
-      "artifact": "n/a",
+      "artifact": "ghcr.io/johnlokerse/bicep-ext-foundry-hosted-agents",
       "publisher": "johnlokerse",
       "category": "Azure",
       "tags": [
